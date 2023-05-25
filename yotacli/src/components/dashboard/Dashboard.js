@@ -9,14 +9,23 @@ import Routing from "../../routing";
 function Dashboard() {
   return (
     <div className="container-fluid">
-      <div className="row">
+      <div className="row" style={{ height: "38.1rem" }}>
         <Sidebar />
         <div className="col-xl-10 col-lg-10" style={{ padding: "0px 0px" }}>
           <Navbar />
-          <Routing />
+          <div style={{ marginBottom: 70 }}>
+            {" "}
+            <Routing />
+          </div>
+
           <div
             className="container-fluid"
-            style={{ paddingLeft: "0px", paddingRight: "12px" }}
+            style={{
+              paddingLeft: "0px",
+              paddingRight: "12px",
+              position: "fixed",
+              bottom: 0,
+            }}
           >
             <Footer />
           </div>
