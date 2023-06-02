@@ -9,7 +9,7 @@ import Routing from "../../routing";
 function Dashboard() {
   return (
     <div className="container-fluid">
-      <div className="row" style={{ height: "38.1rem" }}>
+      <div className="row" style={{ height: "100vh" }}>
         <Sidebar />
         <div className="col-xl-10 col-lg-10" style={{ padding: "0px 0px" }}>
           <Navbar />
