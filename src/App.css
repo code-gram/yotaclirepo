@@ -1,0 +1,263 @@
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --first-color: #27dae0c9;
+  --first-color-light: #c2a5d9;
+  --white-color: #fefeff;
+  --body-font: "Nunito", sans-serif;
+  --normal-font-size: 1rem;
+  --z-fixed: 100;
+}
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.mainbody {
+  margin-right: 0px;
+  margin-top :72px;
+  overflow-x :hidden;
+  overflow-y :hidden;
+  position :absolute;
+  transition-delay :0s;
+  transition-duration: 0.5s;
+  transition-property :all;
+  transition-timing-function: ease;
+  width :960px;
+  position: relative;
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow: hidden;
+  background: rgba(191, 191, 197, 0.15);
+}
+.header {
+  width: 100%;
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* justify-content: flex-end; */
+  padding: 0 1rem;
+  background-color: var(--white-color);
+  z-index: var(--z-fixed);
+  transition: 0.5s;
+}
+.header_toggle {
+  color: var(--white-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: -0.7em;
+}
+.header_img {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.header_img img {
+  width: 30px;
+}
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: -30%;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--first-color);
+  padding: 0.5rem 1rem 0 0;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav_logo,
+.nav_link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 1rem;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+}
+.nav_logo {
+  margin-bottom: 2rem;
+}
+.fas,
+.fab, .fa {
+  font-size: 1.25rem;
+  color: var(--white-color);
+}
+.nav_logo-name {
+  color: var(--white-color);
+  font-weight: 700;
+}
+.nav_link {
+  position: relative;
+  color: var(--white-color);
+  margin-bottom: 1.5rem;
+  transition: 0.3s;
+}
+.nav_link:hover {
+  color: var(--first-color-light);
+}
+.nav_icon {
+  font-size: 1.25rem;
+}
+.show {
+  left: 0;
+}
+.body-pd {
+  padding-left: 45px;
+}
+.active {
+  color: var(--first-color-light);
+}
+.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 2px;
+  height: 32px;
+  background-color: var(--white-color);
+}
+.height-100 {
+  height: calc(100vh - 27vh);
+}
+@media screen and (min-width: 768px) {
+    .mainbody {
+    margin: calc(var(--header-height) + 1.5rem) 0 0 0;
+    padding-left: calc(var(--nav-width) + 1rem);
+  }
+  .header {
+    height: calc(var(--header-height) + 0.5rem);
+    padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+  }
+  .header_img {
+    margin-top: 0.2em;
+    width: 30px;
+    height: 30px;
+  }
+  .header_img img {
+    width: 30px;
+  }
+  .l-navbar {
+    left: 0;
+    padding: 1rem 1rem 0 0;
+  }
+  .show {
+    width: calc(var(--nav-width) + 156px);
+  }
+  .body-pd {
+    padding-left: calc(var(--nav-width) + 188px); 
+  }
+}
+.completed {
+  height: 15px;
+  width: 15px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 1%;
+}
+.pending {
+  height: 15px;
+  width: 15px;
+  background-color: #add8e6;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 1%;
+}
+.inprogress {
+  height: 15px;
+  width: 15px;
+  background-color: Grey;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 1%;
+}
+.useTool:hover {
+  color: var(--first-color-light);
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  height: 25cm;
+  width: 10cm;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+/* Add some padding inside the card container */
+.container {
+  max-width: 20%;
+  padding: 2px 16px;
+  margin-right:  30px 30px;
+  padding-bottom:60px;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px; 
+  margin-right: 10px;
+  margin-top :35px;
+  overflow-x :hidden;
+  overflow-y :hidden;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  padding-right: 0px; 
+}
+.btn {
+  border: none; 
+  color: white; 
+  padding: 14px 28px; 
+  cursor: pointer; 
+}
+.success {
+  background-color: #04aa6d;
+} 
+.success:hover {
+  background-color: #46a049;
+}
+a {
+  text-decoration: none !important;
+}
+p{
+  text-align:center;
+}
+.foot
+{
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
+}
+
+.dashboard{
+  background-color: #fff;
+}
+.logo{
+padding: 0;
+margin: 0;
+margin-left: 0;
+}
