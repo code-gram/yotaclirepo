@@ -1,0 +1,19 @@
+.my_reset {
+    margin-right:0;
+    margin-top :0px;
+    overflow-x :auto;
+    overflow-y :auto;
+    position :relative;
+    transition-delay :0s;
+    transition-duration: 0.5s;
+    transition-property :all;
+    transition-timing-function: ease;
+    width :960px;
+    position: relative;
+    margin: var(--header-height) 0 0 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: 0.5s;
+    overflow: hidden;
+    background: rgba(191, 191, 197, 0.15);
+}

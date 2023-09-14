@@ -1,4 +1,5 @@
 import "./App.css";
+
 // import { Sidebar } from "./pages/Sidebar";
 //  import { Header } from "./pages/Header";
 // import Footer from "./pages/Footer";
@@ -13,6 +14,7 @@ import {Signout } from "./pages/Signout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import { Sidebar } from "./pages/Sidebar";
 import { Footer } from "./pages/Footer";
+import Notification from "./pages/Notification";
 
 
 const router = createBrowserRouter([
@@ -103,7 +105,7 @@ export default function App() {
             ></i>
                   <img src="./images/logo3.png" alt="logo" width="75px" height="55px" />
           </div>
-         
+          
           <div
             id="tool"
             style={{
@@ -120,6 +122,11 @@ export default function App() {
                 <span style={{ color: "white" }}>Katta Muralidhar</span>
               </div>
             </div>
+            
+            <div >
+            <Notification/>
+            </div>
+            
             <div className="header_toggle" style={{ marginLeft: "0em" }}>
               <i
                 style={{ fontSize: "1.2em", marginTop: "0.2em" }}
@@ -135,6 +142,7 @@ export default function App() {
               />
             </div>
           </div>
+          
           
         </header>
 
@@ -225,6 +233,7 @@ export default function App() {
       </div>
       {/* <Sidebar/> */}
       <Footer/>
+      
     </>
   );
 }

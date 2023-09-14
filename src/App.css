@@ -233,6 +233,9 @@
   padding: 14px 28px; 
   cursor: pointer; 
 }
+.b1:hover{
+  color: var(--first-color-light) !important;
+}
 .success {
   background-color: #04aa6d;
 } 
