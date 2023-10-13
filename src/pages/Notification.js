@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Moment from "react-moment";  
 import { Bell } from "react-bootstrap-icons";
 import store from "../app/store";
-import { fetchNotification, updateNotification } from "../Redux/studentDashboard/NotificationListSlice";
+import { fetchAllNotification, fetchNotification, updateNotification } from "../Redux/studentDashboard/NotificationListSlice";
 
 const Notification=()=>{
     const [value,setValue]=useState(false);
@@ -13,7 +13,7 @@ const Notification=()=>{
     const number = useSelector(state=>state.notification.count);
     useEffect(()=>{
         const timeout = setTimeout(()=>{
-            store.dispatch(fetchNotification('sai.bhukya@gmail.com'))
+            store.dispatch(fetchAllNotification())
             // console.log("count")
         },1000);
 

@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const fetchNotification = createAsyncThunk("notificationlist/fetchNotification",(email)=>{
-    return axios.get(`http://localhost:9090/yota/api/notifications/${email}`)
-    .then(response=>response.data)
-    .catch(error=>[]);
+// const fetchNotification = createAsyncThunk("notificationlist/fetchNotification",(email)=>{
+//     return axios.get(`http://localhost:9090/yota/api/notifications/${email}`) 
+//     .then(response=>response.data)
+//     .catch(error=>[]);
+// })
+const fetchAllNotification = createAsyncThunk("notificationlist/fetchAllNotification",() =>{
+  return axios.get(`http://localhost:9090/yota/api/notifications/getAll`) 
+  .then(response=>response.data)
+  .catch(error=>[]);
 })
 
 const updateNotification = createAsyncThunk("notificationList/updateNotification",(email)=>{
@@ -32,15 +37,30 @@ const notificationList = createSlice({
         error:null,
     },
     extraReducers:(builder)=>{
-          builder.addCase(fetchNotification.pending,(state,action)=>{
+          // builder.addCase(fetchNotification.pending,(state,action)=>{
+          //   state.loading=true;
+          // })
+          // builder.addCase(fetchNotification.fulfilled,(state,action)=>{
+          //   state.loading=false;
+          //   state.notifications=action.payload;
+          //   state.count=action.payload.filter(e=>{return e.status==='unread'}).length;
+          // })
+          // builder.addCase(fetchNotification.rejected,(state,action)=>{
+          //   state.loading=false;
+          //   state.notifications=[];
+          //   state.count = 0;
+          //   state.error=action.payload;
+          // })
+
+          builder.addCase(fetchAllNotification.pending,(state,action)=>{
             state.loading=true;
           })
-          builder.addCase(fetchNotification.fulfilled,(state,action)=>{
+          builder.addCase(fetchAllNotification.fulfilled,(state,action)=>{
             state.loading=false;
             state.notifications=action.payload;
             state.count=action.payload.filter(e=>{return e.status==='unread'}).length;
           })
-          builder.addCase(fetchNotification.rejected,(state,action)=>{
+          builder.addCase(fetchAllNotification.rejected,(state,action)=>{
             state.loading=false;
             state.notifications=[];
             state.count = 0;
@@ -50,4 +70,4 @@ const notificationList = createSlice({
 })
 
 export default notificationList.reducer;
-export {fetchNotification, updateNotification, postNotification}
+export {fetchAllNotification, updateNotification, postNotification}
