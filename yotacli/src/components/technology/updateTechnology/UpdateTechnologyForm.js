@@ -13,27 +13,27 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const UpdateTechnologyForm = (props) => {
-  const nevigate = useNavigate();
-  const { name } = useParams();
-  const navigate = useNavigate()
+  const { id } = useParams();
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const initialState = {
     name: "",
     shortDescription: "",
   };
-
   const [updateTechData, setUpdateTechData] = useState(initialState);
   useEffect(() => {
-    if (name) {
+    if (id) {
+      console.log("iidd==" + id);
       axios
-        .get(`http://localhost:9090/yota/api/technologies/${name}`)
+        .get(`http://localhost:9090/yota/api/technologies/${id}`)
         .then((res) => {
-          console.log(res.data);
+          console.log("test data--" + res.data);
           setUpdateTechData(res.data);
-        });
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
+
   console.log(updateTechData);
 
   const getNewTechData = (event) => {
@@ -48,9 +48,8 @@ const UpdateTechnologyForm = (props) => {
     event.preventDefault();
     console.log("Updated data", updateTechData);
     setUpdateTechData(updateTechData);
-    window.location.reload(false);
     dispatch(
-      createTech({
+      UpdateTech({
         id: updateTechData.id,
         name: updateTechData.name,
         shortDescription: updateTechData.shortDescription,
@@ -60,15 +59,15 @@ const UpdateTechnologyForm = (props) => {
       .then((response) => {
         window.alert("Technology Successfully Updated");
         //  nevigate("/updatetechnology/:name");
+        setUpdateTechData(initialState);
+        navigate("/technologylist")
       })
       .catch((error) => {
         console.error(error);
         alert(error);
       });
-    
   };
-  console.log(updateTechData);
- 
+  console.log("LASTT---" + updateTechData);
   return (
     <>
       <div className="row">
@@ -76,7 +75,6 @@ const UpdateTechnologyForm = (props) => {
           <div className="col-xl-8 col-lg-7 col-md-6 col-sm-4">
             <h5 className={classes1.boxtitle}>Update Technology</h5>
           </div>
-
           <div className="col-xl-4 col-lg-5 col-md-6 col-sm-8">
             <form className="form-inline" onSubmit={onHandleUpdate}>
               <div className={classes1.btn}>

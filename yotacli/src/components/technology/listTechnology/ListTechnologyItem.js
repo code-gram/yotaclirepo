@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ListTechnologyItem.module.css";
 import axios from "axios";
-
 import TechnologyList from "./TechnologyList";
 import { useSelector } from "react-redux";
 
 const ListTechnologyItem = ({currentPage, dataPerPage}) => {
   // const technology = useSelector((state) => state.technology);
   // console.log("State Error:",technology.searchError);
-
-
-  return (
+ return (
     <div className={`table-responsive ${classes.table}`}>
       <table className="table table-bordered table-hover">
         <thead>

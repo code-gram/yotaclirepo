@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-//create bach
+//create Technology by pragati
 export const createTech = createAsyncThunk(
   "createtech",
   async (data, { rejectedWithValue }) => {
@@ -28,15 +28,16 @@ export const createTech = createAsyncThunk(
   }
 );
 
-//update
-export const UpdateTech = createAsyncThunk(
-  "updateBatch",
-  async ({ id, data }, { rejectWithValue }) => {
-    try {
-      alert(id);
+//update technology by pragati
 
+export const UpdateTech = createAsyncThunk(
+  "UpdateTech",
+  async (data, { rejectWithValue }) => {
+    try {
+      debugger;
+      console.log("testt==" + data.shortDescription);
       axios
-        .put(`http://localhost:9090/yota/api/technologies/`, data)
+        .put(`http://localhost:9090/yota/api/technologies/${data.id}`, data)
         .then((res) => {
           console.log(res.data);
         });
@@ -46,7 +47,6 @@ export const UpdateTech = createAsyncThunk(
   }
 );
 
-
 //get
 export const fetchTechnology = createAsyncThunk("technology", async () => {
   return axios
@@ -54,17 +54,7 @@ export const fetchTechnology = createAsyncThunk("technology", async () => {
     .then((response) => response.data.map((technology) => technology));
 });
 
-
-//Search
-// export const searchTechnology = createAsyncThunk("searchTech", async (keyword) => {
-//   console.log("Keyword:", keyword);
-//   return axios
-//     .get(`http://localhost:9090/yota/api/technologies/search/${keyword}`)
-//     .then((response) => response.data.map((technology) => technology));
-// });
-
-
-//delete
+//delete tech by pragati
 export const deleteTechnology = createAsyncThunk(
   "deleteAssociate",
   async (id, { rejectWithValue }) => {
@@ -79,51 +69,53 @@ export const deleteTechnology = createAsyncThunk(
           alert("Removed Succesfully");
           window.location.reload();
         });
-
         const result = await response.json();
-
         return result;
       } catch (error) {
         console.log(error);
-
         return rejectWithValue(error.response.data);
       }
   }
 );
 
 // Get Test Number API
-export const fetchTechnologyTestNumber = createAsyncThunk("technologyTestNumber", async () => {
-  return axios
-    .get(`http://localhost:9090/yota/api/technologies/tests`)
-    .then((response) => response.data);
-});
+export const fetchTechnologyTestNumber = createAsyncThunk(
+  "technologyTestNumber",
+  async () => {
+    return axios
+      .get(`http://localhost:9090/yota/api/technologies/tests`)
+      .then((response) => response.data);
+  }
+);
 
 // Get Test Deatils of Technology API
-export const fetchTechnologyTestDetails = createAsyncThunk("fetchTechnologyTestDetails", async (name) => {
-  return axios
-    .get(`http://localhost:9090/yota/api/technologies/tests/${name}`)
-    .then((response) => response.data);
-});
+export const fetchTechnologyTestDetails = createAsyncThunk(
+  "fetchTechnologyTestDetails",
+  async (name) => {
+    return axios
+      .get(`http://localhost:9090/yota/api/technologies/tests/${name}`)
+      .then((response) => response.data);
+  }
+);
 
 // --------------------------------------------------------------------------------------
 export const techCreate = createSlice({
   name: "techCreate",
   initialState: {
     technologies: [],
-    searchTech:[],
-    testNumberArray:[],
-    testDetailsArray:[],
+    searchTech: [],
+    testNumberArray: [],
+    testDetailsArray: [],
     loading: false,
-    // searchError: false,
     error: null,
   },
 
   reducers: {
     handleSearchTech: (state, action) => {
-        state.searchTech = [];
-        state.searchTech.push(action.payload)
+      state.searchTech = [];
+      state.searchTech.push(action.payload);
     },
-},
+  },
 
   extraReducers: {
     // create
@@ -159,40 +151,27 @@ export const techCreate = createSlice({
       state.error = action.payload;
     },
 
-    //search
-    // [searchTechnology.pending]: (state) => {
-    //   state.loading = true;
-    //   state.searchError = false;
-    // },
+    //updated Pragati
 
-    // [searchTechnology.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.searchError = false;
-    //   state.technologies = action.payload;
-    // },
-
-    // [searchTechnology.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.searchError = true;
-    //   state.error = action.payload;
-    // },
-
-    // Update Data
     [UpdateTech.pending]: (state) => {
       state.loading = true;
     },
     [UpdateTech.fulfilled]: (state, action) => {
       state.loading = false;
-      state.batch = state.batch.map((ele) =>
-        ele.name === action.payload.name ? action.payload : ele
-      );
+      const {
+        arg: { id },
+      } = action.meta;
+      if (id) {
+        state.technologies = state.technologies.map((item) =>
+          item._id === id ? action.payload : item
+        );
+      }
     },
     [UpdateTech.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
 
-    // delete
     [deleteTechnology.pending]: (state) => {
       state.loading = true;
     },
@@ -210,12 +189,11 @@ export const techCreate = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
-
     //get Test Number
     [fetchTechnologyTestNumber.pending]: (state) => {
       state.loading = true;
       // state.searchError = false;
-      console.log("in Create Slice.js",state.testNumberArray);
+      console.log("in Create Slice.js", state.testNumberArray);
     },
 
     [fetchTechnologyTestNumber.fulfilled]: (state, action) => {
@@ -223,7 +201,7 @@ export const techCreate = createSlice({
       // state.searchError = false;
       state.testNumberArray = [action.payload];
       // state.searchTech = action.payload;
-      console.log("in Create Slice.js",state.testNumberArray);
+      console.log("in Create Slice.js", state.testNumberArray);
     },
 
     [fetchTechnologyTestNumber.rejected]: (state, action) => {
@@ -242,14 +220,13 @@ export const techCreate = createSlice({
       // state.searchError = false;
       state.testDetailsArray = [action.payload];
       // state.searchTech = action.payload;
-      console.log("in Create Slice.js",state.testDetailsArray);
+      console.log("in Create Slice.js", state.testDetailsArray);
     },
 
     [fetchTechnologyTestDetails.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
-
   },
 });
 

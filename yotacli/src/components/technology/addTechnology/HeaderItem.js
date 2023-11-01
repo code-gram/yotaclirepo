@@ -8,7 +8,6 @@ const HeaderItem = () => {
         <div className="col-xl-8 col-lg-7 col-md-6 col-sm-4">
           <h5 className={classes.boxtitle}>Parent Technology</h5>
         </div>
-
         <div className="col-xl-4 col-lg-5 col-md-6 col-sm-8">
           <form className="form-inline">
             <div className={classes.btn}>

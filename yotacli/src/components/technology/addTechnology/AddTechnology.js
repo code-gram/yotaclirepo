@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "../../../ui/card/Card";
-import HeaderItem from "./HeaderItem";
 import classes from "./AddTechnology.module.css";
 import RegisterTechnologyForm from "./RegisterTechnologyForm";
 

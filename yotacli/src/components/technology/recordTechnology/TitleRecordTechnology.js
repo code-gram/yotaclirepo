@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import classes from "../../dashboard/TitleDashboard.module.css";
-import RecordTechnology from './RecordTechnology';
+import RecordTechnology from "./RecordTechnology";
 
 const TitleRecordTechnology = () => {
   return (
@@ -15,7 +15,7 @@ const TitleRecordTechnology = () => {
         <RecordTechnology />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default TitleRecordTechnology
+export default TitleRecordTechnology;

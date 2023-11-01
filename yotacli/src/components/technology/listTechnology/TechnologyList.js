@@ -8,8 +8,7 @@ import {
   handleSearchTech,
 } from "../../../redux/features/technology/CreateTechSlice";
 
-const TechnologyList = ({currentPage, dataPerPage}) => {
-
+const TechnologyList = ({ currentPage, dataPerPage }) => {
   const dispatch = useDispatch();
   const technology = useSelector((state) => state.technology);
   // console.log("State Error:",technology.searchError);
@@ -22,13 +21,14 @@ const TechnologyList = ({currentPage, dataPerPage}) => {
 
   //Pagination
   console.log("currentPage:", currentPage);
-  const lastDataIndex =  currentPage * dataPerPage;
-  const firstDataIndex =  lastDataIndex - dataPerPage;
+  const lastDataIndex = currentPage * dataPerPage;
+  const firstDataIndex = lastDataIndex - dataPerPage;
 
-  const paginatedData =  technology.searchTech.slice(firstDataIndex,lastDataIndex);
+  const paginatedData = technology.searchTech.slice(
+    firstDataIndex,
+    lastDataIndex
+  );
   console.log("Data per page to show:", paginatedData);
-
-
   //Loading Data
   if (technology.loading) {
     console.log("Loading...");
@@ -36,16 +36,14 @@ const TechnologyList = ({currentPage, dataPerPage}) => {
       <tr>
         <td></td>
         <td>
-          <h5>Loading Tech Details....</h5>
+          <h6>Loading Tech Details....</h6>
         </td>
         <td></td>
         <td></td>
       </tr>
     );
   }
-
-  
-    //Search Data not found
+  //Search Data not found
   if (technology.searchTech.length !== 0) {
     console.log("technology.searchTech.length !== 0");
 
@@ -62,22 +60,23 @@ const TechnologyList = ({currentPage, dataPerPage}) => {
       );
     }
 
-
     //Search Data Found
-    if(technology.searchTech[0].length > 0){
+    if (technology.searchTech[0].length > 0) {
       console.log("technology.searchTech[0].length > 0");
 
-      const searchPaginatedSlice =  technology.searchTech[0];
+      const searchPaginatedSlice = technology.searchTech[0];
       console.log("searchPaginatedSlice:", searchPaginatedSlice);
 
       console.log("firstDataIndex:", firstDataIndex);
       console.log("lastDataIndex:", lastDataIndex);
 
-      const searchPaginatedData =  searchPaginatedSlice.slice(firstDataIndex,lastDataIndex);
+      const searchPaginatedData = searchPaginatedSlice.slice(
+        firstDataIndex,
+        lastDataIndex
+      );
       console.log("searchPaginatedData to show:", searchPaginatedData);
 
-    return (
-      searchPaginatedData.map((tech, key) => (
+      return searchPaginatedData.map((tech, key) => (
         <tr key={key}>
           <td>
             <b>{key + firstDataIndex + 1}</b>
@@ -99,11 +98,10 @@ const TechnologyList = ({currentPage, dataPerPage}) => {
             {/* onClick={() => handleDeleteClick(tech.id)} */}
           </td>
         </tr>
-      ))
-    );
-  }
+      ));
+    }
 
-  //Display Original Array List
+    //Display Original Array List
     return (
       <>
         {paginatedData.map((tech, key) => (
@@ -114,7 +112,7 @@ const TechnologyList = ({currentPage, dataPerPage}) => {
             <td>{tech.name}</td>
             <td>{tech.shortDescription}</td>
             <td>
-              <Link to={`/updatetechnology/${tech.name}`}>
+              <Link to={`/updatetechnology/${tech.id}`}>
                 {" "}
                 <i className="fa fa-edit"></i>&nbsp;{" "}
               </Link>
@@ -132,7 +130,6 @@ const TechnologyList = ({currentPage, dataPerPage}) => {
       </>
     );
   }
-
 };
 
 export default TechnologyList;

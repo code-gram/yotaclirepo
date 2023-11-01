@@ -32,34 +32,43 @@ const routing = () => {
         <Route path="/deletebatch/:id" element={<TitleBatchList />} />
         <Route path="technologylist" element={<TitleTechnologyList />} />
         <Route path="addtechnology" element={<TitleAddTechnology />} />
-        <Route path="/updatetechnology/:name" element={<TitleUpdateTechnology />}/>
+        <Route
+          path="/updatetechnology/:id"
+          element={<TitleUpdateTechnology />}
+        />
         <Route path="/deletetechnology/:id" element={<TitleTechnologyList />} />
         {/* <Route path="questionlist" element={<TitleQuestionList />} /> */}
         <Route path="/recordTechnology" element={<TitleRecordTechnology />} />
-        <Route path="/recordTechDetails/:name" element={<TitleRecordTechnology />} />
+        <Route
+          path="/recordTechDetails/:name"
+          element={<TitleRecordTechnology />}
+        />
         <Route path="/associatelist" element={<TitleAssociateList />} />
         <Route path="/associatelist" element={<TitleAssociateList />} />
-        <Route path="/registerAssociate/" element={<TitleRegisterAssociate />} />
+        <Route
+          path="/registerAssociate/"
+          element={<TitleRegisterAssociate />}
+        />
         <Route path="listquestion" element={<TitleQuestionList />} />
         <Route path="addquestion" element={<TitleAddQuestion />} />
-        <Route path="/updatequestion/:id" element={<TitleUpdateQuestion/>}/>
+        <Route path="/updatequestion/:id" element={<TitleUpdateQuestion />} />
         <Route path="/deletequestion/:id" element={<TitleQuestionList />} />
         <Route path="/associatelist" element={<TitleAssociateList />} />
-        <Route path="/registerAssociate/" element={<TitleRegisterAssociate />}/>
+        <Route
+          path="/registerAssociate/"
+          element={<TitleRegisterAssociate />}
+        />
         <Route path="/updateAssociate/:id" element={<TitleUpdateAssociate />} />
         <Route path="/deleteAssociate/:id" element={<TitleAssociateList />} />
-        <Route path="testList" element={<TitleAssignTest/> } />
-        <Route path="/assignTest" element={<TestAssign/>}/>
-        <Route path="/student" element={<Dashboard/>}/>
-        <Route path="/addclient"element={<TitleAddClient/>} />
-        <Route path="/clientlist" element={<TitleClientList />} /> 
-        <Route path="/viewQuestion" element={<TitleViewQuestion />} /> 
-
-         {/* <Route path="/testlist" element={<TitleTestList />} /> */}
-         <Route path="/addClientQuestion" element={<TitleAddClientQuestion/>} /> 
-
-         <Route path="/test" element={<TitleTestList />} />
-
+        <Route path="testList" element={<TitleAssignTest />} />
+        <Route path="/assignTest" element={<TestAssign />} />
+        <Route path="/student" element={<Dashboard />} />
+        <Route path="/addclient" element={<TitleAddClient />} />
+        <Route path="/clientlist" element={<TitleClientList />} />
+        <Route path="/viewQuestion" element={<TitleViewQuestion />} />
+        {/* <Route path="/testlist" element={<TitleTestList />} /> */}
+        <Route path="/addClientQuestion" element={<TitleAddClientQuestion />} />
+        <Route path="/test" element={<TitleTestList />} />
       </Routes>
     </>
   );

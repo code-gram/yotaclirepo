@@ -1,13 +1,12 @@
 .btnfilter {
-    margin-left: 10rem;
-    border-color: #9abbca;
-    color: #144358;
-
+  margin-left: 10rem;
+  border-color: #9abbca;
+  color: #144358;
 }
 
 .boxtitle {
-    font-size: x-large;
-    font-weight: 300;
-    color: #144358;
-    margin-left: 5%;
+  font-size: x-large;
+  font-weight: 300;
+  color: #144358;
+  margin-left: 5%;
 }

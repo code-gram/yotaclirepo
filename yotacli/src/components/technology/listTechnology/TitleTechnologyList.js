@@ -2,10 +2,7 @@ import React from "react";
 import classes from "../../dashboard/TitleDashboard.module.css";
 import ListTechnology from "../listTechnology/ListTechnology";
 
-
-
 function TitleTechnologyList() {
-
   return (
     <>
       {/* <!--dashbord--> */}

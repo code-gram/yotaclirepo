@@ -1,25 +1,25 @@
 .table {
-    margin-left: 2%;
-    border: 1px solid #98abb4;
-    width: 95%;
+  margin-left: 2%;
+  border: 1px solid #98abb4;
+  width: 95%;
 }
 
 th {
-    border-bottom: 2rem solid black;
+  border-bottom: 2rem solid black;
 }
 
 i {
-    color: #144358;
-    cursor: pointer;
+  color: #144358;
+  cursor: pointer;
 }
 
-.td{
-    text-align: center;
+.td {
+  text-align: center;
 }
 
 .boxtitle {
-    font-size: large;
-    font-weight: 700;
-    color: #144358;
-    margin-left: 4%;
+  font-size: large;
+  font-weight: 700;
+  color: #144358;
+  margin-left: 4%;
 }
