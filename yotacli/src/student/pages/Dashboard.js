@@ -10,7 +10,6 @@ export const Dashboard = () => {
     dispatch(fetchstudent());//action 
   },[]);
     return (
-    
       <div className="dashboard">   
       <h1>DASHBOARD</h1>
       <div className="card">
