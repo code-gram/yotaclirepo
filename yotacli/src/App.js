@@ -1,6 +1,4 @@
-
 import React from "react";
-import "./App.css";
 import Dashboard from "./components/dashboard/Dashboard";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
@@ -19,9 +17,14 @@ import ProtectedRoute from "./components/utils/ProtectedRoute";
 import Associate from "./components/user/Associate";
 import Admin from "./components/user/Admin";
 import TraineeDashboardLayout from "./components/trainee/dashboard-layout/TraineeDashboardLayout";
+import Sidebar from "./components/trainer/dashboard/common/Sidebar";
+import TrainerDashboard from "./components/trainer/dashboard/common/TrainerDashboard";
+import "./App.css"
+
 
 function App() {
   return (
+          <div className="Main"> 
     <div>
       <Provider store={store}>
         <Routes>
@@ -29,22 +32,32 @@ function App() {
           <Route path="/login" element={<UserLogin />} />
           <Route path="/register" element={<UserRegistration />} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
-          <Route path="/trainer/*" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/associate/*" element={
-            <ProtectedRoute>
-              {/* <Associate /> */}
-              <TraineeDashboardLayout/>
-            </ProtectedRoute>
-          } />
-          <Route path="/admin/*" element={
-            <ProtectedRoute>
-              <Admin />
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/trainer/*"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+            />
+          <Route
+            path="/associate/*"
+            element={
+              <ProtectedRoute>
+                {/* <Associate /> */}
+                <TraineeDashboardLayout />
+              </ProtectedRoute>
+            }
+            />
+          <Route
+            path="/admin/*"
+            element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            }
+            />
+
           <Route path="/student/*" element={<StudentDashboard />}>
             <Route path="analytics" element={<Analytics />} />
             <Route path="testlinks" element={<TestLinks />} />
@@ -52,10 +65,15 @@ function App() {
             <Route path="trainingsummary" element={<TrainingSummary />} />
             <Route path="signout" element={<Signout />} />
           </Route>
+          <Route path="/newtrainer/*" element={<TrainerDashboard />}>
+            <Route path="sidebar" element={<Sidebar />} />
+
+          </Route>
         </Routes>
       </Provider>
     </div>
-  )
+            </div>
+  );
 }
 
 export default App;
