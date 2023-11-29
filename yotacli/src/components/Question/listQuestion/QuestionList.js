@@ -17,7 +17,7 @@ const QuestionList = (props) => {
             console.log(list[0])
         })
             .catch(error => {
-                console.error(error);
+                console.log(error);
             })
     }, [location.key]);
 
@@ -27,7 +27,7 @@ const QuestionList = (props) => {
                 list.map((list, index) => (
                     <tr key={index}>
                         <td>{list.id}</td>
-                        <td>{list.question}</td>
+                        <td><code>{list.question}</code></td>
                         <td>{list.questionLevel}</td>
                         <td>{list.option_A}</td>
                         <td>{list.option_B}</td>
