@@ -1,4 +1,4 @@
-.wrapper {
+.wrappermain {
   position: fixed;
   left: 0;
   top: 0;
@@ -19,15 +19,37 @@
   font-weight: 700;
 }
 
+/* Style scrollbar */
+#sidebar::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+}
+ 
+/* Handle */
+#sidebar::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar */
+}
+ 
+/* Handle on hover */
+#sidebar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar on hover */
+}
+ 
+/* Hide scrollbar when not in use */
+#sidebar::-webkit-scrollbar-thumb {
+  background: transparent; /* Hide the scrollbar handle when not in use */
+}
+
 #sidebarCollapse {
   /* position: absolute; */
   top: 0.5rem;
   right: 1.3rem;
 }
 #sidebar {
+  overflow-y: auto; 
   height: inherit;
   text-align: left;
   padding: 15px;
+  max-height: 95%;
 }
 #sidebar ul li a {
   padding: 20px;

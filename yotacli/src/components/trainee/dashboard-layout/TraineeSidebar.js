@@ -8,7 +8,7 @@ import TraineeSidebarStyle from './TraineeSidebarStyle.css'
 const TraineeSidebar = (props) => {
     const [isDropdownActive, setDropdownActive] = useState("false");
     return (
-        <div className="wrapper">
+        <div className="wrapper" style={{ marginTop: "50px" }}>
             <nav id="sidebar" className={props.isNotActive ? "active" : ""}>
              <div className="sidebar-header">
                 {/* <img
