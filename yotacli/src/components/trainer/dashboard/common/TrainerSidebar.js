@@ -2,26 +2,26 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./TrainerSidebar.css";
 
-const TraineeSidebar = (props) => {
-  const [isBatchActive, setBatchActive] = useState("false");
-  const [isTestActive, setTestActive] = useState("false");
-  const [isTechnologyActive, setTechnologyActive] = useState("false");
-  const [isAssociateActive, setAssociateActive] = useState("false");
-  const [isClientActive, setClientActive] = useState("false");
+const TrainerSidebar = (props) => {
+  const [isBatchActive, setBatchActive] = useState(false);
+  const [isTestActive, setTestActive] = useState(false);
+  const [isTechnologyActive, setTechnologyActive] = useState(false);
+  const [isAssociateActive, setAssociateActive] = useState(false);
+  const [isClientActive, setClientActive] = useState(false);
 
   return (
-    <div className="wrapper" style={{ marginTop: "50px" }}>
+    <div className="wrappermain" style={{ marginTop: "50px" }}>
       <nav id="sidebar" className={props.isNotActive ? "active" : ""}>
         <div className="sidebar-header"></div>
         <ul className="list-unstyled components">
           <li className="list-item">
-            <i className="fas fa-book icon-color"></i>
+            <i className="fa-solid fa-list-ul icon-color"></i>
             <Link to="/dashboard">DashBoard</Link>
           </li>
           <li className="list-item">
-            <i className="fas fa-user-alt icon-color"></i>
+            <i class="fa-solid fa-id-badge icon-color"></i>
             <Link
-              href="#homeSub"
+              href="#batch"
               data-toggle="collapse"
               aria-expanded="false"
               className="dropdown-toggle"
@@ -33,7 +33,7 @@ const TraineeSidebar = (props) => {
               className={
                 isBatchActive ? "list-unstyled  collapse" : "list-unstyled"
               }
-              id="homeSub"
+              id="batch"
             >
               <li className="dropdown-item">
                 <Link to="/createTest">Create Batch</Link>
@@ -46,7 +46,7 @@ const TraineeSidebar = (props) => {
           <li className="list-item">
             <i className="fas fa-pencil-square icon-color"></i>
             <Link
-              href="#homeSubmenu"
+              href="#test"
               data-toggle="collapse"
               aria-expanded="false"
               className="dropdown-toggle"
@@ -58,7 +58,7 @@ const TraineeSidebar = (props) => {
               className={
                 isTestActive ? "list-unstyled  collapse" : "list-unstyled"
               }
-              id="homeSubmenu"
+              id="test"
             >
               <li className="dropdown-item">
                 <Link to="/createTest">Create Test</Link>
@@ -69,9 +69,9 @@ const TraineeSidebar = (props) => {
             </ul>
           </li>
           <li className="list-item">
-            <i className="fas fa-user-alt icon-color"></i>
+            <i className="fa-solid fa-laptop-code icon-color"></i>
             <Link
-              href="#homeSubmenu"
+              href="#technology"
               data-toggle="collapse"
               aria-expanded="false"
               className="dropdown-toggle"
@@ -83,7 +83,7 @@ const TraineeSidebar = (props) => {
               className={
                 isTechnologyActive ? "list-unstyled  collapse" : "list-unstyled"
               }
-              id="homeSubmenu"
+              id="technology"
             >
               <li className="dropdown-item">
                 <Link to="/createTechnology">Create Technology</Link>
@@ -94,9 +94,10 @@ const TraineeSidebar = (props) => {
             </ul>
           </li>
           <li className="list-item">
-            <i className="fas fa-user-alt icon-color"></i>
+            <i className="fa-solid fa-people-roof icon-color"></i>
+
             <Link
-              href="#homeSubmenu"
+              href="#associate"
               data-toggle="collapse"
               aria-expanded="false"
               className="dropdown-toggle"
@@ -108,7 +109,7 @@ const TraineeSidebar = (props) => {
               className={
                 isAssociateActive ? "list-unstyled  collapse" : "list-unstyled"
               }
-              id="homeSubmenu"
+              id="associate"
             >
               <li className="dropdown-item">
                 <Link to="/addAssociate">Add Associate</Link>
@@ -125,7 +126,7 @@ const TraineeSidebar = (props) => {
           <li className="list-item">
             <i className="fas fa-sitemap icon-color"></i>
             <Link
-              href="#homeSubmenu"
+              href="#client"
               data-toggle="collapse"
               aria-expanded="false"
               className="dropdown-toggle"
@@ -138,7 +139,7 @@ const TraineeSidebar = (props) => {
               className={
                 isClientActive ? "list-unstyled  collapse" : "list-unstyled"
               }
-              id="homeSubmenu"
+              id="client"
             >
               <li className="dropdown-item">
                 <Link to="/createClient">Create Client</Link>
@@ -159,6 +160,6 @@ const TraineeSidebar = (props) => {
   );
 };
 
-TraineeSidebar.propTypes = {};
+TrainerSidebar.propTypes = {};
 
-export default TraineeSidebar;
+export default TrainerSidebar;

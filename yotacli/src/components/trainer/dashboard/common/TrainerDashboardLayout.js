@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Navigation from "./Navigation";
-import Sidebar from "./Sidebar";
+import TrainerSidebar from "./TrainerSidebar";
 import "../../../../App.css";
 
 const TrainerDashboardLayout = (props) => {
@@ -15,7 +15,7 @@ const TrainerDashboardLayout = (props) => {
       <Container fluid>
         <Row>
           <Col xs={12} id="sidebar-wrapper">
-            <Sidebar isNotActive={isNotActive} style={{}} />
+            <TrainerSidebar isNotActive={isNotActive} style={{}} />
           </Col>
           <Col xs={0} id="page-content-wrapper" style={{ padding: "0px" }}>
             <Navigation
