@@ -71,7 +71,6 @@ const AddQuestionForm = () => {
     console.log("event:", event.target)
 
     setNewQuestion({ ...newQuestion, [event.target.name]: event.target.value });
-
     console.log(newQuestion);
 
   };
@@ -158,7 +157,7 @@ const AddQuestionForm = () => {
     { value: "reactjs", label: "REACTJS" },
     { value: "aws", label: "AWS" },
     { value: "hibernate", label: "HIBERNATE" }
-  ];*/
+]*/
 
   const handleSelectData = (selectOption) => {
     console.log("handleSelectData", selectOption);
@@ -226,13 +225,13 @@ const AddQuestionForm = () => {
                   </div>
                 ))}
             </Select>*/
+
               //change
 
               <Select
                 // options={data} 
                 options={techList}
                 onChange={handleSelectData} />
-
             }
 
           </div>
