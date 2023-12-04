@@ -3,11 +3,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getAuthToken } from "../../../components/utils/Authentication";
 
-//create batch action
 export const createBatch = createAsyncThunk("createbatch", async (data, { rejectWithValue }) => {
     const token = getAuthToken();
     console.log("Token::::>" + token)
-    const response = await fetch("http://localhost:9090/yota/api/batches/", {
+    const response = await fetch("/yota-api/batches/", {
         method: "POST",
         headers: {
             Accept: "application/json",

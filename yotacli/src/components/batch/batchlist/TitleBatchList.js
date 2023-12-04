@@ -1,12 +1,10 @@
 import React from "react";
-
 import classes from "../../dashboard/TitleDashboard.module.css";
 import ListBatch from "./ListBatch";
 
 function TitleBatchList() {
   return (
     <>
-      {/* <!--dashbord--> */}
       <div className="container-fluid">
         <div className={`row ${classes.back}`}>
           <div className="col">

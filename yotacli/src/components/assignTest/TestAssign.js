@@ -1,33 +1,28 @@
 import React, { useState } from "react";
-// import Button from '../../ui/button/Button';
 import InputField from "../../ui/inputField/InputField";
 import classes from "./TestAssignModal.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import modal from "./modal.css";
 import { useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
-import {assignTestToCandidate} from "../../redux/features/assignTestToCandidate/assignTestSlice";
-import 'react-quill/dist/quill.snow.css';
+import { useSelector, useDispatch } from "react-redux";
+import { assignTestToCandidate } from "../../redux/features/assignTestToCandidate/assignTestSlice";
+import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { store } from "../../app/store";
 import { postNotification } from "../../redux/features/notification/NotificationListSlice";
 
-
 const TestAssign = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [testEmail, setTestEmail] = useState([]);
   const [value, setValue] = useState("");
   const [subject, setSubject] = useState("");
   const [error, setError] = useState(null);
-  const dispatch =useDispatch();
-  const email= useSelector((state) => state.email);
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.email);
   const [description, setDescription] = useState("");
-  const [body, setBody] = useState('');
-  // useEffect(() => {
-  //   dispatch(assignTestToCandidate());
-  // }, []);
+  const [body, setBody] = useState("");
 
   const handleKeyDown = (e) => {
     if (["Enter", "Tab", ","].includes(e.key)) {
@@ -39,11 +34,6 @@ const navigate = useNavigate();
       }
     }
   };
-
-  // const handleChange = (e) => {
-  //   setValue(e.target.value);
-  //   setError(null);
-  // };
 
   const handleDelete = (item) => {
     setTestEmail(testEmail.filter((i) => i !== item));
@@ -83,15 +73,8 @@ const navigate = useNavigate();
   };
 
   const getEmail = (e) => {
-    // setTestEmail({
-    //   ...email,
-    //   [e.target.name]: e.target.value,
-    // });
-    // console.log(email);
-
-    setValue( e.target.value);
+    setValue(e.target.value);
     setError(null);
-    // navigate('/assignTest')
   };
 
   const getSubject = (e) => {
@@ -102,32 +85,34 @@ const navigate = useNavigate();
     setBody({ ...description, [e.target.name]: e.target.value });
   };
 
- 
   const handleBody = (e) => {
-      console.log(e)
-      setBody(e)
-  }
+    console.log(e);
+    setBody(e);
+  };
 
   const handleOnSubmit = (e) => {
     console.log(testEmail);
     console.log(subject);
     console.log(description);
     console.log(body);
-    //dispatch(testEmail);
+
     let json = {
-      to : testEmail,
-      subject : subject.subject,
-      name : "", 
-      body : body
-    }
-    testEmail.map((mail)=>{return store.dispatch(postNotification({
-      email:mail,
-      message:subject
-    }))
-  })
-    //dispatch(assignTestToCandidate(json));
+      to: testEmail,
+      subject: subject.subject,
+      name: "",
+      body: body,
+    };
+    testEmail.map((mail) => {
+      return store.dispatch(
+        postNotification({
+          email: mail,
+          message: subject,
+        })
+      );
+    });
+
     dispatch(assignTestToCandidate(json));
-    
+
     navigate(-1);
   };
 
@@ -137,11 +122,7 @@ const navigate = useNavigate();
 
   return (
     <>
-      <div className="container"  onSubmit={handleOnSubmit}>
-        {/* <Button variant="primary" onClick={handleShow}>
-        Open Model
-      </Button> */}
-
+      <div className="container" onSubmit={handleOnSubmit}>
         <Modal size="lg" show={true}>
           <Modal.Header className="modal-header">
             <Modal.Title className="modal-title">
@@ -161,59 +142,68 @@ const navigate = useNavigate();
             <div className="modal-container">
               <div
                 className="row"
-                style={{ "paddingTop": "1em", "paddingBottom": "1em" }}
+                style={{ paddingTop: "1em", paddingBottom: "1em" }}
               >
-                <div className="col" style={{ "display": "flex","justifyContent": "space-between"}}>
-                    <div>
-                      <h6>
-                        <b>To :</b>
-                      </h6>
-                    </div>
-                    <div className="row" style={{"width" : "83%"}}>
-                         {testEmail.map((item) => (
-                            <div className="col chip" key={item} style={{"display": "flex", "justifyContent": "space-between"}}>
-                                <div>
-                                  <span>{item}</span>
-                                </div>
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="button"
-                                    onClick={() => handleDelete(item)}
-                                  >
-                                    <i class="fa-solid fa-xmark"></i>
-                                  </button>  
-                                </div>
-                            </div>
-                          ))}
+                <div
+                  className="col"
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div>
+                    <h6>
+                      <b>To :</b>
+                    </h6>
+                  </div>
+                  <div className="row" style={{ width: "83%" }}>
+                    {testEmail.map((item) => (
+                      <div
+                        className="col chip"
+                        key={item}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
                         <div>
-                          <input
-                            className={classes.inputField}
-                      
-                            onChange={getEmail}
-                            style={{ width: "100%"}}
-                            value={value}
-                            type="text"
-                            placeholder="Enter Email"
-                            aria-label="emailId"
-                            onKeyDown={handleKeyDown}
-                            onPaste={handlePaste}
-                          />
+                          <span>{item}</span>
                         </div>
-                        {error && <p className="error">{error}</p>}
+                        <div>
+                          <button
+                            type="button"
+                            className="button"
+                            onClick={() => handleDelete(item)}
+                          >
+                            <i class="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                    <div>
+                      <input
+                        className={classes.inputField}
+                        onChange={getEmail}
+                        style={{ width: "100%" }}
+                        value={value}
+                        type="text"
+                        placeholder="Enter Email"
+                        aria-label="emailId"
+                        onKeyDown={handleKeyDown}
+                        onPaste={handlePaste}
+                      />
                     </div>
+                    {error && <p className="error">{error}</p>}
+                  </div>
                 </div>
-                <div style={{"marginTop" : "10px"}}>
+                <div style={{ marginTop: "10px" }}>
                   <div
                     className="column"
-                    style={{ "display": "flex","justifyContent": "space-between"}}
+                    style={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <div>
                       <h6>
                         <b>Subject :</b>
                       </h6>
                     </div>
-                    <div style={{"width" : "80%"}}>
+                    <div style={{ width: "80%" }}>
                       <input
                         style={{ width: "100%" }}
                         name="subject"
@@ -226,11 +216,12 @@ const navigate = useNavigate();
                     </div>
                   </div>
                 </div>
-                <div style={{"marginTop" : "10px"}}>
-                  <ReactQuill      
-                   placeholder='spread your message...'
+                <div style={{ marginTop: "10px" }}>
+                  <ReactQuill
+                    placeholder="spread your message..."
                     onChange={handleBody}
-                        value={body}/>
+                    value={body}
+                  />
                 </div>
               </div>
             </div>

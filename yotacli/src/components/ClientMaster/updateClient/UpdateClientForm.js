@@ -25,16 +25,18 @@ const UpdateClientForm = (props) => {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:9090/yota/api/${id}`,{
-        headers:headerContents()
-      }).then((res) => {
-        console.log(" Get data By Id  -" + res.data);
-        setUpdateClientData(res.data);
-      });
+      axios
+        .get(`/yota-api/clients/${id}`, {
+          headers: headerContents(),
+        })
+        .then((res) => {
+          console.log(" Get data By Id  -" + res.data);
+          setUpdateClientData(res.data);
+        });
     }
     axios
-      .get("http://localhost:9090/yota/api/technologies/",{
-        headers:headerContents()
+      .get("/yota-api/technologies/", {
+        headers: headerContents(),
       })
       .then((resp) => {
         if (resp.status == 200) {
@@ -101,8 +103,8 @@ const UpdateClientForm = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9090/yota/api/technologies/",{
-        headers:headerContents()
+      .get("/yota-api/technologies/", {
+        headers: headerContents(),
       })
       .then((resp) => {
         if (resp.status == 200) {
@@ -202,8 +204,6 @@ const UpdateClientForm = (props) => {
             <select
               id="technology"
               onChange={handleUnitChange}
-              //  value={updateClientData.technology}
-              //onChange={(e) => setselectedUnit(e.target.value)}
               style={{ width: "400px" }}
             >
               <option>Select Technology</option>

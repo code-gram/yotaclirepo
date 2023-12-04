@@ -4,15 +4,13 @@ import { useRef, useState } from "react";
 export const Header = () => {
   const [toggle,setToggle] = useState(false);
   const bodyId = useRef(null);
-  // const toggleId = useRef(null);
-  // const navId = useRef(null);
-  // const headerId = useRef(null);
+ 
   return (
     <div className="header">
 <header
           ref={bodyId}
           className={toggle ? "header body-pd" : "header"}
-          // className="header"
+          
           id="header"
           style={{ backgroundColor: "#58a096" }}
         >

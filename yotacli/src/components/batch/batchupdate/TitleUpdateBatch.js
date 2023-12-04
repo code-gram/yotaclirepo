@@ -7,7 +7,6 @@ const TitleUpdateBatch = () => {
   return (
     <div>
       <>
-    {/* <!--dashbord--> */}
     <div className="container-fluid">
       <div className={`row ${classes.back}`}>
         <div className="col">

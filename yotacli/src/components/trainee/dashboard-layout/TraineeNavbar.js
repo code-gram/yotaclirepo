@@ -15,11 +15,11 @@ const TraineeNavbar = (props) => {
   var crossIcon = <i className="fas fa-times-circle"></i>;
 
   return (
-    //className={`navbar-brand ${classes.yashimage}`}
+    
     <div className={`${navcCass.headerContainer}`}>
       <Navbar expand="lg" className={`navbar navbar-dark ${navcCass.bgColor}`}>
         <Container fluid>
-          {/* <i class="fa-solid fa-bars" href="#"></i> */}
+        
           <i
             onClick={onHamburgerClick}
             className={`bi bi-list ${navcCass.sidebarCollapse}`}

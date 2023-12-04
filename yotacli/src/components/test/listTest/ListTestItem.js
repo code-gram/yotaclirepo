@@ -6,9 +6,7 @@ import TestList from "./TestList";
 import { useSelector } from "react-redux";
 
 const ListTestItem = ({currentPage, dataPerPage}) => {
-  // const technology = useSelector((state) => state.technology);
-  // console.log("State Error:",technology.searchError);
-
+ 
 
   return (
     <div className={`table-responsive ${classes.table}`}>

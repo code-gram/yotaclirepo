@@ -36,7 +36,6 @@ function App() {
           } />
           <Route path="/associate/*" element={
             <ProtectedRoute>
-              {/* <Associate /> */}
               <TraineeDashboardLayout/>
             </ProtectedRoute>
           } />

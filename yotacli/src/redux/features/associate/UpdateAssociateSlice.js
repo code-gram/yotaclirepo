@@ -9,7 +9,7 @@ export const UpdateAssociate = createAsyncThunk(
         debugger;
         console.log("testt==" + data.shortDescription);
         axios
-          .put(`http://localhost:9090/yota/api/associates/${data.id}`, data,{
+          .put(`/yota-api/associates/${data.id}`, data,{
             headers:headerContents()
           })
           .then((res) => {

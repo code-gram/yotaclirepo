@@ -21,8 +21,7 @@ const MyAccordian = () => {
         ? list.clientQuestions.map((list, key) => (
             <div>
               <div className="main-heading" key={key}>
-                {/* <p onClick={() => setShow(!show)}> {show ? "➖" : "➕"} </p> */}
-                {/* <h3>{question} </h3> */}
+               
                 <p>{key+1}</p>
                 <div className="sub">
                   {" "}

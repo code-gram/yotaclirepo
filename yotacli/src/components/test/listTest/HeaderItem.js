@@ -5,7 +5,6 @@ import InputField from "../../../ui/inputField/InputField";
 import Button from "../../../ui/button/Button";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-// import { searchTechnology } from "../../../redux/features/technology/CreateTechSlice";
 import { handleSearchTech, fetchTest } from "../../../redux/features/technology/CreateTechSlice";
 
 const HeaderItem = ({currentPage, setCurrentPage, setDataPerPage}) => {
@@ -13,20 +12,14 @@ const HeaderItem = ({currentPage, setCurrentPage, setDataPerPage}) => {
   const dispatch = useDispatch();
   const test = useSelector((state) => state.test.tests);
 
-//   const pageDataOptions = [
-//     {value: 5, label: "React"},
-//     {value: 10, label: "Java  "},
-//     {value: 15, label: "AWS"},
-//     {value: 25, label: "Python"},
-//     {value: 100, label: "C#"},
-// ];
+
 
   const handleSelectData = (selectOption) => {
     console.log("handleSelectData", selectOption);
     console.log("selectOption.value", selectOption.value);
     setDataPerPage(selectOption.value);
 
-    // Pagination
+    
     if(currentPage !== 1){
       setCurrentPage(1);
     }
@@ -46,7 +39,6 @@ const HeaderItem = ({currentPage, setCurrentPage, setDataPerPage}) => {
           console.log("matchSearchTech:",matchSearchTech);
           dispatch(handleSearchTech(matchSearchTech));
 
-          // Pagination
           if(currentPage !== 1){
             setCurrentPage(1);
           }
@@ -54,7 +46,6 @@ const HeaderItem = ({currentPage, setCurrentPage, setDataPerPage}) => {
       }
       
       setSearch('');
-  // dispatch(searchTechnology(search));
 }
 
   return (
@@ -73,7 +64,7 @@ const HeaderItem = ({currentPage, setCurrentPage, setDataPerPage}) => {
         </div>
 
 
-          {/* {search} */}
+       
         <div className="col-xl-5 col-lg-5 col-md-4 col-sm-8 ms-5">
           <form className="form-inline" onSubmit={handleSearchButton}>
             <div className="d-flex justify-content-end">

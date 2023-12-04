@@ -25,9 +25,7 @@ const TraineeDashboardLayout = props => {
                     </Col>                                      
                 </Row>
                     <TraineeDashboardContent isNotActive={isNotActive} />             
-                {/* <Row>
-                   <TraineeFooter/>
-                </Row> */}
+            
             </Container>             
         </div>
     );

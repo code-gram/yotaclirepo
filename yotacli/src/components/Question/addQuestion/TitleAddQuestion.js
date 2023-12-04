@@ -5,7 +5,6 @@ import classes from "../../../components/dashboard/TitleDashboard.module.css";
 const TitleAddQuestion = () => {
   return (
     <>
-      {/* <!--dashbord--> */}
       <div className="container-fluid">
         <div className={`row ${classes.back}`}>
           <div className="col">

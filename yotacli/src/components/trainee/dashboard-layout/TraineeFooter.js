@@ -3,14 +3,14 @@ import classes from './TraineeFooter.module.css'
 import PropTypes from "prop-types";
 
 const TraineeFooter = (props) => {
-  return ( //className={props.isNotActive ? `${classes.mainContainer}` : `${classes.mainContainerstyle}`}
+  return (
     <div>
       <footer className="text-center text-white"  >
         <div className= {` ${classes.mainContainer}` }> 
           <section className="mb-1">
             <a
               className="btn btn-link btn-floating btn-lg text-dark m-1 "
-              href="https://www.yash.com"
+              href="https:\www.yash.com"
               role="button"
               data-mdb-ripple-color="dark"
             >
@@ -18,7 +18,7 @@ const TraineeFooter = (props) => {
             </a>
             <a
               className="btn btn-link btn-floating btn-lg text-dark m-1"
-              href="https://www.yash.com/contact-us"
+              href="https:\www.yash.com/contact-us"
               role="button"
               data-mdb-ripple-color="dark"
             >
@@ -47,7 +47,7 @@ const TraineeFooter = (props) => {
           style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
           Copyright © 2023.
-          <a className="text-dark" href="https://www.yash.com">
+          <a className="text-dark" href="https:\www.yash.com">
             YASH Technologies.
           </a>{" "}
           All Rights Reserved

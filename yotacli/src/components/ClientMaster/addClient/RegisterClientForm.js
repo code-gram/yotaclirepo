@@ -36,7 +36,7 @@ const RegisterClientForm = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9090/yota/api/technologies/", {
+      .get("/yota-api/technologies/", {
         headers:headerContents()
       })
       .then((resp) => {
@@ -138,7 +138,6 @@ const RegisterClientForm = (props) => {
               value={unitData}
               onChange={handleUnitChange}
               name="technology"
-              //  onChange={getTechnologyData}
               style={{ width: "400px" }}
             >
               <option value="">Select Technology</option>

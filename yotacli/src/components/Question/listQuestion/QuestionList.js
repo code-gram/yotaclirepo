@@ -8,7 +8,7 @@ const QuestionList = (props) => {
     const [list, setList] = useState([]);
     const location = useLocation();
     useEffect(() => {
-        axios.get("http://localhost:9090/yota/api/questions/all", {
+        axios.get("/yota-api/questions/all", {
             headers: headerContents()
         }
         ).then(response => {
@@ -46,7 +46,7 @@ const QuestionList = (props) => {
                             <Link
                                 to={`/trainer/deletequestion/${list.id}`}
                                 onClick={() =>
-                                    axios.delete(`http://localhost:9090/yota/api/questions/${list.id}`,
+                                    axios.delete(`/yota-api/questions/${list.id}`,
                                         {
                                             headers: headerContents()
                                         }
@@ -90,7 +90,7 @@ const QuestionList = (props) => {
                             <Link
                                 to={`/trainer/deletequestion/${list.id}`}
                                 onClick={() =>
-                                    axios.delete(`http://localhost:9090/yota/api/questions/${list.id}`, {
+                                    axios.delete(`/yota-api/questions/${list.id}`, {
                                         headers: headerContents()
                                     })
                                         .then(response => {

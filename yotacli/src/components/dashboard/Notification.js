@@ -14,7 +14,6 @@ const Notification=()=>{
     useEffect(()=>{
         const timeout = setTimeout(()=>{
             store.dispatch(fetchNotification(''))
-            // console.log("count")
         },1000);
 
         return ()=>{clearTimeout(timeout)}
@@ -27,19 +26,15 @@ const Notification=()=>{
         }
      }
 
-    //  const handleClose=()=>{
-    //     console.log("close handler clicked>>>")
-    //     setView(false)
-    //  }
+   
    return (
     <React.Fragment>
-        {/* <div style={{marginLeft:"45rem",marginBottom:"1rem"}} > */}
+      
         <Button className="me-3 rounded-circle" variant="outline-light" style={{marginLeft:"auto",width:"2rem", position:"relative"}} onClick={clickHandler}>
-        {/* <img className="" src="Images/email.png" width={20} height={20} alt="" /> */}
+    
         <Bell style={{color:"black",fontSize:"1.25rem"}}/>
         {number>0 && <div className="rounded-circle bg-danger d-flex justify-content-center  align-items-center"
             style={{
-                // color:"#144358",
                 color:"white",
                 width:"1rem",
                 height:"1rem",
@@ -53,7 +48,7 @@ const Notification=()=>{
            {number}
             </div>}
         </Button>
-        {/* </div> */}
+     
         <Offcanvas placement="end" show={value} onHide={()=>setValue(false)} scroll={true}>
 <Offcanvas.Header closeButton style={{background:"light",color:"back",height:"3rem"}}>
         <Offcanvas.Title >Notifications</Offcanvas.Title>

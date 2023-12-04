@@ -21,7 +21,6 @@ const ListRecord = ({ currentPage, dataPerPage }) => {
     dispatch(fetchTechnologyTestNumber());
   }, []);
 
-  //Pagination
   console.log("currentPage:", currentPage);
   console.log("dataPerPage:", dataPerPage);
   const lastDataIndex = currentPage * dataPerPage;

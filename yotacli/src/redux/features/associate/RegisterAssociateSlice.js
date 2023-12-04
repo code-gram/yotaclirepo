@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getAuthToken } from "../../../components/utils/Authentication";
 
-/* Register Associate action */
 export const registerAssociate = createAsyncThunk("registerassociate", async (data, { rejectedWithValue }) => {
     const token = getAuthToken();
-    const response = await fetch('http://localhost:9090/yota/api/associates/register/', {
+    const response = await fetch('/yota-api/associates/register/', {
         method: "POST",
         headers: {
             Accept: "application/json",

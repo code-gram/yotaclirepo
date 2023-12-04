@@ -1,34 +1,26 @@
 .inputField {
-    border-top-style: hidden;
-    border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-style: hidden;
-     background-color: white;
-    outline: none;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  outline: none;
 }
 
-.btn{
-    display: flex;
-    margin-left: 60%;
+.btn {
+  display: flex;
+  margin-left: 60%;
 }
 
 .btnfilter {
-    margin-left: 2%;
-    border-color: #9abbca;
-    color: #144358;
+  margin-left: 2%;
+  border-color: #9abbca;
+  color: #144358;
 }
-    
-    
-    
-    
-    .boxtitle {
-    
-     font-size: large;
-    
-    font-weight: 300;
-    
-     color: #144358;
-    
-    margin-left: 5%;
-    
-    }
+
+.boxtitle {
+  font-size: large;
+  font-weight: 300;
+  color: #144358;
+  margin-left: 5%;
+}

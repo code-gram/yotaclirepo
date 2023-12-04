@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import Button from '../../../ui/button/Button';
-import classes from './HeaderItem.module.css';
-import InputField from '../../../ui/inputField/InputField';
+import React, { useState } from "react";
+import Button from "../../../ui/button/Button";
+import classes from "./HeaderItem.module.css";
+import InputField from "../../../ui/inputField/InputField";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-//import { deleteAssociate } from '../../../redux/features/associate/DeleteAssociateSlice';
-//import { fetchAssociate } from '../../../redux/features/associate/ListAssociateSlice';
-import { handleSearchAsso, fetchAssociate } from "../../../redux/features/associate/ListAssociateSlice";
+import {
+  handleSearchAsso,
+  fetchAssociate,
+} from "../../../redux/features/associate/ListAssociateSlice";
 
 const HeaderItem = ({ currentPage, setCurrentPage, setDataPerPage }) => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const associate = useSelector((state) => state.associate.associates);
 
@@ -27,53 +28,44 @@ const HeaderItem = ({ currentPage, setCurrentPage, setDataPerPage }) => {
 
     setDataPerPage(selectOption.value);
 
-    // Pagination
     if (currentPage !== 1) {
       setCurrentPage(1);
     }
-  }
+  };
 
   const changeSearch = (e) => {
     setSearch(e.target.value);
-  }
+  };
 
   const handleSearchButton = (e) => {
     e.preventDefault();
     console.log("Search Term:", search);
-    if (search !== '') {
-      const matchSearchAsso = associate.filter(asso =>
-        asso.emailId.toLowerCase().includes(search.toLowerCase()));
+    if (search !== "") {
+      const matchSearchAsso = associate.filter((asso) =>
+        asso.emailId.toLowerCase().includes(search.toLowerCase())
+      );
       console.log("matchSearchAsso:", matchSearchAsso);
       dispatch(handleSearchAsso(matchSearchAsso));
 
-      // Pagination
       if (currentPage !== 1) {
         setCurrentPage(1);
       }
-
     }
 
-    setSearch('');
-    // dispatch(searchTechnology(search));
-  }
+    setSearch("");
+  };
 
   return (
     <div className="row">
       <div className="row mt-3">
         <div className="col-xl-5 col-lg-5 col-md-4 col-sm-4 d-flex">
-          <h6 className={classes.boxtitle}>
-            Associate List
-
-          </h6>
+          <h6 className={classes.boxtitle}>Associate List</h6>
 
           <div className="col-xl-4 col-lg-4 col-md-4 col-sm-8 ms-3">
             <Select options={pageDataOptions} onChange={handleSelectData} />
           </div>
-
         </div>
 
-
-        {/* {search} */}
         <div className="col-xl-5 col-lg-5 col-md-4 col-sm-8 ms-5">
           <form className="form-inline" onSubmit={handleSearchButton}>
             <div className="d-flex justify-content-end">
@@ -93,14 +85,9 @@ const HeaderItem = ({ currentPage, setCurrentPage, setDataPerPage }) => {
             </div>
           </form>
         </div>
-
       </div>
     </div>
   );
-
 };
-
-
-
 
 export default HeaderItem;

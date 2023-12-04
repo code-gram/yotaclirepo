@@ -63,7 +63,6 @@ const TraineeDashboardContent = (props) => {
       },
   ];
 
-//   const COLORS = ['#0277bd','#0288d1', '#00acc1', '#00bcd4', '#26a69a','#4db6ac','#80cbc4'];
 
 const COLORS = ['#f48fb1','#90caf9','#0288d1',  '#00bcd4', '#26a69a','#66bb6a','#aed581'];
   const RADIAN = Math.PI / 180;
@@ -123,18 +122,12 @@ const COLORS = ['#f48fb1','#90caf9','#0288d1',  '#00bcd4', '#26a69a','#66bb6a','
         <ResponsiveContainer width="100%" height="100%">
           <BarChart           
             data={data}
-            // margin={{
-            //   top: 5,
-            //   right: 30,
-            //   left: 20,
-            //   bottom: 5,
-            // }}
+            
           >          
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="technology" />
             <YAxis />
             <Tooltip />
-            {/* <Legend /> */}
             <Bar dataKey="performance" fill="#8884d8" >
                   {data.map((data, index,arr) => (
                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} ></Cell>
@@ -145,8 +138,7 @@ const COLORS = ['#f48fb1','#90caf9','#0288d1',  '#00bcd4', '#26a69a','#66bb6a','
         <ResponsiveContainer width="100%" height="100%">
           <PieChart width={730} height={250}>
           <Legend layout="vertical" verticalAlign="center" align="top" 
-            //  onMouseEnter={handleMouseEnter}
-            //  onMouseLeave={handleMouseLeave}
+           
           />
             <Pie
               data={data01}
@@ -157,23 +149,13 @@ const COLORS = ['#f48fb1','#90caf9','#0288d1',  '#00bcd4', '#26a69a','#66bb6a','
               outerRadius={100}
               fill="#8884d8"
               label
-            //   labelLine={false}
+          
             >
                 {data01.map((data, index,arr) => (
                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} ></Cell>
                 ))}
             </Pie>
-            {/* <Pie
-              data={data02}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={80}
-              fill="#82ca9d"
-              label
-            /> */}
+            
           </PieChart>
         </ResponsiveContainer> 
       </div>

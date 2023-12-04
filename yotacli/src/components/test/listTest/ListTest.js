@@ -1,4 +1,4 @@
-// import React from "react";
+
 import React, { useEffect, useState } from "react";
 import Card from "../../../ui/card/Card";
 import Pagination from "../../../ui/pagination/Pagination";
@@ -8,8 +8,8 @@ import ListTestItem from "./ListTestItem"
 
 
 const ListTest = () => {
-  const [currentPage, setCurrentPage] = useState(1); //Pagination
-  const [dataPerPage, setDataPerPage] = useState(5); //Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage, setDataPerPage] = useState(5); 
 
 
 

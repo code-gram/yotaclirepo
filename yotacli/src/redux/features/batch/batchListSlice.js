@@ -4,7 +4,7 @@ import { getAuthToken } from "../../../components/utils/Authentication";
 
 export const fetchBatch = createAsyncThunk("batch", () => {
   const token = getAuthToken();
-  return axios.get(`http://localhost:9090/yota/api/batches/`,
+  return axios.get(`/yota-api/batches/`,
       {
         headers: {
           Accept: "application/json",

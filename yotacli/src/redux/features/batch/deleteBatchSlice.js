@@ -5,7 +5,7 @@ export const batchDelete = createAsyncThunk("deletebatch", async (id, { rejectWi
     if (window.confirm("Do you want to remove"))
         try {
             const token = getAuthToken();
-            const response = await fetch(`http://localhost:9090/yota/api/batches/${id}`,
+            const response = await fetch(`/yota-api/batches/${id}`,
                 {
                     method: "DELETE",
                     headers: {

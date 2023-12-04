@@ -4,7 +4,7 @@ import { getAuthToken } from "../../../components/utils/Authentication";
 
 export const fetchTechnology = createAsyncThunk("technology", async () => {
   const token = getAuthToken();
-  return await axios.get(`http://localhost:9090/yota/api/technologies/`, {
+  return await axios.get(`/yota-api/technologies/`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

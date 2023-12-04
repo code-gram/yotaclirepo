@@ -5,8 +5,8 @@ import HeaderItem from "./HeaderItem";
 import ListClientItem from "./ListClientItem";
 
 const ListClient = () => {
-  const [currentPage, setCurrentPage] = useState(1); //Pagination
-  const [dataPerPage, setDataPerPage] = useState(5); //Pagination
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [dataPerPage, setDataPerPage] = useState(5); 
   return (
     <div className="col-12">
       <Card>

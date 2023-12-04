@@ -5,8 +5,8 @@ import HeaderItem from "./HeaderItem";
 import Pagination from "../pagination/Pagination";
 import { useRef,useState } from "react";
 const ListBatch = () => {
-  const [currentPage, setCurrentPage] = useState(1); //Pagination
-  const [dataPerPage, setDataPerPage] = useState(5); //Pagination
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [dataPerPage, setDataPerPage] = useState(5); 
   return (
     <div className="justify-content-centre ">
       <Card>

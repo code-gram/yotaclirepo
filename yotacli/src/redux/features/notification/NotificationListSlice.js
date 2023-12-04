@@ -4,7 +4,7 @@ import { getAuthToken } from "../../../components/utils/Authentication";
 
 const token = getAuthToken();
 const fetchNotification = createAsyncThunk("notificationlist/fetchNotification", (email) => {
-  return axios.get(`http://localhost:9090/yota/api/notifications/${email}`,
+  return axios.get(`/yota-api/notifications/${email}`,
     {
       headers: {
         Accept: "application/json",
@@ -18,7 +18,7 @@ const fetchNotification = createAsyncThunk("notificationlist/fetchNotification",
 })
 
 const updateNotification = createAsyncThunk("notificationList/updateNotification", (email) => {
-  return axios.get(`http://localhost:9090/yota/api/notifications/update/${email}`, {
+  return axios.get(`/yota-api/notifications/${email}`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const postNotification = createAsyncThunk("notificationList/postNotification", (
     message: data.message.subject
   }
   console.log(notification)
-  return axios.post("http://localhost:9090/yota/api/notifications", notification,
+  return axios.post("/yota-api/notifications/", notification,
     {
       headers: {
         Accept: "application/json",

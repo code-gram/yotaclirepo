@@ -1,32 +1,31 @@
 .inputField {
-    border-top-style: hidden;
-    border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-style: hidden;
-    background-color: white;
-    outline: none;
-    padding: 3px;
-    width: 380px;  
-    margin-left: 1%;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  outline: none;
+  padding: 3px;
+  width: 380px;
+  margin-left: 1%;
 }
 
-.btn{
-    display: flex;
-    margin-left: 60%;
+.btn {
+  display: flex;
+  margin-left: 60%;
 }
 
 .boxtitle {
-    font-size: 20px;
-    font-weight: 550;
-    color: #144358;
-    margin-left: 4%;
+  font-size: 20px;
+  font-weight: 550;
+  color: #144358;
+  margin-left: 4%;
 }
 
-.form{
-    margin-left: 4%;
+.form {
+  margin-left: 4%;
 }
 
-.errormsg{
-    color: red;
-    
+.errormsg {
+  color: red;
 }

@@ -12,7 +12,7 @@ import { useLocation } from 'react-router'
 const TechnologyList = ({ currentPage, dataPerPage }) => {
   const dispatch = useDispatch();
   const technology = useSelector((state) => state.technology);
-  // console.log("State Error:",technology.searchError);
+  
   console.log("searchTech array to search Technology:", technology.searchTech);
   console.log("Original Array List:", technology.technologies);
   const location = useLocation();
@@ -21,7 +21,7 @@ const TechnologyList = ({ currentPage, dataPerPage }) => {
     dispatch(fetchTechnology());
   }, [location.key]);
 
-  //Pagination
+  
   console.log("currentPage:", currentPage);
   const lastDataIndex = currentPage * dataPerPage;
   const firstDataIndex = lastDataIndex - dataPerPage;
@@ -31,7 +31,7 @@ const TechnologyList = ({ currentPage, dataPerPage }) => {
     lastDataIndex
   );
   console.log("Data per page to show:", paginatedData);
-  //Loading Data
+
   if (technology.loading) {
     console.log("Loading...");
     return (
@@ -45,7 +45,7 @@ const TechnologyList = ({ currentPage, dataPerPage }) => {
       </tr>
     );
   }
-  //Search Data not found
+
   if (technology.searchTech.length !== 0) {
     console.log("technology.searchTech.length !== 0");
 
@@ -62,7 +62,7 @@ const TechnologyList = ({ currentPage, dataPerPage }) => {
       );
     }
 
-    //Search Data Found
+   
     if (technology.searchTech[0].length > 0) {
       console.log("technology.searchTech[0].length > 0");
 
@@ -90,20 +90,19 @@ const TechnologyList = ({ currentPage, dataPerPage }) => {
               {" "}
               <i className="fa fa-edit"></i>&nbsp;{" "}
             </Link>
-            {/* onClick={(event) => handleEditClick(event, list)} */}
             <Link
               to={`/trainer/deletetechnology/${tech.id}`}
               onClick={() => dispatch(deleteTechnology(tech.id))}
             >
               <i className="fa fa-trash-can"></i>{" "}
             </Link>
-            {/* onClick={() => handleDeleteClick(tech.id)} */}
+           
           </td>
         </tr>
       ));
     }
 
-    //Display Original Array List
+
     return (
       <>
         {paginatedData.map((tech, key) => (
@@ -119,14 +118,14 @@ const TechnologyList = ({ currentPage, dataPerPage }) => {
               <i className="fa fa-edit"></i>&nbsp;{" "}
             </Link>
 
-              {/* onClick={(event) => handleEditClick(event, list)} */}
+          
               <Link
                 to={`/trainer/deletetechnology/${tech.id}`}
                 onClick={() => dispatch(deleteTechnology(tech.id))}
               >
                 <i className="fa fa-trash-can"></i>{" "}
               </Link>
-              {/* onClick={() => handleDeleteClick(tech.id)} */}
+      
             </td>
           </tr>
         ))}

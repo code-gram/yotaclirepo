@@ -1,33 +1,25 @@
 .inputField {
-    border-top-style: hidden;
-    border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-style: hidden;
-    background-color: white;
-    outline: none;
-    
-    width:100%
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background-color: white;
+  outline: none;
+  width: 100%;
 }
-.inputName{
-    display:flex;
-    justify-content: center;
-}
-
-/* .field{
-    width:250px;
-    margin-left: 115px; 
-} */
-
-li{
-    padding-left: 5px;
-    /* list-style-type:none */
+.inputName {
+  display: flex;
+  justify-content: center;
 }
 
-select{
-    border: none;
+li {
+  padding-left: 5px;
 }
 
-textarea::placeholder{
-    padding-top: 13%;
+select {
+  border: none;
 }
 
+textarea::placeholder {
+  padding-top: 13%;
+}

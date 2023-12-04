@@ -24,7 +24,6 @@ const HeaderItem = ({currentPage, setCurrentPage, setDataPerPage}) => {
     console.log("selectOption.value", selectOption.value);
     setDataPerPage(selectOption.value);
 
-    // Pagination
     if(currentPage !== 1){
       setCurrentPage(1);
     }
@@ -44,7 +43,6 @@ const HeaderItem = ({currentPage, setCurrentPage, setDataPerPage}) => {
           console.log("matchSearchTech:",matchSearchTech);
           dispatch(handleSearchTech(matchSearchTech));
 
-          // Pagination
           if(currentPage !== 1){
             setCurrentPage(1);
           }
@@ -52,7 +50,6 @@ const HeaderItem = ({currentPage, setCurrentPage, setDataPerPage}) => {
       }
       
       setSearch('');
-  // dispatch(searchTechnology(search));
 }
 
   return (
@@ -71,7 +68,6 @@ const HeaderItem = ({currentPage, setCurrentPage, setDataPerPage}) => {
         </div>
 
 
-          {/* {search} */}
         <div className="col-xl-5 col-lg-5 col-md-4 col-sm-8 ms-5">
           <form className="form-inline" onSubmit={handleSearchButton}>
             <div className="d-flex justify-content-end">

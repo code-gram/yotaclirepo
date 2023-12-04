@@ -3,14 +3,12 @@ import axios from "axios";
 import { headerContents} from "../../../components/utils/Authentication";
 
 const headerContent = headerContents();
-//create bach
-//create Technology by pragati
 export const createTech = createAsyncThunk(
   "createtech",
   async (data, { rejectedWithValue }) => {
     console.log("Create Tech: ", data);
     const response = await fetch(
-      "http://localhost:9090/yota/api/technologies/",
+      "/yota-api/technologies/",
       {
         method: "POST",
         headers: headerContent,
@@ -27,7 +25,6 @@ export const createTech = createAsyncThunk(
   }
 );
 
-//update technology by pragati
 export const UpdateTech = createAsyncThunk(
   "UpdateTech",
   async (data, { rejectWithValue }) => {
@@ -35,7 +32,7 @@ export const UpdateTech = createAsyncThunk(
       debugger;
       console.log("testt==" + data.shortDescription);
       axios
-        .put(`http://localhost:9090/yota/api/technologies/${data.id}`, data, {
+        .put(`/yota-api/technologies/${data.id}`, data, {
           headers: headerContent,
         })
         .then((res) => {
@@ -47,10 +44,9 @@ export const UpdateTech = createAsyncThunk(
   }
 );
 
-//get
 export const fetchTechnology = createAsyncThunk("technology", async () => {
   return axios
-    .get(`http://localhost:9090/yota/api/technologies/`,
+    .get(`/yota-api/technologies/`,
       {
         headers: headerContent,
       }
@@ -58,14 +54,13 @@ export const fetchTechnology = createAsyncThunk("technology", async () => {
     .then((response) => response.data.map((technology) => technology));
 });
 
-//delete tech by pragati
 export const deleteTechnology = createAsyncThunk(
   "deleteAssociate",
   async (id, { rejectWithValue }) => {
     if (window.confirm("Do you want to remove"))
       try {
         const response = await fetch(
-          `http://localhost:9090/yota/api/technologies/${id}`,
+          `/yota-api/technologies/${id}`,
           {
             method: "DELETE",
             headers: headerContent,
@@ -83,7 +78,6 @@ export const deleteTechnology = createAsyncThunk(
   }
 );
 
-// Get Test Number API
 export const fetchTechnologyTestNumber = createAsyncThunk(
   "technologyTestNumber",
   async () => {
@@ -95,7 +89,6 @@ export const fetchTechnologyTestNumber = createAsyncThunk(
   }
 );
 
-// Get Test Deatils of Technology API
 export const fetchTechnologyTestDetails = createAsyncThunk(
   "fetchTechnologyTestDetails",
   async (name) => {
@@ -107,7 +100,6 @@ export const fetchTechnologyTestDetails = createAsyncThunk(
   }
 );
 
-// --------------------------------------------------------------------------------------
 export const techCreate = createSlice({
   name: "techCreate",
   initialState: {
@@ -127,7 +119,6 @@ export const techCreate = createSlice({
   },
 
   extraReducers: {
-    // create
     [createTech.pending]: (state) => {
       state.loading = true;
     },
@@ -142,7 +133,6 @@ export const techCreate = createSlice({
       state.error = action.payload;
     },
 
-    //get
     [fetchTechnology.pending]: (state) => {
       state.loading = true;
     },
@@ -158,7 +148,6 @@ export const techCreate = createSlice({
       state.error = action.payload;
     },
 
-    //updated Pragati
 
     [UpdateTech.pending]: (state) => {
       state.loading = true;
@@ -196,7 +185,6 @@ export const techCreate = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
-    //get Test Number
     [fetchTechnologyTestNumber.pending]: (state) => {
       state.loading = true;
       console.log("in Create Slice.js", state.testNumberArray);
@@ -213,7 +201,6 @@ export const techCreate = createSlice({
       state.error = action.payload;
     },
 
-    //get Test Details
     [fetchTechnologyTestDetails.pending]: (state) => {
       state.loading = true;
     },
