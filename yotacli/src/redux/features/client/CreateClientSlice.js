@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import {getAuthToken, headerContents } from "../../../components/utils/Authentication";
-const token = getAuthToken();
+import { headerContents } from "../../../components/utils/Authentication";
 const headerContent = headerContents();
 export const createClient = createAsyncThunk("createClient",
   async (data, { rejectedWithValue }) => {

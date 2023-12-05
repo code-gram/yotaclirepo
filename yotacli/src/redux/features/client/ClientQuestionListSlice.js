@@ -1,13 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getAuthToken, headerContents } from "../../../components/utils/Authentication";
+import { headerContents } from "../../../components/utils/Authentication";
 
-const headerContent = headerContents();
 export const fetchClientQuestion = createAsyncThunk("clientQuestion",async (clientId) => {
-  const token = getAuthToken();
     return axios
       .get(`/yota-api/client-questions/${clientId}`,{
-        headers:headerContent
+        headers:headerContents()
       })
       .then(response =>  response.data)
       .catch(error=>console.log("ERROR"))

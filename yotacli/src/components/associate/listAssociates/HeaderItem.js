@@ -4,10 +4,7 @@ import classes from "./HeaderItem.module.css";
 import InputField from "../../../ui/inputField/InputField";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  handleSearchAsso,
-  fetchAssociate,
-} from "../../../redux/features/associate/ListAssociateSlice";
+import {handleSearchAsso,fetchAssociate,} from "../../../redux/features/associate/ListAssociateSlice";
 
 const HeaderItem = ({ currentPage, setCurrentPage, setDataPerPage }) => {
   const [search, setSearch] = useState("");

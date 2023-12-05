@@ -1,16 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getAuthToken } from "../../../components/utils/Authentication";
+import { getAuthToken ,headerContents } from "../../../components/utils/Authentication";
 
 const token = getAuthToken();
 const fetchNotification = createAsyncThunk("notificationlist/fetchNotification", (email) => {
   return axios.get(`/yota-api/notifications/${email}`,
     {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Authorization": token
-      }
+      headers: headerContents()
     }
   )
     .then(response => response.data)
@@ -19,11 +15,7 @@ const fetchNotification = createAsyncThunk("notificationlist/fetchNotification",
 
 const updateNotification = createAsyncThunk("notificationList/updateNotification", (email) => {
   return axios.get(`/yota-api/notifications/${email}`, {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "Authorization": token
-    }
+    headers: headerContents()
   }
   )
     .then(response => console.log("updated...."))

@@ -1,18 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAuthToken } from "../../../components/utils/Authentication";
+import { headerContents } from "../../../components/utils/Authentication";
 
 export const batchDelete = createAsyncThunk("deletebatch", async (id, { rejectWithValue }) => {
     if (window.confirm("Do you want to remove"))
         try {
-            const token = getAuthToken();
             const response = await fetch(`/yota-api/batches/${id}`,
                 {
                     method: "DELETE",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                        "Authorization": token
-                    }
+                    headers: headerContents(),
                 }
             ).then((response) => {
                 alert("Removed Succesfully");

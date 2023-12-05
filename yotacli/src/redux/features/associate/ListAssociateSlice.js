@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getAuthToken, headerContents } from "../../../components/utils/Authentication";
+import {headerContents } from "../../../components/utils/Authentication";
 
-const headerContent = headerContents();
 export const createAssociate = createAsyncThunk(
   "createAssociate",
   async (data, { rejectedWithValue }) => {
@@ -11,7 +10,7 @@ export const createAssociate = createAsyncThunk(
       "/yota-api/associates/",
       {
         method: "POST",
-        headers: headerContent,
+        headers: headerContents(),
         body: JSON.stringify(data),
       }
     );
@@ -34,7 +33,7 @@ export const UpdateAsso = createAsyncThunk(
 
       axios
         .put(`/yota-api/associates/`, data,{
-          headers: headerContent
+          headers: headerContents()()
         })
         .then((res) => {
           console.log(res.data);
@@ -48,7 +47,7 @@ export const UpdateAsso = createAsyncThunk(
 export const fetchAssociate = createAsyncThunk("associate", () => {
   return axios
     .get(`/yota-api/associates/`,{
-      headers: headerContent
+      headers: headerContents()
     })
     .then((response) => response.data.map((associate) => associate));
 });
@@ -56,7 +55,7 @@ export const fetchAssociate = createAsyncThunk("associate", () => {
 export const fetchAssociateTestNumber = createAsyncThunk("associateTestNumber", async () => {
   return axios
     .get(`/yota-api/associates/tests`,{
-      headers:headerContent
+      headers:headerContents()
     })
     .then((response) => response.data);
 });
@@ -64,7 +63,7 @@ export const fetchAssociateTestNumber = createAsyncThunk("associateTestNumber", 
 export const fetchAssociateTestDetails = createAsyncThunk("fetchAssociateTestDetails", async (name) => {
   return axios
     .get(`/yota-api/associates/tests/${name}`,{
-      headers:headerContent
+      headers:headerContents()
     })
     .then((response) => response.data);
 });
