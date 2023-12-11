@@ -9,6 +9,7 @@ import "./styles.css";
 const TraineeNavbar = (props) => {
   const onHamburgerClick = () => {
     props.onHamburgerClick();
+    console.log("Clicked.........")
   };
 
   var barsIcon = <i className="fas fa-bars"></i>;
