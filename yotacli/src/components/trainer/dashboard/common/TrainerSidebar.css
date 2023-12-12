@@ -7,6 +7,9 @@
   border-radius: 5px;
   border-right: 3px solid rgba(20, 20, 31, 0.05);
   z-index: -1px;
+  border-color: white;
+  padding:33px
+ 
 }
 
 .navbar-dark .navbar-brand {
@@ -48,13 +51,13 @@
   overflow-y: auto; 
   height: inherit;
   text-align: left;
-  padding: 15px;
+  padding: 8px;
   max-height: 95%;
 }
 #sidebar ul li a {
   padding: 20px;
   margin-left: 0.5rem;
-  color: rgb(0, 0, 0);
+  color: #495057;
   font-size: 0.88rem;
   line-height: 1.25rem;
   padding: inherit;

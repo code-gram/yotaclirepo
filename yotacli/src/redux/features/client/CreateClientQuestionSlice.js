@@ -1,23 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAuthToken } from '../../../components/utils/Authentication';
+import { getAuthToken ,headerContents } from '../../../components/utils/Authentication';
 
 
+const headerContent = headerContents();
 export const createClientQuestion = createAsyncThunk(
   "clientQuestion",
   async (data, { rejectedWithValue }) => {
     console.log("Create createClientQuestion--: ", data);
     const token = getAuthToken();
     const response = await fetch(
-      "http://localhost:9090/yota/api/createQuestion/",
+      "http://localhost:9090/yota/api/clientQuestion/createQuestion/",
       {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Authorization": token
-        },
+        headers: headerContent,
         body: JSON.stringify(data),
-      }
+      } 
     );
     try {
       const result = await response.json();

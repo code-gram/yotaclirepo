@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import "./TrainerSidebar.css";
 
 const TrainerSidebar = (props) => {
-  const [isBatchActive, setBatchActive] = useState(false);
-  const [isTestActive, setTestActive] = useState(false);
-  const [isTechnologyActive, setTechnologyActive] = useState(false);
-  const [isAssociateActive, setAssociateActive] = useState(false);
-  const [isClientActive, setClientActive] = useState(false);
+  const [isBatchActive, setBatchActive] = useState(true);
+  const [isTestActive, setTestActive] = useState(true);
+  const [isTechnologyActive, setTechnologyActive] = useState(true);
+  const [isAssociateActive, setAssociateActive] = useState(true);
+  const [isClientActive, setClientActive] = useState(true);
 
   return (
     <div className="wrappermain" style={{ marginTop: "50px" }}>
