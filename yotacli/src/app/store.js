@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import batchReducer from "../redux/features/batch/batchListSlice";
+import trainingReducer from "../redux/features/Training/trainingListSlice";
 import technologyReducer from "../redux/features/technology/CreateTechSlice";
 import associateReducer from "../redux/features/associate/ListAssociateSlice";
 import NotificationListSlice from "../redux/features/notification/NotificationListSlice";
@@ -11,7 +11,7 @@ import ClientQuestionListSlice from "../redux/features/client/ClientQuestionList
 import techCreate from "../redux/features/technology/CreateTechSlice"
 export const store = configureStore({
   reducer: {
-    batch: batchReducer,
+    training: trainingReducer,
     technology: technologyReducer,
     associate: associateReducer,
     notification: NotificationListSlice,

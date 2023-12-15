@@ -1,0 +1,139 @@
+.wrappermain {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border-right: 3px solid rgba(20, 20, 31, 0.05);
+  z-index: -1px;
+  border-color: white;
+  padding:33px
+}
+ 
+.navbar-dark .navbar-brand {
+  color: black;
+}
+ 
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: #e0f3ff;
+  font-weight: 700;
+}
+ 
+
+#sidebar::-webkit-scrollbar {
+  width: 5px; 
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+#sidebar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+#sidebar::-webkit-scrollbar-thumb {
+  background: transparent; 
+}
+ 
+#sidebarCollapse {
+  top: 0.5rem;
+  right: 1.3rem;
+}
+#sidebar {
+  overflow-y: auto; 
+  height: inherit;
+  text-align: left;
+  padding: 8px;
+  max-height: 95%;
+}
+#sidebar ul li a {
+  padding: 20px;
+  margin-left: 0.5rem;
+  color: #495057;
+  font-size: 0.88rem;
+  line-height: 1.25rem;
+  padding: inherit;
+}
+#sidebar ul li a:hover {
+  color: #3f6ad8;
+}
+ 
+#sidebar .list-item {
+  margin: 2rem 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+ 
+#sidebar li a {
+  text-decoration: none;
+  padding-left: 0.5rem;
+}
+.icon-color {
+  color: #000000;
+}
+.btn-custom {
+  background-color: #c4b9b9;
+  border-radius: 50%;
+  color: #215cad;
+  font-weight: 700;
+}
+.sidebar-header {
+  margin-top: 2rem;
+  text-align: center;
+  color: #e9e9ea;
+}
+.usr-image {
+  border: 2px solid white;
+}
+.collapse {
+  display: none;
+}
+#sidebar.active .sidebar-header h3 {
+  display: none;
+}
+#sidebar ul li a {
+  text-align: left;
+}
+#sidebar.active ul li a {
+  display: none;
+}
+#sidebar.active ul li i {
+  display: block;
+}
+#sidebar.active .dropdown-toggle::after {
+  top: auto;
+  bottom: 10px;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+}
+.hidden {
+  display: none;
+}
+ 
+@media (max-width: 768px) {
+  #sidebar.active {
+    width: 50px;
+    text-align: center;
+    margin: 0;
+  }
+  #sidebar {
+    margin: 1rem;
+  }
+  #sidebarCollapse {
+    right: 0.5rem;
+  }
+  #sidebar.active .sidebar-header h3 {
+    display: none;
+  }
+  .dropdown-toggle::after {
+    top: auto;
+    bottom: 10px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+  }
+}

@@ -55,19 +55,19 @@ function Sidebar(props) {
                 id={`dropdown-button-drop-end`}
                 drop={"end"}
                 variant=""
-                title={`Batch Management`}
+                title={`Training Management`}
               >
                 <Dropdown.Item
                   style={{ backgroundColor: "#88b4ba", color: "white" }}
                   eventKey="1"
                 >
-                  <Link to="createbatch">Create Batch</Link>
+                  <Link to="createtraining">Create Training</Link>
                 </Dropdown.Item>
                 <Dropdown.Item
                   style={{ backgroundColor: "#88b4ba", color: "white" }}
                   eventKey="2"
                 >
-                  <Link to="batchlist">Batch List</Link>
+                  <Link to="traininglist">Training List</Link>
                 </Dropdown.Item>
               </DropdownButton>
             </div>
@@ -237,13 +237,13 @@ function Sidebar(props) {
                   style={{ backgroundColor: "#88b4ba", color: "white" }}
                   eventKey="1"
                 >
-                  <Link to="createbatch">Create Batch</Link>
+                  <Link to="createtraining">Create Training</Link>
                 </Dropdown.Item>
                 <Dropdown.Item
                   style={{ backgroundColor: "#88b4ba", color: "white" }}
                   eventKey="2"
                 >
-                  <Link to="batchlist">Batch List</Link>
+                  <Link to="traininglist">Training List</Link>
                 </Dropdown.Item>
               </DropdownButton>
             </div>

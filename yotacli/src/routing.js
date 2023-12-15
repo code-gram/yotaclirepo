@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import TitleDashboard from "./components/dashboard/TitleDashboard";
-import TitleBatchList from "./components/batch/batchlist/TitleBatchList";
+import TitleTrainingList from "./components/training/traininglist/TitleTrainingList";
 import TitleTechnologyList from "./components/technology/listTechnology/TitleTechnologyList";
-import TitleCreateBatch from "./components/batch/createbatch/TitleCreateBatch";
-import TitleUpdateBatch from "./components/batch/batchupdate/TitleUpdateBatch";
+import TitleCreateTraining from "./components/training/createtraining/TitleCreateTraining";
+import TitleUpdateTraining from "./components/training/trainingupdate/TitleUpdateTraining";
 import TitleAddTechnology from "./components/technology/addTechnology/TitleAddTechnology";
 import TitleUpdateTechnology from "./components/technology/updateTechnology/TitleUpdateTechnology";
 import TitleRecordTechnology from "./components/technology/recordTechnology/TitleRecordTechnology";
@@ -27,10 +27,10 @@ const routing = () => {
     <>
       <Routes>
         <Route path="/" element={<TitleDashboard />} />
-        <Route path="/batchlist" element={<TitleBatchList />} />
-        <Route path="createbatch" element={<TitleCreateBatch />} />
-        <Route path="/updatebatch/:id" element={<TitleUpdateBatch />} />
-        <Route path="/deletebatch/:id" element={<TitleBatchList />} />
+        <Route path="/traininglist" element={<TitleTrainingList />} />
+        <Route path="createtraining" element={<TitleCreateTraining />} />
+        <Route path="/updatetraining/:id" element={<TitleUpdateTraining />} />
+        <Route path="/deletetraining/:id" element={<TitleTrainingList />} />
         <Route path="technologylist" element={<TitleTechnologyList />} />
         <Route path="addtechnology" element={<TitleAddTechnology />} />
         <Route path="/updatetechnology/:id" element={<TitleUpdateTechnology />}/>
