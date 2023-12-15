@@ -4,31 +4,32 @@ import "../TrainerSidebar.css";
 import TrainerSidebarSubMenu from "../TrainerSidebarSubMenu";
 import TrainerSidebarMainMenu from "../TrainerSidebarMainMenu";
 
+
 const TechnicalManagerSidebar = () => {
     return (
         <>
-            <TrainerSidebarMainMenu link="Training Request" linkIcon="fa-solid fa-id-badge icon-color">
+            <TrainerSidebarMainMenu link="Training Request">
                 <TrainerSidebarSubMenu menuLink="/createTest">Create Batch</TrainerSidebarSubMenu>
                 <TrainerSidebarSubMenu menuLink="/batchList">Batch List</TrainerSidebarSubMenu>
             </TrainerSidebarMainMenu>
-            <TrainerSidebarMainMenu link="Test Managment" linkIcon="fas fa-pencil-square icon-color">
+            <TrainerSidebarMainMenu link="Test Managment">
                 <TrainerSidebarSubMenu menuLink="/createTest">Create Test</TrainerSidebarSubMenu>
                 <TrainerSidebarSubMenu menuLink="/testList">Test List</TrainerSidebarSubMenu>
             </TrainerSidebarMainMenu>
-            <TrainerSidebarMainMenu link="Technology Managment" linkIcon="fa-solid fa-laptop-code icon-color">
+            <TrainerSidebarMainMenu link="Technology Managment">
                 <TrainerSidebarSubMenu menuLink="/createTechnology">Create Technology</TrainerSidebarSubMenu>
                 <TrainerSidebarSubMenu menuLink="/technologyList">Technology List</TrainerSidebarSubMenu>
             </TrainerSidebarMainMenu>
-            <TrainerSidebarMainMenu link="Associate Managment" linkIcon="fa-solid fa-people-roof icon-color">
+            <TrainerSidebarMainMenu link="Associate Managment">
                 <TrainerSidebarSubMenu menuLink="/addAssociate">Add Associate</TrainerSidebarSubMenu>
                 <TrainerSidebarSubMenu menuLink="/associateList">Associate List</TrainerSidebarSubMenu>
                 <TrainerSidebarSubMenu menuLink="/addAssociate">Assign Test</TrainerSidebarSubMenu>
             </TrainerSidebarMainMenu>
-            <TrainerSidebarMainMenu link="Client Managment" linkIcon="fas fa-sitemap icon-color">
+            <TrainerSidebarMainMenu link="Client Managment">
                 <TrainerSidebarSubMenu menuLink="/createClient">Create Client</TrainerSidebarSubMenu>
                 <TrainerSidebarSubMenu menuLink="/clientList">Client List</TrainerSidebarSubMenu>
             </TrainerSidebarMainMenu>
-            <TrainerSidebarMainMenu link="Report and views" linkIcon="fas fa-file-text icon-color"/>
+            <TrainerSidebarMainMenu link="Report and views"/>
         </>
     );
 };
