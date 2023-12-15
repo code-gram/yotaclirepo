@@ -4,15 +4,15 @@ import "./TrainerSidebar.css";
 
 const TrainerSidebarMainMenu = (props) => {    
     const [active, setActive] = useState(false);
-
+    const{
+        link = "",
+        children = "",
+        linkIcon = ""
+    } = props;
     return (
         <li className="list-item">
-            {props.link == "Training Request" && <i class="fa-solid fa-id-badge icon-color"></i>}
-            {props.link == "Test Managment" && <i class="fas fa-pencil-square icon-color"></i>}
-            {props.link == "Technology Managment" && <i class="fa-solid fa-laptop-code icon-color"></i>}
-            {props.link == "Associate Managment" && <i class="fa-solid fa-people-roof icon-color"></i>}
-            {props.link == "Client Managment" && <i class="fas fa-sitemap icon-color"></i>}
-            {props.link == "Report and views" && <i class="fas fa-file-text icon-color"></i>}
+            <i class={linkIcon}/>
+            
             <Link
                 href="#MainMenu"
                 data-toggle="collapse"
@@ -20,7 +20,7 @@ const TrainerSidebarMainMenu = (props) => {
                 className="dropdown-toggle"
                 onClick={() => setActive(!active)}
             >
-                {props.link}
+                {link}
                 
             </Link>
             <ul
@@ -29,7 +29,7 @@ const TrainerSidebarMainMenu = (props) => {
                 }
                 id="Training"
             >
-            { props.children }
+            { children }
             </ul>
         </li>
     );
