@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../TrainerSidebar.css";
 
 const InitiatorSidebar = () => {
-    const [isBatchActive, setBatchActive] = useState(false);
+    const [isBatchActive, setBatchActive] = useState(true);
     return (
         <li className="list-item">
             <i class="fa-solid fa-id-badge icon-color"></i>

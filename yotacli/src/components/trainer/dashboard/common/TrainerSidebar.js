@@ -5,7 +5,7 @@ import InitiatorSidebar from "./role-based-sidebar/InitiatorSidebar";
 import TechnicalManagerSidebar from "./role-based-sidebar/TechnicalManagerSidebar";
 
 const TrainerSidebar = (props) => {
-  const [role, setRole] = useState("Initiator");
+  const [role, setRole] = useState("Technical_Manager");
   return (
     <div className="wrappermain" style={{ marginTop: "50px" }}>
       <nav id="sidebar" className={props.isNotActive ? "active" : ""}>
