@@ -7,7 +7,6 @@ const RegisterAssociate = () => {
     return (
         <div className={classes.card}>
             <Card>
-                {/* <HeaderItem /><hr/> */}
                 <RegisterAssociateForm/>
             </Card>
         </div>

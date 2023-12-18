@@ -7,6 +7,8 @@
   border-radius: 5px;
   border-right: 3px solid rgba(20, 20, 31, 0.05);
   z-index: -1px;
+  border-color: white;
+  padding:33px
 }
 
 .navbar-dark .navbar-brand {
@@ -19,28 +21,22 @@
   font-weight: 700;
 }
 
-/* Style scrollbar */
+
 #sidebar::-webkit-scrollbar {
-  width: 5px; /* Set the width of the scrollbar */
+  width: 5px;
 }
- 
-/* Handle */
+
 #sidebar::-webkit-scrollbar-thumb {
-  background: #888; /* Color of the scrollbar */
+  background: #888;
 }
- 
-/* Handle on hover */
 #sidebar::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color of the scrollbar on hover */
+  background: #555;
 }
- 
-/* Hide scrollbar when not in use */
 #sidebar::-webkit-scrollbar-thumb {
-  background: transparent; /* Hide the scrollbar handle when not in use */
+  background: transparent;
 }
 
 #sidebarCollapse {
-  /* position: absolute; */
   top: 0.5rem;
   right: 1.3rem;
 }
@@ -54,7 +50,7 @@
 #sidebar ul li a {
   padding: 20px;
   margin-left: 0.5rem;
-  color: rgb(0, 0, 0);
+  color: #495057;
   font-size: 0.88rem;
   line-height: 1.25rem;
   padding: inherit;

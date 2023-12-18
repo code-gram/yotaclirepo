@@ -5,7 +5,7 @@ import { headerContents } from "../../../components/utils/Authentication";
 export const assignTestToCandidate = createAsyncThunk(
   "assignEmail",
   async (test) => {
-    const response = await fetch("http://localhost:9090/sendingEmail",{
+    const response = await fetch("/yota-api/emails/send-email",{
         method: "POST",
         headers: headerContents(),
         body: JSON.stringify(test),

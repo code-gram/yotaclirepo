@@ -27,7 +27,7 @@ const UpdateTechnologyForm = (props) => {
     if (id) {
       console.log("iidd==" + id);
       axios
-        .get(`http://localhost:9090/yota/api/technologies/${id}`, {
+        .get(`/yota-api/technologies/${id}`, {
           headers: headerContents()
         })
         .then((res) => {
@@ -62,7 +62,7 @@ const UpdateTechnologyForm = (props) => {
       .unwrap()
       .then((response) => {
         window.alert("Technology Successfully Updated");
-        //  nevigate("/updatetechnology/:name");
+     
         setUpdateTechData(initialState);
         navigate("/trainer/technologylist");
       })
@@ -89,9 +89,9 @@ const UpdateTechnologyForm = (props) => {
         </div>
       </div>
       <hr />
-      {/*  */}
+     
 
-      {/*  */}
+     
       <div className="row align-items-end mt-5 mb-5">
         <div className={`col-3 ${classes.inputName}`}>
           <div>

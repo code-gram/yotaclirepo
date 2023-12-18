@@ -1,21 +1,14 @@
 
-/* delete Single associate */
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAuthToken } from "../../../components/utils/Authentication";
+import { headerContents} from "../../../components/utils/Authentication";
 
 export const deleteAssociate = createAsyncThunk("deleteAssociate", async (id, { rejectWithValue }) => {
     if (window.confirm("Do you want to remove associate?"))
         try {
-            const token = getAuthToken();
-            const response = await fetch(`http://localhost:9090/yota/api/associates/delete/${id}`,
+            const response = await fetch(`/yota-api/associates/${id}`,
                 {
                     method: "DELETE",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                        "Authorization": token
-                    }
+                    headers:headerContents()
                 }
             ).then(() => {
                 alert("Removed Successfully..!");

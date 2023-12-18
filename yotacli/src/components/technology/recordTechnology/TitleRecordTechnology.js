@@ -5,7 +5,7 @@ import RecordTechnology from "./RecordTechnology";
 const TitleRecordTechnology = () => {
   return (
     <>
-      {/* <!--dashbord--> */}
+     
       <div className="container-fluid">
         <div className={`row ${classes.back}`}>
           <div className="col">

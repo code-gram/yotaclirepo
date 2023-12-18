@@ -40,7 +40,7 @@ function App() {
               path="/associate/*"
               element={
                 <ProtectedRoute>
-                  {/* <Associate /> */}
+
                   <TraineeDashboardLayout />
                 </ProtectedRoute>
               }
@@ -53,7 +53,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-           
+
               <Route
               path="/newTrainer/*"
               element={
@@ -69,7 +69,7 @@ function App() {
               <Route path="trainingsummary" element={<TrainingSummary />} />
               <Route path="signout" element={<Signout />} />
             </Route>
-            
+
           </Routes>
         </Provider>
       </div>

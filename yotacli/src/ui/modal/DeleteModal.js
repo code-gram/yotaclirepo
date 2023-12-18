@@ -12,7 +12,6 @@ const DeleteModal = () => {
         const newlist = associate.filter((associate) => associate.id !== id)
         setAssociate = newlist;
         window.alert("Deleted");
-        // dispatch(deleteAssociate(associate.id));
     }
 
     return (

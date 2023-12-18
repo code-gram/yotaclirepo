@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchstudent } from '../../redux/studentDashboard/listStudentSlice';
-// import { fetchstudent, studenttestlink } from "";
 export const Dashboard = () => {
  const dispatch = useDispatch();
- const studenttest= useSelector((state)=>state.studenttestlink.students);//store +slice.js>createSlice>initialState>students
+ const studenttest= useSelector((state)=>state.studenttestlink.students);
   useEffect(()=>{
     console.log(studenttest)
-    dispatch(fetchstudent());//action 
+    dispatch(fetchstudent());
   },[]);
     return (
     

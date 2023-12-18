@@ -12,38 +12,7 @@ import Analytics from "./Analytics";
 import { Dashboard } from "./Dashboard";
 import { createBrowserRouter, Link, Outlet, RouterProvider } from "react-router-dom";
 
-// const router = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   children: [
-  //     {
-  //       element: <Dashboard />,
-  //   path: "/",
-  // },
-  //  {
-  //   path: "/analytics",
-  //   element: <Analytics />,
-  // }, 
-  // {
-  //   path: "/testlinks",
-  //   element: <TestLinks />,
-  // },
-  // {
-  //   path: "/training",
-  //   element: <Training />,
-  // },
-  // {
-  //   path: "/trainingsummary",
-  //   element: <TrainingSummary />,
-  // },
-  // {
-  //   path: "/signout",
-  //   element: <Signout />,
-  // }
-  //   ]
 
-//   },
-// ]);
 export const Sidebar = () => {
   const [toggle] = useState(false);
   const toggleId = useRef(null);
@@ -55,16 +24,11 @@ export const Sidebar = () => {
       nav = document.getElementById(navId),
       bodypd = document.getElementById(bodyId),
       headerpd = document.getElementById(headerId);
-    // Validate that all variables exist
     if (toggle && nav && bodypd && headerpd) {
       toggle.addEventListener("click", () => {
-        // show navbar
         nav.classList.toggle("show");
-        // change icon
         toggle.classList.toggle("bx-x");
-        // add padding to body
         bodypd.classList.toggle("body-pd");
-        // add padding to header
         headerpd.classList.toggle("body-pd");
       });
     }
@@ -116,7 +80,6 @@ export const Sidebar = () => {
             ></button>
           </div>
           <div
-           // className="l-navbar"
           ref={navId}
           className={toggle ? "l-navbar show" : "l-navbar"}
           id="nav-bar"
@@ -133,14 +96,7 @@ export const Sidebar = () => {
                 </span>
               </a>
 
-              {/* <Link to="/" 
-              className="nav_logo"
-              >
-                <i className="fab fa-yoast" />
-                <span className="nav_logo-name" style={{ fontSize: "x-large" }}>
-                  YOTA
-                </span>
-              </Link> */}
+             
               
               <div className="nav_list">
                 
@@ -201,7 +157,6 @@ export const Sidebar = () => {
           </nav>
         </div> 
           </div>
-          {/* <RouterProvider router={router} /> */}
        <Outlet/>
 
 

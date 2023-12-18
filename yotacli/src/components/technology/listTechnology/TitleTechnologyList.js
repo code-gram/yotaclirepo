@@ -5,7 +5,7 @@ import ListTechnology from "../listTechnology/ListTechnology";
 function TitleTechnologyList() {
   return (
     <>
-      {/* <!--dashbord--> */}
+  
       <div className="container-fluid">
         <div className={`row ${classes.back}`}>
           <div className="col">

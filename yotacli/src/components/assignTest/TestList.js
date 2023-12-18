@@ -182,13 +182,19 @@ const TestList = (props) => {
                       type="button"
                       onClick={() => requestSort(column.field)}
                       className={getClassNamesFor(column.field)}
-                     style={{border:0 , backgroundColor:"white"}}>
+                      style={{ border: 0, backgroundColor: "white" }}
+                    >
                       {column.label}
 
-                      <i className="fa-solid fa-sort" style={{marginLeft:"4px"}}></i>
+                      <i
+                        className="fa-solid fa-sort"
+                        style={{ marginLeft: "4px" }}
+                      ></i>
                     </button>
                   ) : (
-                    <button  style={{border:0 , backgroundColor:"white"}}>{column.label}</button>
+                    <button style={{ border: 0, backgroundColor: "white" }}>
+                      {column.label}
+                    </button>
                   )}
                 </th>
               );
@@ -210,22 +216,61 @@ const TestList = (props) => {
                 <td>{item.testType}</td>
                 <td>
                   <div className="dropdown">
-                  <button className="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i className="fa-solid fa-ellipsis-vertical"></i>
-                  </button>
-                  <ul  style={{backgroundColor:"lightgrey",color:"black"}}className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li> &nbsp; &nbsp; <Link to={`/trainer/assignTest`}>
-                    <i className="fa-solid fa-plus"></i>
-                  </Link>Add</li>
-                <li ><a className="dropdown-item" href="#"><i class="fa-solid fa-eye"></i>View</a></li>
-                <li><a className="dropdown-item" href="#"><i class="fa-solid fa-copy"></i>Copy</a></li>
-                <li><a className="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i>Share</a></li>
-                <li><a className="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square"></i>Edit</a></li>
-                <li><a className="dropdown-item" href="#"><i class="fa-solid fa-gear"></i>Setting</a></li>
-                <li><a className="dropdown-item" href="#"><i class="fa-solid fa-trash"></i>Delete</a></li>
-                  </ul>
-                   </div>
-                   </td>
+                    <button
+                      className="btn btn-light dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i className="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                    <ul
+                      style={{ backgroundColor: "lightgrey", color: "black" }}
+                      className="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li>
+                        {" "}
+                        &nbsp; &nbsp;{" "}
+                        <Link to={`/trainer/assignTest`}>
+                          <i className="fa-solid fa-plus"></i>
+                        </Link>
+                        Add
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          <i class="fa-solid fa-eye"></i>View
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          <i class="fa-solid fa-copy"></i>Copy
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          <i class="fa-solid fa-share-nodes"></i>Share
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          <i class="fa-solid fa-pen-to-square"></i>Edit
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          <i class="fa-solid fa-gear"></i>Setting
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          <i class="fa-solid fa-trash"></i>Delete
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
               </tr>
             );
           })}

@@ -129,13 +129,7 @@ const ClientQuestionForm = ({ cId }) => {
                   justifyItems: "center",
                 }}
               >
-                {/* <button
-                  className="delete_button"
-                  type="button"
-                  onClick={() => remove(index)}
-                >
-                  Delete 
-                </button> */}
+                
                 <div>
                 <a className="dropdown-item" onClick={() => remove(index)}><i class="fa-solid fa-trash" title="Delete"></i></a>
                 </div>

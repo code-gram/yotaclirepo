@@ -11,8 +11,7 @@ function Sidebar(props) {
   const collapseSideBar = () => {
     setIsOpen(!isOpen);
     props.sideBarOpen(!isOpen)
-    // if(isOpen){props.sideBarOpen(1)}
-    // else {props.sideBarOpen(0)}
+    
   }
 
   return (
@@ -56,19 +55,19 @@ function Sidebar(props) {
                 id={`dropdown-button-drop-end`}
                 drop={"end"}
                 variant=""
-                title={`Batch Management`}
+                title={`Training Management`}
               >
                 <Dropdown.Item
                   style={{ backgroundColor: "#88b4ba", color: "white" }}
                   eventKey="1"
                 >
-                  <Link to="createbatch">Create Batch</Link>
+                  <Link to="createtraining">Create Training</Link>
                 </Dropdown.Item>
                 <Dropdown.Item
                   style={{ backgroundColor: "#88b4ba", color: "white" }}
                   eventKey="2"
                 >
-                  <Link to="batchlist">Batch List</Link>
+                  <Link to="traininglist">Training List</Link>
                 </Dropdown.Item>
               </DropdownButton>
             </div>
@@ -209,34 +208,7 @@ function Sidebar(props) {
               Report
             </a>
           </li>
-          {/* <li>
-            <div>
-              <i className="fa-solid fa-list" style={{ color: "white" }}></i>
-
-              <DropdownButton
-                className="dropdown-toggle"
-                as={ButtonGroup}
-                id={`dropdown-button-drop-end`}
-                drop={"end"}
-                variant=""
-                title={`Client Question Bank`}
-              >
-                <Dropdown.Item
-                  style={{ backgroundColor: "#88b4ba", color: "white" }}
-                  eventKey="1"
-                >
-                  <Link to="addclientquestion">Create Client Question</Link>
-                </Dropdown.Item>
-                <Dropdown.Item
-                  style={{ backgroundColor: "#88b4ba", color: "white" }}
-                  eventKey="2"
-                >
-                 
-                  <Link to="clientquestionlist">Client Question List</Link>
-                </Dropdown.Item>
-              </DropdownButton>
-            </div>
-          </li> */}
+        
         </ul>
       }
       {!isOpen &&
@@ -265,13 +237,13 @@ function Sidebar(props) {
                   style={{ backgroundColor: "#88b4ba", color: "white" }}
                   eventKey="1"
                 >
-                  <Link to="createbatch">Create Batch</Link>
+                  <Link to="createtraining">Create Training</Link>
                 </Dropdown.Item>
                 <Dropdown.Item
                   style={{ backgroundColor: "#88b4ba", color: "white" }}
                   eventKey="2"
                 >
-                  <Link to="batchlist">Batch List</Link>
+                  <Link to="traininglist">Training List</Link>
                 </Dropdown.Item>
               </DropdownButton>
             </div>

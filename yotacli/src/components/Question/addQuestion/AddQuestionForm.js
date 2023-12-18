@@ -23,7 +23,7 @@ const AddQuestionForm = () => {
   console.log("Original Array List:", technology.technologies);
   useEffect(() => {
     axios
-      .get("http://localhost:9090/yota/api/technologies/",
+      .get("/yota-api/technologies/",
         {
           headers: headerContents()
         }
@@ -49,7 +49,7 @@ const AddQuestionForm = () => {
   }, []);
   useEffect(() => {
     const fetchTechnologyTestDetails = createAsyncThunk("fetchTechnologyTestDetails", async () => {
-      return axios.get(`http://localhost:9090/yota/api/technologies/`, 
+      return axios.get(`/yota-api/technologies/`,
       {
         headers: headerContents()
       }).then((response) => response.data);
@@ -76,9 +76,8 @@ const AddQuestionForm = () => {
     console.log(newQuestion);
 
   };
-  //Backend add question API
   useEffect(() => {
-    axios.get('http://localhost:9090/yota/api/questions/questionCode')
+    axios.get('/yota-api/questions/question-code')
       .then(response => {
 
         console.log("111111111", response.data);
@@ -102,14 +101,14 @@ const AddQuestionForm = () => {
     console.log("----newQuestion----", JSON.stringify(newQuestion));
 
     axios
-      .post("http://localhost:9090/yota/api/questions/", newQuestion,
+      .post("/yota-api/questions/", newQuestion,
         {
           headers: headerContents()
         }
       )
       .then((response) => {
         console.log(response.data);
-        
+
       } , [])
       .catch((error) => {
         console.log(error);
@@ -118,7 +117,7 @@ const AddQuestionForm = () => {
 
       navigate("/trainer/listquestion");
   };
- 
+
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
 
@@ -135,18 +134,16 @@ const AddQuestionForm = () => {
 
         .post(
 
-          "http://localhost:9090/yota/api/questions/questionUpload",
+          "/yota-api/questions/upload-questions",
           formData,
           {
             headers: headerContents()
           }
         )
         .then((response) => {
-          // Handle success response here
           console.log("File uploaded successfully:", response.data);
         })
         .catch((error) => {
-          // Handle error here
           console.error("Error uploading file:", error);
         });
       alert("Questions from Excel Sheet added successfully");
@@ -166,9 +163,7 @@ const AddQuestionForm = () => {
     console.log("selectOption.value", selectOption.value);
   };
 
-  // const handleChange = (event) => {
-  //   dispatch(settech(event.target.value));
-  // };
+
 
   return (
 
@@ -218,19 +213,10 @@ const AddQuestionForm = () => {
         >
           <div style={{ width: "40%", marginLeft: "5px" }}>
 
-            { /*<Select value={technology} onChange={handleSelectData}>
-              <div>Select Technology</div>
-              {technology.length > 0 &&
-               technology.map((item) => (
-                  <div key={item.id} value={item.name}>
-                    {item.name}
-                  </div>
-                ))}
-            </Select>*/
-              //chane
+            {
 
               <Select
-                // options={data} 
+
                 options={techList}
                 onChange={handleSelectData} />
 

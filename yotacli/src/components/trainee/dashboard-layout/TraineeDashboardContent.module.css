@@ -4,7 +4,7 @@ body {
     background-color:aliceblue;
     font-family: 'Montserrat', sans-serif;
   }
-  /* Main  */  
+
   .mainContainer {
     margin-left: 12px;
     grid-area: main;
@@ -45,7 +45,7 @@ body {
   } 
 
   .cardInner {
-    /* display: flex; */
+  
     align-items: center;
     justify-content: space-between;
     color: black;
@@ -64,9 +64,7 @@ body {
     background-color: #d1c4e9  ;
   }
   
-  /* .cardInner .cardIcon {
-    font-size: 25px;
-  } */
+
   
   .charts {
     display: grid;
@@ -75,11 +73,7 @@ body {
     margin-top: 35px;
     height: 300px;
   }
-  
-  /* End Main  */
-  
-  
-  /* Medium <= 992px */
+
     
   @media screen and (max-width: 992px) {
     .grid-container {
@@ -102,7 +96,7 @@ body {
       display: inline;
     }
   }
-  /* Small <= 768px */
+
     
   @media screen and (max-width: 768px) {
     .main-cards {
@@ -117,7 +111,7 @@ body {
     }
   }
   
-  /* Extra Small <= 576px */
+
   
   @media screen and (max-width: 576px) {
     .hedaer-left {

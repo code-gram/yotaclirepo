@@ -15,7 +15,6 @@ const fetchstudent = createAsyncThunk("student", () => {
             }
         )
         .then((response) => response.data)
-    //.then(x =>console.log("TESTLINK---",x))
 });
 const studenttestlink = createSlice({
     name: "studenttestlink",
@@ -28,11 +27,7 @@ const studenttestlink = createSlice({
         [fetchstudent.pending]: (state) => {
             state.loading = true;
         },
-        // [fetchstudent.fullfilled]:(state,action)=>{
-        //     console.log(action.payload)
-        //     state.loading=fasle;
-        //     state.students=action.payload;
-        // },
+       
         [fetchstudent.fulfilled]: (state, action) => {
             console.log("----------TEST----------------", action.payload)
             state.loading = false;

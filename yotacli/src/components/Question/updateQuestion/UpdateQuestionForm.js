@@ -31,7 +31,7 @@ const UpdateQuestionForm = () => {
   const token = getAuthToken();
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:9090/yota/api/questions/${id}`,
+      axios.get(`/yota-api/questions/${id}`,
         {
           headers: {
             Accept: "application/json",
@@ -55,7 +55,7 @@ const UpdateQuestionForm = () => {
   }
 
   const onHandleUpdate = () => {
-    axios.put(`http://localhost:9090/yota/api/questions/`, updateQuestionData,
+    axios.put(`/yota-api/questions/`, updateQuestionData,
       {
         headers: {
           Accept: "application/json",
@@ -74,7 +74,7 @@ const UpdateQuestionForm = () => {
         console.error(error);
       })
     alert("question updated successfully");
-    nevigate("/listquestion");
+    nevigate("/trainer");
   }
   return (
     <>
@@ -101,7 +101,7 @@ const UpdateQuestionForm = () => {
         </div>
         <div className={`col mt-6`} style={{ width: "200px" }}>
           <InputField>
-            {/* <ReactQuill theme="snow" value={updateQuestionData.question} onChange={getNewQuestionData} style={{ width: "450px" }} /> */}
+           
             <textarea name='question' value={updateQuestionData.question} onChange={getNewQuestionData} style={{ width: "450px", border: "none" }} />
           </InputField>
         </div>

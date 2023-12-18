@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function BodyDashboard() {
   return (
     <>
-      {/* <!--cards 1 row--> */}
+     
       <div className="row justify-content-around back">
         <div className={`col-lg-3 ${classes.gap}`}>
           <div className={`card ${classes.cardshadow} w-100`}>
@@ -36,9 +36,7 @@ function BodyDashboard() {
               </h5>
               <hr />
               <ul className={classes.ulcard}>
-                {/* <a href="AddAssociates.html">
-                  <li style={{ color: "black" }}>Add Associate</li>
-                </a> */}
+               
                 <Link to= "/registerAssociate/"><li style={{ color: "black" }}>Add Associate</li></Link>
                 <hr />
                 <a href="ListAssociates.html">
@@ -70,7 +68,7 @@ function BodyDashboard() {
           </div>
         </div>
       </div>
-      {/* <!--card 2 row--> */}
+     
       <div className={`row justify-content-around ${classes.cardrow} back`}>
         <div className={`col-lg-3 ${classes.gap}`}>
           <div className={`card ${classes.cardshadow} w-100`}>
@@ -121,7 +119,7 @@ function BodyDashboard() {
           </div>
         </div>
       </div>
-      {/* <!--3 card--> */}
+   
       <div className={`row justify-content-around back ${classes.cardrow1}`}>
         <div className="col-lg-11">
           <div className={`card ${classes.cardshadow} w-100`}>

@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { deleteAssociate } from '../../../redux/features/associate/DeleteAssociateSlice';
-//import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchAssociate } from '../../../redux/features/associate/ListAssociateSlice';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { deleteAssociate } from "../../../redux/features/associate/DeleteAssociateSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAssociate } from "../../../redux/features/associate/ListAssociateSlice";
 
 const AssociatesList = ({ currentPage, dataPerPage }) => {
-
-  //let count = 1;
-
   const dispatch = useDispatch();
   const associate = useSelector((state) => state.associate);
 
-  console.log("searchAssociate array to search Associate:", associate.searchAssociate);
+  console.log(
+    "searchAssociate array to search Associate:",
+    associate.searchAssociate
+  );
   console.log("Original Array List:", associate.associates);
 
   useEffect(() => {
     dispatch(fetchAssociate());
   }, []);
 
-  //Pagination
   console.log("currentPage:", currentPage);
   const lastDataIndex = currentPage * dataPerPage;
   const firstDataIndex = lastDataIndex - dataPerPage;
 
-  const paginatedData = associate.searchAssociate.slice(firstDataIndex, lastDataIndex);
+  const paginatedData = associate.searchAssociate.slice(
+    firstDataIndex,
+    lastDataIndex
+  );
   console.log("Data per page to show:", paginatedData);
 
-  //Loading Data
   if (associate.loading) {
     console.log("Loading...");
     return (
@@ -42,14 +42,10 @@ const AssociatesList = ({ currentPage, dataPerPage }) => {
     );
   }
 
-
-  //Search Data not found
   if (associate.searchAssociate.length !== 0) {
     console.log("associate.searchAssociate.length !== 0");
 
     if (associate.searchAssociate[0].length === 0) {
-      //history.push('/associates-list');
-
       return (
         <tr>
           <td></td>
@@ -62,8 +58,6 @@ const AssociatesList = ({ currentPage, dataPerPage }) => {
       );
     }
 
-
-    //Search Data Found
     if (associate.searchAssociate[0].length > 0) {
       console.log("associate.searchAssociate[0].length > 0");
 
@@ -73,48 +67,45 @@ const AssociatesList = ({ currentPage, dataPerPage }) => {
       console.log("firstDataIndex:", firstDataIndex);
       console.log("lastDataIndex:", lastDataIndex);
 
-      const searchPaginatedData = searchPaginatedSlice.slice(firstDataIndex, lastDataIndex);
+      const searchPaginatedData = searchPaginatedSlice.slice(
+        firstDataIndex,
+        lastDataIndex
+      );
       console.log("searchPaginatedData to show:", searchPaginatedData);
 
-      return (
-        searchPaginatedData.map((associate, key) => (
-          <tr key={key}>
-            <td>
-              <b>{key + firstDataIndex + 1}</b>
-            </td>
-            <td>{associate.name}</td>
-            <td>{associate.emailId}</td>
-            <td>******</td>
-            <td>
-              <Link to={`/trainer/updateAssociate/${associate.id}`}>
-                {" "}
-                <i className="fa fa-edit"></i>&nbsp;{" "}
-              </Link>
-              {/* onClick={(event) => handleEditClick(event, list)} */}
-              <Link
-                to={`/trainer/deleteAssociate/${associate.id}`}
-                onClick={() => dispatch(deleteAssociate(associate.id))}
-              >
-                <i className="fa fa-trash-can"></i>{" "}
-              </Link>
-              {/* onClick={() => handleDeleteClick(tech.id)} */}
-            </td>
-          </tr>
-        ))
-      );
+      return searchPaginatedData.map((associate, key) => (
+        <tr key={key}>
+          <td>
+            <b>{key + firstDataIndex + 1}</b>
+          </td>
+          <td>{associate.name}</td>
+          <td>{associate.emailId}</td>
+          <td>******</td>
+          <td>
+            <Link to={`/trainer/updateAssociate/${associate.id}`}>
+              {" "}
+              <i className="fa fa-edit"></i>&nbsp;{" "}
+            </Link>
+
+            <Link
+              to={`/trainer/deleteAssociate/${associate.id}`}
+              onClick={() => dispatch(deleteAssociate(associate.id))}
+            >
+              <i className="fa fa-trash-can"></i>{" "}
+            </Link>
+          </td>
+        </tr>
+      ));
     }
 
     return (
       <>
         {paginatedData.map((associate, key) => (
           <tr key={key}>
-            <td><b>{key + firstDataIndex + 1}
-            </b></td>
-            {/* <td>
-                        {associate.firstName}&nbsp;&nbsp;
-                        {associate.lastName}
-                    </td> */}
-            {/* <td>{associate.technologyName}</td> */}
+            <td>
+              <b>{key + firstDataIndex + 1}</b>
+            </td>
+
             <td>{associate.name}</td>
             <td>{associate.emailId}</td>
             <td>******</td>
@@ -123,19 +114,18 @@ const AssociatesList = ({ currentPage, dataPerPage }) => {
                 {" "}
                 <i className="fa fa-edit"></i>&nbsp;{" "}
               </Link>
-              {/* onClick={(event) => handleEditClick(event, list)} */}
+
               <Link
                 to={`/trainer/deleteAssociate/${associate.id}`}
                 onClick={() => dispatch(deleteAssociate(associate.id))}
               >
                 <i className="fa fa-trash-can"></i>{" "}
               </Link>
-              {/* onClick={() => handleDeleteClick(tech.id)} */}
             </td>
           </tr>
         ))}
       </>
-    )
+    );
   }
 };
 

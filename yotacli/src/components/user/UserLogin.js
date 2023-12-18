@@ -13,25 +13,21 @@ const UserLogin = () => {
     const [password, setPassword] = useState('');
     const [userCredentail, setUserCredentail] = useState('');
     const loginUser = () => {
-        //console.log("email: ", email)
         let userCredentail = {
             username: username,
             password: password
         }
         console.log(userCredentail);
         console.log("Login Data: " + userCredentail.username);
-        //Can call API here to verify the login details:
-        axios.post('http://localhost:9090/yota/user/authenticate', userCredentail)
+        axios.post('/yota-api/users/authenticate', userCredentail)
             .then((resp) => {
                 console.log("Response token::>>" + resp.data);
                 const respData = resp.data;
                 console.log("AUTH TOKEN:::>>" + respData.authToken);
                 console.log("User Role:::>>" + respData.userRole);
                 const jwtToken = respData.authToken;
-                //  localStorage.setItem('token', jwtToken) // storing token in localstorage 
                 sessionStorage.setItem('token', jwtToken);
                 if (resp.data) {
-                    // localStorage.setItem('token', resp.)
                     toast("Login Success!");
                     if (respData.userRole == 'Admin') {
                         setTimeout(() => {
@@ -94,7 +90,6 @@ const UserLogin = () => {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
         </>
     );
 }

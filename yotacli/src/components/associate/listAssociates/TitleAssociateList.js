@@ -2,11 +2,9 @@ import React from "react";
 import classes from "../../../components/dashboard/TitleDashboard.module.css";
 import ListAssociate from "./ListAssociate";
 
-
 function TitleAssociateList() {
   return (
     <>
-      {/* <!--dashbord--> */}
       <div className="container-fluid">
         <div className={`row ${classes.back}`}>
           <div className="col">

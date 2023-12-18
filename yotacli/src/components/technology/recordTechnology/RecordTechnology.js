@@ -7,9 +7,9 @@ import RecordTechDetails from "./RecordTechDetails";
 import Pagination from "../../../ui/pagination/Pagination";
 
 const RecordTechnology = () => {
-  const [currentPage, setCurrentPage] = useState(1); //Pagination
-  const [dataPerPage, setDataPerPage] = useState(5); //Pagination
-  const [toggleRecord, setToggleRecord] = useState(true); //Pagination
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [dataPerPage, setDataPerPage] = useState(5);
+  const [toggleRecord, setToggleRecord] = useState(true); 
 
   const { name } = useParams();
   console.log("UseParam name in Record Technology.js", name);
