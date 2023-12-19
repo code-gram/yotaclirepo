@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import "./TrainerSidebar.css";
 import InitiatorSidebar from "./role-based-sidebar/InitiatorSidebar";
 import TechnicalManagerSidebar from "./role-based-sidebar/TechnicalManagerSidebar";
-
-const TrainerSidebar = (props) => {
-  const [role, setRole] = useState("Technical_Manager");
+import { useSelector } from "react-redux";
+import { getUserRole } from "../../../utils/Authentication";
+const Sidebar = (props) => {
+  let userRole = getUserRole();
+  console.log("USER ROLE:::::"+userRole);
   return (
     <div className="wrappermain" style={{ marginTop: "50px" }}>
       <nav id="sidebar" className={props.isNotActive ? "active" : ""}>
@@ -15,14 +17,14 @@ const TrainerSidebar = (props) => {
             <i className="fa-solid fa-list-ul icon-color"></i>
             <Link to="/dashboard">DashBoard</Link>
           </li>
-          {role==="Initiator" && <InitiatorSidebar/>}
-          {role==="Technical_Manager" && <TechnicalManagerSidebar/>}
+          {userRole === "Initiator" && <InitiatorSidebar/>}
+          {userRole === "Technical_Manager" && <TechnicalManagerSidebar/>}
         </ul>
       </nav>
     </div>
   );
 };
 
-TrainerSidebar.propTypes = {};
+Sidebar.propTypes = {};
 
-export default TrainerSidebar;
+export default Sidebar;

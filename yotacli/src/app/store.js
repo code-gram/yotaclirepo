@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import trainingReducer from "../redux/features/Training/trainingListSlice";
 import technologyReducer from "../redux/features/technology/CreateTechSlice";
+import userLoginReducer from "../redux/features/userLogin/UserLoginSlice";
 import associateReducer from "../redux/features/associate/ListAssociateSlice";
 import NotificationListSlice from "../redux/features/notification/NotificationListSlice";
 import assignTest  from "../redux/features/assignTestToCandidate/assignTestSlice";
@@ -24,6 +25,7 @@ export const store = configureStore({
     clientQuestionsList:ClientQuestionListSlice, // fetch client interview questions
     updateClient:clientList,
     updateTech:techCreate,
+    userLogin:userLoginReducer
 
   },
 });

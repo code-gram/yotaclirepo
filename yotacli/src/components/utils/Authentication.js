@@ -3,7 +3,10 @@ export function getAuthToken() {
     const token = sessionStorage.getItem('token');
     return token;
 }
-
+export const getUserRole = ()=>{
+    const userRole = sessionStorage.getItem('userRole');
+    return userRole;
+}
 export function logout() {
     const token = sessionStorage.removeItem('token');
     return <Navigate to="/login" />;

@@ -5,7 +5,10 @@ import LoginHeader from './UserHeader';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
+import { useDispatch } from "react-redux";
 import axios from 'axios';
+import { handleLoginToken } from "../../redux/features/userLogin/UserLoginSlice";
+
 
 const UserLogin = () => {
     const navigate = useNavigate();
@@ -17,31 +20,16 @@ const UserLogin = () => {
             username: username,
             password: password
         }
-        console.log(userCredentail);
-        console.log("Login Data: " + userCredentail.username);
         axios.post('/yota-api/users/authenticate', userCredentail)
             .then((resp) => {
-                console.log("Response token::>>" + resp.data);
-                const respData = resp.data;
-                console.log("AUTH TOKEN:::>>" + respData.authToken);
-                console.log("User Role:::>>" + respData.userRole);
-                const jwtToken = respData.authToken;
-                sessionStorage.setItem('token', jwtToken);
+                const loginData = resp.data;
+                sessionStorage.setItem('authToken', loginData.authToken);
+                sessionStorage.setItem('userRole', loginData.userRole);
                 if (resp.data) {
                     toast("Login Success!");
-                    if (respData.userRole == 'Admin') {
-                        setTimeout(() => {
-                            navigate('/admin');
-                        }, 1000);
-                    } else if (respData.userRole == 'Trainer') {
-                        setTimeout(() => {
-                            navigate('/trainer');
-                        }, 1000);
-                    } else if (respData.userRole == 'Associate') {
-                        setTimeout(() => {
-                            navigate('/associate');
-                        }, 1000);
-                    }
+                    setTimeout(() => {
+                        navigate('/dashboard');
+                    }, 1000);
                 }
             }).catch((error) => {
                 console.log(error);

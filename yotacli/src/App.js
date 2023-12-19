@@ -5,7 +5,7 @@ import "./App.css";
 import { store } from "./app/store";
 import Dashboard from "./components/dashboard/Dashboard";
 import TraineeDashboardLayout from "./components/trainee/dashboard-layout/TraineeDashboardLayout";
-import TrainerDashboardLayout from "./components/trainer/dashboard/common/TrainerDashboardLayout";
+import TrainerDashboardLayout from "./components/trainer/dashboard/common/DashboardLayout";
 import Admin from "./components/user/Admin";
 import ForgotPassword from "./components/user/ForgotPassword";
 import UserLogin from "./components/user/UserLogin";
@@ -17,6 +17,7 @@ import { Signout } from "./student/pages/Signout";
 import TestLinks from "./student/pages/TestLinks";
 import Training from "./student/pages/Training";
 import TrainingSummary from "./student/pages/TrainingSummary";
+import DashboardLayout from "./components/trainer/dashboard/common/DashboardLayout";
 
 function App() {
   return (
@@ -29,10 +30,10 @@ function App() {
             <Route path="/register" element={<UserRegistration />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route
-              path="/trainer/*"
+              path="/dashboard/*"
               element={
                 <ProtectedRoute>
-                  <Dashboard />
+                  <DashboardLayout/>
                 </ProtectedRoute>
               }
             />
