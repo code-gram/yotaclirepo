@@ -138,7 +138,7 @@ export default function Sidebar(props) {
         },
         {
           name: "Client List",
-          subPath: "/client-clientList",
+          subPath: "/client-management-ListClient",
           iconClass: "fa-solid fa-house-user",
           show: true,
         },

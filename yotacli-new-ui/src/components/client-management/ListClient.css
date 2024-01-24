@@ -1,0 +1,195 @@
+.table-container {
+    width: 100%;
+    margin: 10px 10px;
+    
+   }
+
+   /* Styles for the table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .875rem;
+    /* margin-top: 10px; */
+  }
+   
+  /* Styles for table header and data cells */
+  .table th,
+  .table td {
+    border: 2px solid #cfcfcf;
+    padding: 0.5rem;
+    text-align: left;
+  }
+   
+  /* Styles for table header cells */
+  .table thead th {
+    border-bottom: 3px solid #000;
+    cursor: pointer;
+  }
+   
+  /* Styles for alternating row colors in the table body */
+  .table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+   
+  /* Styles for table hover effect over cells */
+  .table tbody tr:hover {
+    background-color: rgb(215, 215, 215);
+  }
+
+   input {
+    padding: 8px;
+    margin-bottom: 10px;
+   }
+
+   
+  
+   button {
+    padding: 8px;
+    cursor: pointer;
+    outline: none;
+   }
+   button:disabled {
+    cursor: not-allowed;
+   }
+   
+
+   .list-client-search{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    
+   }
+
+   .list-client-page{
+    color: rgb(51, 52, 53);
+   }
+
+
+   .modal-wrapper{
+    width: 450px;
+    height: 400px;
+    
+    border: 1px solid black !important;
+    position: absolute;
+    margin-left: 20%;
+    background-color: rgba(243, 243, 239, 0.957);
+   }
+
+   .list-client-search-btn{
+    border: 1px solid black !important;
+    position: relative;
+    /* right: 657px; */
+   }
+   .search-icon{
+    position: absolute;
+    right: 6%;
+    top: 25%;
+   }
+
+
+
+   /* pagination css */
+   .pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+   
+   }
+   .list-client-prev-btn,
+   .list-client-next-btn,
+   .list-client-page-btn {
+    padding: 8px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: 1px solid #f1eded;
+     background-color: #f1f1f1;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+   }
+   .list-client-prev-btn:disabled,
+   .list-client-next-btn:disabled,
+   .list-client-page-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+   }
+   .list-client-page-btn.active {
+    /* border-color: #3f6ad8; */
+    background-color: #3f6ad8;
+     color: white; 
+   }
+   .list-client-prev-btn{
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+   }
+   .list-client-next-btn{
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+   }
+
+   .header-list{
+    margin-bottom: 0px;
+    
+   }
+
+   .line-cl{
+    margin-top: 0px;
+    margin-bottom: 22px;
+   }
+
+
+   .show-entries{
+    flex: 1;
+   }
+
+  
+   .list-cli-search{
+    margin-right: 20px;
+   }
+
+   .list-client-drpt{
+    width: 120px;
+    height: 30px;
+    
+   }
+
+   .btn-cli-wrapper{
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    
+   }
+   .btn-cli-wrapper >button{
+    width: 80px;
+   } 
+
+   .btn-cli-wrapper >.btn-form-cl{
+    display: flex;
+    justify-content: end;
+   }
+
+   .header-list-wrapper{
+    flex: 1;
+   }
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
