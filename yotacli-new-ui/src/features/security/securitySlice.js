@@ -24,7 +24,7 @@ const securitySlice = createSlice({
     });
     builder.addCase("security/registeruser/rejected", (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = action.error.message;
     });
 
     //login
@@ -39,7 +39,7 @@ const securitySlice = createSlice({
     });
     builder.addCase("security/loginuser/rejected", (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = action.error.message;
     });
     //logout
   },

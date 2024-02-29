@@ -18,6 +18,36 @@ const data = [
     startDate: "20-11-2023",
     endDate: "21-11-2023",
   },
+  {
+    id: 2,
+    name: "BG1BU2--ON_DEMAND-AWS-(Java, AWS)-JANUARY-2024",
+    startDate: "20-11-2023",
+    endDate: "21-11-2023",
+  },
+  {
+    id: 2,
+    name: "BG1BU2--ON_DEMAND-AWS-(Java, AWS)-JANUARY-2024",
+    startDate: "20-11-2023",
+    endDate: "21-11-2023",
+  },
+  {
+    id: 2,
+    name: "BG1BU2--ON_DEMAND-AWS-(Java, AWS)-JANUARY-2024",
+    startDate: "20-11-2023",
+    endDate: "21-11-2023",
+  },
+  {
+    id: 2,
+    name: "BG1BU2--ON_DEMAND-AWS-(Java, AWS)-JANUARY-2024",
+    startDate: "20-11-2023",
+    endDate: "21-11-2023",
+  },
+  {
+    id: 2,
+    name: "BG1BU2--ON_DEMAND-AWS-(Java, AWS)-JANUARY-2024",
+    startDate: "20-11-2023",
+    endDate: "21-11-2023",
+  },
 ];
 
 export const TrainingList = () => {

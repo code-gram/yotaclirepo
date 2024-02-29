@@ -1,6 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const backendURL = "http://localhost:8080";
 
 export const registerUser = createAsyncThunk(
@@ -40,7 +43,7 @@ export const loginUser = createAsyncThunk(
           "Content-Type": "application/json",
         },
       };
-      debugger;
+      // debugger;
       const { data } = await axios.post(
         `${backendURL}/yota-api/users/authenticate`,
         { username, password },
@@ -51,8 +54,12 @@ export const loginUser = createAsyncThunk(
 
       return data;
     } catch (error) {
-      if (error.response) {
-        return rejectWithValue(error.response);
+      if (error) {
+        console.log(error.response.data);
+        toast.error(error.response.data, {
+          position:"top-right",
+        });
+        return rejectWithValue(error.response.data);
       }
     }
   }

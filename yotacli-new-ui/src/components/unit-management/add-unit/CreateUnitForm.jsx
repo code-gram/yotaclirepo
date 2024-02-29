@@ -1,29 +1,45 @@
 import React, { useRef } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "../../common/button/Button";
+import CancelButton from "../../common/button/CancelButton";
+import { useNavigate } from "react-router-dom";
 import "./CreateUnitForm.css";
+import { useDispatch } from "react-redux";
+import { createUnit } from "../../../features/redux/unit/unitAction";
 
-const CreateUnitForm = ({ closeModal }) => {
+export const CreateUnitForm = () => {
   const showModalRef = useRef(true);
-  const nameRef = useRef(null);
-  const descriptionRef = useRef(null);
+  const navigate = useNavigate();
+  const nameRef = useRef("");
+  const shortDescriptionRef = useRef("");
+  const dispatch = useDispatch();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const name = nameRef.current.value;
-    const description = descriptionRef.current.value;
-    console.log("name", name);
-    console.log("description:", description);
-    alert("Unit Form created successfully");
-    closeModal();
-  };
-  const handleClose = () => {
-    closeModal();
+    const formData = {
+      name: nameRef.current.value,
+      shortDescription: shortDescriptionRef.current.value,
+    };
+    dispatch(createUnit(formData));
+    console.log("Form Data:", formData);
+    alert("Unit created successfully");
+    hideModal();
   };
 
+  const handleClose = () => {
+    hideModal();
+  };
+  const hideModal = () => {
+    const modals = document.getElementsByClassName("modell");
+    if (modals.length > 0) {
+      const modal = modals[0];
+      modal.style.display = "none";
+      navigate("/Unit-unitList");
+    }
+  };
   return (
     <div>
-      <Modal show={showModalRef.current} onHide={handleClose}>
+      <Modal className="modell" show={showModalRef.current} onHide={() => {}}>
         <Modal.Header closeButton>
           <Modal.Title>
             <h6>Unit Form</h6>
@@ -54,20 +70,19 @@ const CreateUnitForm = ({ closeModal }) => {
                   placeholder="Enter description "
                   id="exampleText"
                   className="mb-2 form-control-sm form-control"
-                  ref={descriptionRef}
+                  ref={shortDescriptionRef}
                 ></textarea>
               </div>
             </div>
             <div className="button-submit">
               <Button type="submit"> Add </Button>
-
-              <button
-                type="button"
-                className="cancel-button btn btn-secondary"
+              <CancelButton
+                type="reset"
+                className="cancel"
                 onClick={handleClose}
               >
                 Cancel
-              </button>
+              </CancelButton>
             </div>
           </form>
         </Modal.Body>

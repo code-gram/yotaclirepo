@@ -34,3 +34,6 @@
   padding-top: 18px;
   margin-right: -485px;
 }
+.toast-position{
+  top: 5rem !important;
+}

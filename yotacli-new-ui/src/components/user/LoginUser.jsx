@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { loginUser } from "../../features/security/securtiyAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Header from "../common/header/header";
 import "./LoginUser.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const LoginUser = () => {
-  const { loading, user, error } = useSelector((state) => state.security);
+  const { loading, user, error, role } = useSelector((state) => state.security);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+ 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -19,17 +24,22 @@ export const LoginUser = () => {
     };
     dispatch(loginUser(loginRequest));
   };
+
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
     if (token) {
-      window.location.href = "/dashboard"; // Redirect to dashboard if token exists
+      window.location.href = "/dashboard";
     }
   }, []);
+
   useEffect(() => {
     if (user) {
+      alert(`Logged in successfully as a ${role} !`);
+
       navigate("/dashboard");
-    }
-  }, [navigate, user]);
+    } 
+  }, [navigate, user, role]);
+
 
   return (
     <>
@@ -81,6 +91,10 @@ export const LoginUser = () => {
           </div>
         </div>
       </div>
+      
+      <ToastContainer className="toast-position"/>
+    
+      
     </>
   );
 };
