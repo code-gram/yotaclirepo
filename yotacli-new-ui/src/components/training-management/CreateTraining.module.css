@@ -6,7 +6,9 @@
 .addnewUnit {
   margin-left: 448px;
   margin-top: -35px;
+  float: right;
 }
+
 .unit {
   padding-top: 0;
 }

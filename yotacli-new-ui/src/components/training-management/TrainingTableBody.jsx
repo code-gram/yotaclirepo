@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Training.module.css";
-import Button from "../common/button/Button";
-import CancelButton from "../common/button/CancelButton";
 
 const TrainingTableBody = ({ rows, columns, role }) => {
   return (
@@ -17,8 +15,11 @@ const TrainingTableBody = ({ rows, columns, role }) => {
                     {role === "Technical Manager" ? (
                       <>
                         <div>
-                          {row.status === "APPROVED" ? (
-                            <div></div>
+                          {row.status === "APPROVED" ||
+                          row.status === "REJECTED" ? (
+                            <div>
+                              <h6>No action available</h6>
+                            </div>
                           ) : (
                             <div>
                               <Link to={`/approveTraining/` + row.id}>
@@ -54,15 +55,27 @@ const TrainingTableBody = ({ rows, columns, role }) => {
                             _
                           </i>
                         </Link>
-
                         <Link to={`/deleteTraining`}>
                           <i className="fa-solid fa-trash" id="delete">
                             {" "}
                           </i>
                         </Link>
                       </div>
+                    ) : role === "Trainer" ? (
+                      <div>
+                        <Link to={`/changeTrainingStatus/` + row.id}>
+                          <i
+                            className="fa-solid fa-pen-to-square"
+                            id="eidt"
+                            data-toggle="tooltip"
+                            data-placement="bottom"
+                            type="button"
+                            title="Approve Training"
+                          ></i>
+                        </Link>
+                      </div>
                     ) : (
-                      <div>No Action Available</div>
+                      <div>No Action data available</div>
                     )}
                   </div>
                 ) : column.id === "trainingName" ? (

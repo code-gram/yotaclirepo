@@ -4,51 +4,35 @@ import { Modal } from "react-bootstrap";
 import Button from "../../common/button/Button";
 import CancelButton from "../../common/button/CancelButton";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  approveTraining,
-  approveTrainingStatus,
-} from "../../../features/redux/training/training-status/approveTrainingAction";
 import { costomToast } from "../../common/toast/costomToast";
+import { getTrainingStatus } from "../../../features/redux/training/training-status/approveTrainingAction";
 
-export const ApproveStatus = () => {
+export const ChangeTrainingStatus = () => {
   const cancelref = useNavigate();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const showModalRef = useRef(true);
-  const actualStartDate = useRef();
-  const actualEndDate = useRef();
-  const trainerName = useRef([]);
+  const trainingStatus = useRef([]);
   const { id } = useParams();
-  const trainerList = useSelector((state) => state.fetchTrainer.ListTrainer);
-  useEffect(() => {
-    dispatch(approveTraining());
-  }, [dispatch]);
 
-  const handlestartDateChange = (event) => {
-    actualStartDate.current = event.target.value;
-  };
-
-  const handleendDateChange = (event) => {
-    actualEndDate.current = event.target.value;
-  };
-
+  const trainingStatusList = [
+    { id: 1, name: "COMPLETED" },
+    { id: 2, name: "ON-HOLD" },
+  ];
   const handleSelectTrainer = (event) => {
-    trainerName.current = event.target.value;
+    trainingStatus.current = event.target.value;
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const formData = {
-      actualStartDate: actualStartDate.current,
-      actualEndDate: actualEndDate.current,
-      trainerName: trainerName.current,
+      trainingStatus: trainingStatus.current,
       id: id,
     };
-    dispatch(approveTrainingStatus(JSON.stringify(formData)));
+    dispatch(getTrainingStatus(JSON.stringify(formData)));
     console.log("Form Data:", formData);
-    console.log(trainerList);
+    console.log(trainingStatusList);
     console.log("Id Is" + id);
     costomToast({
-      message: "Training Approved Succesfully",
+      message: "Change Training Status Succesfully",
       autoClose: 2000,
       onClose: () => window.location.reload("/trainingList"),
     });
@@ -58,7 +42,7 @@ export const ApproveStatus = () => {
     hideModal();
   };
 
-  console.log(trainerList);
+  console.log(trainingStatusList);
   const hideModal = () => {
     const modals = document.getElementsByClassName("modell");
     if (modals.length > 0) {
@@ -73,65 +57,30 @@ export const ApproveStatus = () => {
       <Modal className="modell" show={showModalRef.current} onHide={() => {}}>
         <Modal.Header>
           <Modal.Title>
-            <h5>Actual Date</h5>
+            <h5>Change Training Status</h5>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleOnSubmit}>
             <div className="form-group row">
-              <label
-                for="inputName"
-                className="createclientlabelname col-sm-4 col-form-label"
-              >
-                Actual Start Date
-              </label>
-
-              <div className="col-sm-8">
-                <input
-                  ref={actualStartDate}
-                  type="date"
-                  onChange={handlestartDateChange}
-                  className="mb-2 form-control-sm form-control"
-                />
-              </div>
-            </div>
-
-            <div className="form-group row">
-              <label
-                for="inputDescription"
-                className="createclientdescription col-sm-4 col-form-label"
-              >
-                Actual End Date
-              </label>
-              <div className="col-sm-8">
-                <input
-                  ref={actualEndDate}
-                  type="date"
-                  onChange={handleendDateChange}
-                  className="mb-2 form-control-sm form-control"
-                ></input>
-              </div>
-            </div>
-
-            <div className="form-group row">
               <label for="inputTechnology" className="col-sm-4 col-form-label">
-                Select Trainer:
+                Select Status:
               </label>
               <div className="col-sm-8">
                 <select
-                  ref={trainerName}
+                  ref={trainingStatus}
                   onChange={handleSelectTrainer}
                   aria-controls="example"
                   className="form-control-sm form-control"
                   aria-label=".form-select-sm example"
                 >
                   <option value="" disabled selected>
-                    Select Trainer
+                    Select Training Status
                   </option>
-                  {trainerList &&
-                    trainerList.map((trainer, index) => (
-                      <option key={index} value={trainer.name}>
-                        {trainer.name}({trainer.username})
+                  {trainingStatusList &&
+                    trainingStatusList.map((trainingStatus, index) => (
+                      <option key={index} value={trainingStatus.name}>
+                        {trainingStatus.name}
                       </option>
                     ))}
                 </select>

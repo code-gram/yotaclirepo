@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { approveTrainingStatus } from "./approveTrainingAction";
+import {
+  approveTrainingStatus,
+  getTrainingStatus,
+} from "./approveTrainingAction";
 
 const approveTrainingStatusSlice = createSlice({
   name: "trainingStatus",

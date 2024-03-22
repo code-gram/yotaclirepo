@@ -45,3 +45,28 @@ export const approveTrainingStatus = createAsyncThunk(
     }
   }
 );
+
+export const getTrainingStatus = createAsyncThunk(
+  "approveTraining/approveTraining",
+  async (trainingRequest, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      console.log(token);
+      const response = await axios.put(
+        `/yota-api/trainings/updateTrainingStatus`,
+        trainingRequest,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      if (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

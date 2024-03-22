@@ -17,6 +17,7 @@ import associateAssignedTests from "../features/redux/associateAssignedTests/ass
 import { clientApi } from "./services/securtiy/clientService";
 import approveTrainingSlice from "../features/redux/training/training-status/approveTrainingSlice";
 import approveTrainingStatusSlice from "../features/redux/training/training-status/approveTrainingStatusSlice";
+import changeTrainingStatusSlice from "../features/redux/training/training-status/changeTrainingStatusSlice";
 export const store = configureStore({
   reducer: {
     security: securityReducer,
@@ -36,7 +37,7 @@ export const store = configureStore({
     associateAssignedTests,
     fetchTrainer: approveTrainingSlice,
     trainingStatus: approveTrainingStatusSlice,
-
+    changeTrainingStatus: changeTrainingStatusSlice,
     [securityApi.reducerPath]: securityApi.reducer,
     [clientApi.reducerPath]: clientApi.reducer,
   },
