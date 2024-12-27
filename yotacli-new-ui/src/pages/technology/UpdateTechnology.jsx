@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // Import the TechnologyList component
 import { updateTechnology } from '../../features/technology/technologyAction'; // Assuming the file path is correct
 import { EditIcon } from '../../components/icons/Icons';
+import { AddQuestionsIcon } from '../../components/icons/Icons';
+import {useNavigate} from "react-router-dom";
 
 function UpdateTechnology(props) {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ function UpdateTechnology(props) {
   const [errorData, setErrorData] = useState(null);
   const { error } = useSelector((state) => state.technologies);
   const { token } = useSelector((state) => state.auth.userData);
+  const navigate = useNavigate();
 
   const technologyData = technologies.filter((techData) => {
     return techData.id === props.id ? techData : null;
@@ -69,15 +72,24 @@ function UpdateTechnology(props) {
     setTechnologyName(event.target.value);
   };
 
+  const handleClick = () => {
+        navigate("/add-question")
+  };
+
   const errorHandler =()=>{
     setErrorData(null);
   }
+
 
   return (
     <>
       <EditIcon
         title={"Edit Technology"}
         onEdit={openModal} />
+      <AddQuestionsIcon
+        title={"Add Questions"}
+        onAdd={handleClick} 
+      />   
       <Modal
         show={open}
         onHide={() => setOpen(false)}
