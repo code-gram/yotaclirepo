@@ -15,6 +15,21 @@ export const allQuestion = createAsyncThunk(
     }
   }
 );
+// Fetching all questions from test
+export const getAllQuestionsOfTest = createAsyncThunk(
+  "question/getAllQuestionsOfTest",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        AXIOS_BASE_URL + `/questions/getTestQuestions?testId=${id}`
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const questionByCategory = createAsyncThunk(
   "question/questionByCategory",

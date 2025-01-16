@@ -1,0 +1,20 @@
+.select-icon-group {
+  justify-content: space-evenly;
+  display: inline-flex;
+  align-items: center;
+  max-width: 30%;
+  width: 20%;
+  min-width: 10%;
+}
+
+.form-group {
+  display: inline-flex;
+  max-width: 80%;
+  width: 90%;
+  min-width: 40%;
+  padding-bottom: 1rem;
+}
+
+.required-span {
+  color: red;
+}
