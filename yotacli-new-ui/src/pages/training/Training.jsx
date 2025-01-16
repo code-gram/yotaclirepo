@@ -14,6 +14,9 @@ import { useNavigate } from "react-router-dom";
 import { TableHeader } from "../../components/table-component/TableHeader";
 import { AssignTrainingIcon, ReportIcon } from "../../components/icons/Icons";
 import { USER_ROLES } from "../../constants/helperConstants";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Training = () => {
   const trainings = useSelector((state) => state.trainings);
   const trainers = useSelector((state) => state.trainers);
@@ -113,7 +116,8 @@ console.log("useefect--"+JSON.stringify(error));
         navigate("/assigned-associate");
       })
       .catch((error) => {
-        alert(error);
+       // alert(error);
+       toast.error(error,{ className: 'toast-info' });
       });
   };
 
@@ -291,6 +295,7 @@ console.log("useefect--"+JSON.stringify(error));
             </form>
           </Modal.Body>
         </Modal>
+        <ToastContainer/>
       </div>
     );
   };

@@ -93,3 +93,8 @@
   color: red;  
 } 
 
+.toast-info {
+  background-color: #0a0a0a !important;
+  color: white;
+}
+

@@ -4,6 +4,8 @@ import Card from "../../components/Card/Card";
 import { useRef } from "react";
 import { addTest } from "../../features/tests/testAction";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const TestSetting = ({ nextScreen }) => {
 
@@ -16,27 +18,32 @@ export const TestSetting = ({ nextScreen }) => {
     const validateForm = (settingFormData) => {
 
         if (Object.values(settingFormData).every(value => value.trim() === '')) {
-            alert("All fields are required and cannot be empty");
+         //   alert("All fields are required and cannot be empty");
+            toast.error("All fields are required and cannot be empty",{ className: 'toast-info' });
             return false;
         }
 
         if (settingFormData.endDate.trim() === '') {
-            alert("End date cannot be empty");
+         //   alert("End date cannot be empty");
+            toast.error("End date cannot be empty",{ className: 'toast-info' });
             return false;
         }
 
         if (settingFormData.startTime.trim() === '') {
-            alert("Start time cannot be empty");
+        //    alert("Start time cannot be empty");
+            toast.error("Start time cannot be empty",{ className: 'toast-info' });
             return false;
         }
 
         if (settingFormData.durationTime.trim() === '') {
-            alert("Duration time cannot be empty");
+           // alert("Duration time cannot be empty");
+            toast.error("Duration time cannot be empty",{ className: 'toast-info' });
             return false;
         }
 
         if (settingFormData.durationTime.trim() >= 120) {
-            alert("Duration time shouldn't be above 120 min");
+           // alert("Duration time shouldn't be above 120 min");
+            toast.error("Duration time shouldn't be above 120 min",{ className: 'toast-info' });
             return false;
         }
         return true;
@@ -60,11 +67,13 @@ export const TestSetting = ({ nextScreen }) => {
             const allData = { ...JSON.parse(basicInfoFormData), ...settingFormData }
             dispatch(addTest(allData))
                 .then(() => {
-                    alert("Test details added successfully..!!\nPlease add question in test");
+                 //   alert("Test details added successfully..!!\nPlease add question in test");
+                    toast.success("Test details added successfully..!!\nPlease add question in test",{ className: 'toast-info' });
                     nextScreen("screen3")
                 })
                 .catch((error) => {
-                    alert(error);
+                  //  alert(error);
+                    toast.error(error,{ className: 'toast-info' });
                 });
         }
     }
@@ -114,6 +123,7 @@ export const TestSetting = ({ nextScreen }) => {
                         </Button>
                     </div>
                 </form>
+                <ToastContainer/>
             </div>
         )
     }

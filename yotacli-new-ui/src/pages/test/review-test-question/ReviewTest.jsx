@@ -6,6 +6,8 @@ import ReviewQuestionContext from "../../../app/ReviewQuestionContext"
 import { addQuestionInTest, updateTotalQuestionCount } from "../../../features/tests/testAction"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ReviewTest = () => {
 
@@ -43,7 +45,8 @@ export const ReviewTest = () => {
                 navigates("/add-test")
             })
             .catch((error) => {
-                alert(error);
+               // alert(error);
+               toast.error("Technology Added Successfully",{ className: 'toast-info' });
             });
 
     }
@@ -95,7 +98,7 @@ export const ReviewTest = () => {
                     {/* end question card contain */}
                 </Card>
             </div>
-
+          <ToastContainer/>
         </div >
     )
 }

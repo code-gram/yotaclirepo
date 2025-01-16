@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import './AddTechnology.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Import the TechnologyList component
 import { createTechnology } from '../../features/technology/technologyAction'; // Assuming the file path is correct
@@ -100,6 +102,7 @@ function AddTechnology() {
           </button>
         </Modal.Body>
       </Modal>
+      <ToastContainer/>
     </>
   );
 
