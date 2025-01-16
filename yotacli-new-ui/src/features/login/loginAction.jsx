@@ -51,7 +51,7 @@ export const login = createAsyncThunk(
                 };
             }
         } catch (error) {
-            return rejectWithValue(error.message);
+            return rejectWithValue({ message: error.response.data, status: error.response.status });
         }
     }
 );

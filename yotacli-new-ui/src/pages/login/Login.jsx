@@ -5,6 +5,8 @@ import {isTokenExpired} from "../../security/jwt/JwtService";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../features/login/loginAction";
 import {clearMessage} from "../../features/login/loginSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialForm = {
     email: null,
@@ -19,7 +21,14 @@ export const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.auth.userData);
+    const error = useSelector((state) => state.auth.error);
+    
 
+    useEffect(() =>{
+        if(error){
+            toast.error(error);
+        }
+    }, [error])
 
     useEffect(() => {
         const token = userData.token;
@@ -28,7 +37,7 @@ export const Login = () => {
         else {
             console.info('Token not found or expired');
             if (userData.message)
-                alert(userData.message)
+                toast.error(userData.message, { className: 'toast-info' });
             navigate("/");
         }
         return () => {
@@ -39,9 +48,20 @@ export const Login = () => {
 
     function submitForm(event) {
         event.preventDefault();
+        console.log("LogIn event triggered.")
         const email = emailInputRef.current.value;
         const password = passwordInputRef.current.value;
-
+        if (!email || email.trim() === '') {
+            // alert('Email field cannot be null or empty.');
+            toast.error("Email field cannot be null or empty.",{ className: 'toast-info' });
+            return;
+            }
+        
+            if (!password || password.trim() === '') {
+            // alert('Password field cannot be null or empty.');
+            toast.error("Password field cannot be null or empty.",{ className: 'toast-info' });
+            return;
+            }
         setLoginData({
             email: email,
             password: password,
@@ -90,6 +110,7 @@ export const Login = () => {
                     </div>
                 </div>
             </form>
+            <ToastContainer/>
         </div>
     );
 };

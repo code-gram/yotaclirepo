@@ -4,6 +4,8 @@ import {useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {isTokenExpired} from "../../security/jwt/JwtService";
 import {register} from "../../features/login/loginAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SignUp = () => {
 
@@ -20,8 +22,14 @@ export const SignUp = () => {
 
     useEffect(() => {
         if (message) {
-            alert(message);
-            window.location.assign("/yotacli");
+            if(message === "Account creation request submitted successfully to Technical Manager"){
+                //alert(message);
+                toast.success(message,{ className: 'toast-info' });
+                window.location.assign("/yotacli");
+            }else{
+                toast.error(message,{ className: 'toast-info' });
+            }
+            
         }
     }, [message, navigate]);
 
@@ -43,6 +51,7 @@ export const SignUp = () => {
             password: passwordInputRef.current.value,
             confirmPassword: confirmPasswordInputRef.current.value,
         }
+        
         console.log(formData);
         dispatch(register(JSON.stringify(formData)));
     }
@@ -109,6 +118,7 @@ export const SignUp = () => {
                     </div>
                 </div>
             </form>
+            <ToastContainer/>
         </div>
     )
 };
