@@ -28,6 +28,8 @@ export const ListTest = () => {
     const options = { day: "2-digit", month: "long", year: "numeric" };
     let testIds = localStorage.getItem("testId");
 
+console.log(testList);
+
     useEffect(() => {
         if (userData.token) {
             dispatch(getAllTest())
@@ -98,7 +100,17 @@ export const ListTest = () => {
                                 <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>{response.testTitle}</td>
-                                    <td>{response.totalQuestions}</td>
+                                    <td>
+                                        <p className="showquestion">
+                                            <Link
+                                                className="nav-link"
+                                                to={`/test-question/` + response.id}
+                                            >
+                                                {response.totalQuestions}
+                                            </Link>
+                                        </p>
+
+                                    </td>
                                     <td>{response.totalAssociateCount}</td>
                                     <td></td>
                                     <td>{new Date(response.createdAt).toLocaleDateString(
