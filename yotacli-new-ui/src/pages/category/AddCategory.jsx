@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // Import the actions
 import { fetchAllTechnology } from '../../features/technology/technologyAction';
 import { createCategory } from '../../features/category/categoryAction';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddCategory(props) {
   const dispatch = useDispatch();
@@ -31,10 +33,12 @@ function AddCategory(props) {
         setCategoryName('');
         setOpen(false);
       } else {
-        alert('Please select a technology.');
+       // alert('Please select a technology.');
+        toast.error('Please select a technology.',{ className: 'toast-info' });
       }
     } else {
-      alert('Name is empty. Please provide a category name.');
+      // alert('Name is empty. Please provide a category name.');
+      toast.error('Name is empty. Please provide a category name.',{ className: 'toast-info' });
     }
   };
 
@@ -94,6 +98,7 @@ function AddCategory(props) {
           </button>
         </Modal.Body>
       </Modal>
+      <ToastContainer/>
     </>
   );
 }

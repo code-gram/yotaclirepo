@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/esm/Button";
 import Card from "../../components/Card/Card";
 import { useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const BasicInfo = ({ nextScreen }) => {
 
@@ -14,7 +16,8 @@ export const BasicInfo = ({ nextScreen }) => {
     const validateFormData = (formData) => {
         const errors = [];
         if (Object.values(formData).every(value => value.trim() === '')) {
-            alert("All fields are required and cannot be empty");
+          //  alert("All fields are required and cannot be empty");
+          toast.error("All fields are required and cannot be empty",{ className: 'toast-info' });
             return false;
         }
         if (formData.testTitle.trim() === '') {
@@ -31,7 +34,8 @@ export const BasicInfo = ({ nextScreen }) => {
         }
 
         if (errors.length !== 0) {
-            alert(errors.join('& ') + 'cannot be empty');
+          //  alert(errors.join('& ') + 'cannot be empty');
+          toast.error(errors.join('& ') + 'cannot be empty',{ className: 'toast-info' });
             return false;
         }
         return true;
@@ -127,6 +131,7 @@ export const BasicInfo = ({ nextScreen }) => {
                     </div>
                 </form>
             </Card>
+            <ToastContainer/>
         </div>
     )
 }

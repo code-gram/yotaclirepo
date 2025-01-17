@@ -8,6 +8,8 @@ import { fetchAllTechnology } from "../../features/technology/technologyAction";
 import { questionUnderTechnologyId } from "../../features/tests/testAction";
 import { useNavigate } from "react-router-dom";
 import ReviewQuestionContext from "../../app/ReviewQuestionContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AddQuestionTest = () => {
 
@@ -64,7 +66,8 @@ export const AddQuestionTest = () => {
 
     const redirectToReviewPage = () => {
         if (reviewQuestionJson.length === 0 && totalQuestionCount === 0) {
-            alert("You haven't selected any question yet. please select the question and move ahead.!!");
+           // alert("You haven't selected any question yet. please select the question and move ahead.!!");
+           toast.error("You haven't selected any question yet. please select the question and move ahead.!!",{ className: 'toast-info' });
             return;
         }
         navigate("/review-test");
@@ -233,6 +236,7 @@ export const AddQuestionTest = () => {
                                     </table>
                                 </div>
                             </Card>
+                            <ToastContainer/>
                         </div>
                     )
                         : (

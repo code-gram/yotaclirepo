@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import { getAllAssignedTraining, listTrainings } from "../../../features/training/trainingAction";
 import Form from 'react-bootstrap/Form';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ListTest = () => {
     const { userData } = useSelector(state => state.auth);
@@ -60,7 +62,8 @@ console.log(testList);
                 .catch((error) => error);
             setShowMessage(true)
         } else {
-            alert("Something went wrong please try again!!");
+          //  alert("Something went wrong please try again!!");
+            toast.error("Something went wrong please try again!!",{ className: 'toast-info' });
         }
     }
 
@@ -71,7 +74,8 @@ console.log(testList);
                 .catch((error) => error);
             setShowMessage(true);
         } else {
-            alert("Something went wrong please try again!!");
+           // alert("Something went wrong please try again!!");
+            toast.error("Something went wrong please try again!!",{ className: 'toast-info' });
         }
     }
 
@@ -290,6 +294,7 @@ console.log(testList);
                     </Modal.Footer>
                 </Modal>
             </Card>
+            <ToastContainer/>
         </div>
     )
 }
