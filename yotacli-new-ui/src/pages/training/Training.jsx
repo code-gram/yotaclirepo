@@ -127,18 +127,8 @@ console.log("useefect--"+JSON.stringify(error));
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
                 <td>{training.trainingName}</td>
-                <td>
-                  {new Date(training.startDate).toLocaleDateString(
-                    "en-US",
-                    options
-                  )}
-                </td>
-                <td>
-                  {new Date(training.endDate).toLocaleDateString(
-                    "en-US",
-                    options
-                  )}
-                </td>
+                <td>{training.startDate}</td>
+                <td>{training.endDate}</td>
                 <td>{training.assignTo}</td>
                 <td>{training.totalNominations}</td>
                 <td>

@@ -113,17 +113,8 @@ console.log(testList);
                                     </td>
                                     <td>{response.totalAssociateCount}</td>
                                     <td></td>
-                                    <td>{new Date(response.createdAt).toLocaleDateString(
-                                        "en-US",
-                                        options
-                                    )}</td>
-                                    <td>
-                                        {
-                                            response.endDate ?
-                                                new Date(response.endDate).toLocaleDateString("en-US", options)
-                                                : "---"
-                                        }
-                                    </td>
+                                    <td>{response.createdAt}</td>
+                                    <td>{response.endDate}</td>
                                     <td>{response.type}</td>
                                     <td>
                                         <a
