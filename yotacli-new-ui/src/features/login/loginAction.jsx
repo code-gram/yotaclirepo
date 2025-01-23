@@ -77,7 +77,7 @@ export const syncUserAuthData = createAsyncThunk(
                     encryptionKey: getEncryptionKeyFromToken(token)
                 };
             } else {
-                throw new Error("Unable to sync Data, Please re-login");
+                throw new Error("Unable to sync Data, Please re-login",);
             }
         } catch (error) {
             return rejectWithValue(error.message);

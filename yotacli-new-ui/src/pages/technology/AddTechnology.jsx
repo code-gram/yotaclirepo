@@ -32,6 +32,7 @@ function AddTechnology() {
             setTechnologyName('');  
             setOpen(false);  
             setErrorData(null);
+            toast.success('Technology Added successfully',{ className: 'toast-info' });
         } else {  
             setTechnologyName('');  
             setOpen(true);  
@@ -40,6 +41,7 @@ function AddTechnology() {
       dispatch(createTechnology({ technology: trimmedTechnologyName }));
       setTechnologyName('');
       setOpen(true);
+      toast.error('Name is empty. Please provide a technology name.',{ className: 'toast-info' });
     }
   };
 

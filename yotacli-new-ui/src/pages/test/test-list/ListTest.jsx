@@ -62,7 +62,6 @@ console.log(testList);
                 .catch((error) => error);
             setShowMessage(true)
         } else {
-          //  alert("Something went wrong please try again!!");
             toast.error("Something went wrong please try again!!",{ className: 'toast-info' });
         }
     }
@@ -74,7 +73,6 @@ console.log(testList);
                 .catch((error) => error);
             setShowMessage(true);
         } else {
-           // alert("Something went wrong please try again!!");
             toast.error("Something went wrong please try again!!",{ className: 'toast-info' });
         }
     }

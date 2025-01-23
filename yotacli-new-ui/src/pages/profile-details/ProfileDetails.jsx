@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { changePasswordDetails, profileDetail } from "../../features/associates/associateAction";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ProfileDetails = () => {
 
@@ -99,7 +101,7 @@ export const ProfileDetails = () => {
         const confirm = confirmPassword.current.value;
 
         if (news !== confirm) {
-            alert("Current password and confirm password do not match..");
+            toast.error("Current password and confirm password do not match..",{ className: 'toast-info' });
             return false;
         }
 
@@ -111,15 +113,16 @@ export const ProfileDetails = () => {
         }
 
         if (Object.values(formData).every(value => value.trim() === '')) {
-            alert("All fields are required and cannot be empty");
+            toast.error("All fields are required and cannot be empty",{ className: 'toast-info' });
             return false;
         } else {
             dispatch(changePasswordDetails(formData))
                 .then(() => {
-                    alert("Password change successfully..");
+                    toast.success("Password change successfully..",{ className: 'toast-info' });
+                    
                 })
                 .catch((error) => {
-                    alert(error);
+                    toast.error(error,{ className: 'toast-info' });
                 });
         }
     }
@@ -189,6 +192,7 @@ export const ProfileDetails = () => {
                     </Col>
                 </Row>
             </Card>
+            <ToastContainer/>
         </div>
     )
 }

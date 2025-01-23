@@ -33,11 +33,9 @@ function AddCategory(props) {
         setCategoryName('');
         setOpen(false);
       } else {
-       // alert('Please select a technology.');
         toast.error('Please select a technology.',{ className: 'toast-info' });
       }
     } else {
-      // alert('Name is empty. Please provide a category name.');
       toast.error('Name is empty. Please provide a category name.',{ className: 'toast-info' });
     }
   };

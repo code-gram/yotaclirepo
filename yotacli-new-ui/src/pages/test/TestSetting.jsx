@@ -18,31 +18,26 @@ export const TestSetting = ({ nextScreen }) => {
     const validateForm = (settingFormData) => {
 
         if (Object.values(settingFormData).every(value => value.trim() === '')) {
-         //   alert("All fields are required and cannot be empty");
             toast.error("All fields are required and cannot be empty",{ className: 'toast-info' });
             return false;
         }
 
         if (settingFormData.endDate.trim() === '') {
-         //   alert("End date cannot be empty");
             toast.error("End date cannot be empty",{ className: 'toast-info' });
             return false;
         }
 
         if (settingFormData.startTime.trim() === '') {
-        //    alert("Start time cannot be empty");
             toast.error("Start time cannot be empty",{ className: 'toast-info' });
             return false;
         }
 
         if (settingFormData.durationTime.trim() === '') {
-           // alert("Duration time cannot be empty");
             toast.error("Duration time cannot be empty",{ className: 'toast-info' });
             return false;
         }
 
         if (settingFormData.durationTime.trim() >= 120) {
-           // alert("Duration time shouldn't be above 120 min");
             toast.error("Duration time shouldn't be above 120 min",{ className: 'toast-info' });
             return false;
         }
@@ -67,12 +62,10 @@ export const TestSetting = ({ nextScreen }) => {
             const allData = { ...JSON.parse(basicInfoFormData), ...settingFormData }
             dispatch(addTest(allData))
                 .then(() => {
-                 //   alert("Test details added successfully..!!\nPlease add question in test");
                     toast.success("Test details added successfully..!!\nPlease add question in test",{ className: 'toast-info' });
                     nextScreen("screen3")
                 })
                 .catch((error) => {
-                  //  alert(error);
                     toast.error(error,{ className: 'toast-info' });
                 });
         }

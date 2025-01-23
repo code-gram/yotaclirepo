@@ -16,7 +16,6 @@ export const BasicInfo = ({ nextScreen }) => {
     const validateFormData = (formData) => {
         const errors = [];
         if (Object.values(formData).every(value => value.trim() === '')) {
-          //  alert("All fields are required and cannot be empty");
           toast.error("All fields are required and cannot be empty",{ className: 'toast-info' });
             return false;
         }
@@ -34,7 +33,6 @@ export const BasicInfo = ({ nextScreen }) => {
         }
 
         if (errors.length !== 0) {
-          //  alert(errors.join('& ') + 'cannot be empty');
           toast.error(errors.join('& ') + 'cannot be empty',{ className: 'toast-info' });
             return false;
         }

@@ -115,7 +115,7 @@ export const AddQuestion = () => {
       navigate("/addCategory/" + technologyId)
       getCategoriesByTechnology(technologyId);
     }else{
-      alert("Please select technology from the Technology List.");
+      toast.error("Please select technology from the Technology List.",{ className: 'toast-info' })
     }
   }
 
@@ -166,10 +166,10 @@ export const AddQuestion = () => {
     setQuestionLevel();
     setQuestionTitle("");
 
-    toast("Question Addeed Successfully!");
+    toast.success("Question Addeed Successfully!",{ className: 'toast-info' });
     setTimeout(() => {
       navigate("/technology-list");
-    }, 2000);
+    }, 5000);
   }
 
   const handleFileChange = (event) => {

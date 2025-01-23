@@ -11,6 +11,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router-dom";
 import { assignTraining } from "../../features/training/trainingAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AllAssociates = () => {
   const { associates } = useSelector((state) => state.associates);
@@ -72,15 +74,11 @@ export const AllAssociates = () => {
     const registeredCount = localStorage.getItem("registeredCount");
 
     if (checkboxCount === 0) {
-      alert(
-        "No associated item has been selected for training. Please make a selection and try again."
-      );
+      toast.error("No associated item has been selected for training. Please make a selection and try again.",{ className: 'toast-info' });
     } else if (nominatedValue < checkboxCount) {
-      alert(
-        "The nominated associated limit has been reached: " +
+      toast.error("The nominated associated limit has been reached: " +
           nominatedValue +
-          "\nPlease try again."
-      );
+          "\nPlease try again.",{ className: 'toast-info' });
     } else if (nominatedValue > registeredCount) {
       const emailAddArray = email.current;
       const emailIds = emailAddArray.map((email) => email);
@@ -89,10 +87,10 @@ export const AllAssociates = () => {
           navigate("/add-training");
         })
         .catch((error) => {
-          alert(error);
+          toast.error(error,{ className: 'toast-info' });
         });
     } else {
-      alert("Cannot assign training. Registered limit has been reached.");
+      toast.error("Cannot assign training. Registered limit has been reached.",{ className: 'toast-info' });
     }
   };
 
@@ -142,6 +140,7 @@ export const AllAssociates = () => {
             </table>
           </div>
         </Card>
+        <ToastContainer/>
       </>
     );
   };
