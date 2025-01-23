@@ -116,7 +116,6 @@ console.log("useefect--"+JSON.stringify(error));
         navigate("/assigned-associate");
       })
       .catch((error) => {
-       // alert(error);
        toast.error(error,{ className: 'toast-info' });
       });
   };

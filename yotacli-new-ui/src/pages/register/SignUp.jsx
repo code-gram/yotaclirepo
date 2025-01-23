@@ -23,7 +23,6 @@ export const SignUp = () => {
     useEffect(() => {
         if (message) {
             if(message === "Account creation request submitted successfully to Technical Manager"){
-                //alert(message);
                 toast.success(message,{ className: 'toast-info' });
                 window.location.assign("/yotacli");
             }else{

@@ -45,7 +45,6 @@ export const ReviewTest = () => {
                 navigates("/add-test")
             })
             .catch((error) => {
-               // alert(error);
                toast.error("Technology Added Successfully",{ className: 'toast-info' });
             });
 

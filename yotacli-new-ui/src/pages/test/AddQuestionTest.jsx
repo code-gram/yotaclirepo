@@ -66,7 +66,6 @@ export const AddQuestionTest = () => {
 
     const redirectToReviewPage = () => {
         if (reviewQuestionJson.length === 0 && totalQuestionCount === 0) {
-           // alert("You haven't selected any question yet. please select the question and move ahead.!!");
            toast.error("You haven't selected any question yet. please select the question and move ahead.!!",{ className: 'toast-info' });
             return;
         }

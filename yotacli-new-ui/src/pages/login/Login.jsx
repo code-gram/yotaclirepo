@@ -26,7 +26,8 @@ export const Login = () => {
 
     useEffect(() =>{
         if(error){
-            toast.error(error);
+           // toast.error(error,{ className: 'toast-info' });
+           console.log(error);
         }
     }, [error])
 
@@ -52,13 +53,11 @@ export const Login = () => {
         const email = emailInputRef.current.value;
         const password = passwordInputRef.current.value;
         if (!email || email.trim() === '') {
-            // alert('Email field cannot be null or empty.');
             toast.error("Email field cannot be null or empty.",{ className: 'toast-info' });
             return;
             }
         
             if (!password || password.trim() === '') {
-            // alert('Password field cannot be null or empty.');
             toast.error("Password field cannot be null or empty.",{ className: 'toast-info' });
             return;
             }
