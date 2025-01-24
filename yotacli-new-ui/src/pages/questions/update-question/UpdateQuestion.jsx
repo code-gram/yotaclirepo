@@ -11,6 +11,8 @@ import { updateQuestion } from "../../../features/uploadQuestions/uploadQuestion
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export const UpdateQuestion = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,42 @@ export const UpdateQuestion = () => {
   const [option_B, setOption_B] = useState();
   const [option_C, setOption_C] = useState();
   const [option_D, setOption_D] = useState();
+
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic', 'underline'],
+      ['code-block'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link', 'image'],
+      ['clean'],
+    ],
+  };
+ 
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline',
+    'code-block',
+    'list', 'bullet',
+    'link', 'image',
+  ];
+
+  const handlequestionTitle = (value)=>{
+    setQuestionTitle(value)
+    console.log(questionTitle);
+  }
+  const handleOptionA = (value) =>{
+    setOption_A(value);
+  }
+  const handleOptionB = (value) =>{
+    setOption_B(value);
+  }
+  const handleOptionC = (value) =>{
+    setOption_C(value);
+  }
+  const handleOptionD = (value) =>{
+    setOption_D(value);
+  }
 
   const navigate = useNavigate();
   const { id } = useParams("id");
@@ -107,6 +145,7 @@ export const UpdateQuestion = () => {
       questionLevel: questionLevel,
       questionTitle: questionTitle,
     };
+    console.log(data);
     dispatch(
       updateQuestion({
         data,
@@ -193,14 +232,24 @@ export const UpdateQuestion = () => {
                 <span className={styles["required-span"]}> *</span>
               </label>
             </div>
-            <div className={styles["form-group-question"]}>
-              <textarea
+            
+              <div style={{marginBottom: 50}}>
+                          <ReactQuill
+                                      value={questionTitle}
+                                      onChange={handlequestionTitle}
+                                      theme="snow"
+                                      modules={modules}
+                                      formats={formats}
+                                      style={{height : '12rem'}}
+                                    />
+                          
+              {/* <textarea
                 rows={8}
                 cols={80}
                 name="questionTitle"
                 value={questionTitle}
                 onChange={(event) => setQuestionTitle(event.target.value)}
-              />
+              /> */}
             </div>
             <div className={styles["form-group"]}>
               <label htmlFor="question-title">
@@ -209,7 +258,31 @@ export const UpdateQuestion = () => {
               </label>
             </div>
             <div className={styles["form-group"]}>
-              <textarea
+              <div style={{ marginBottom: 60, marginRight: 5 }}>
+                <ReactQuill
+                  name="option_A"
+                  value={option_A}
+                  placeholder={"Option A"}
+                  onChange={handleOptionA}
+                  theme="snow"
+                  modules={modules}
+                  formats={formats}
+                  style={{ height: '10rem' }}
+                />
+              </div>
+              <div style={{ marginBottom: 60, marginLeft: 5 }}>
+                <ReactQuill
+                  name="option_B"
+                  value={option_B}
+                  placeholder={"Option B"}
+                  onChange={handleOptionB}
+                  theme="snow"
+                  modules={modules}
+                  formats={formats}
+                  style={{ height: '10rem' }}
+                />
+              </div>
+              {/* <textarea
                 rows={4}
                 cols={20}
                 name="option_A"
@@ -224,10 +297,34 @@ export const UpdateQuestion = () => {
                 value={option_B}
                 placeholder={"Option B"}
                 onChange={(event) => setOption_B(event.target.value)}
-              />
+              /> */}
             </div>
             <div className={styles["form-group"]}>
-              <textarea
+              <div style={{ marginBottom: 60, marginRight: 5 }}>
+                <ReactQuill
+                  name="option_C"
+                  value={option_C}
+                  placeholder={"Option C"}
+                  onChange={handleOptionC}
+                  theme="snow"
+                  modules={modules}
+                  formats={formats}
+                  style={{ height: '10rem' }}
+                />
+              </div>
+              <div style={{ marginBottom: 60, marginLeft: 5 }}>
+                <ReactQuill
+                  name="option_D"
+                  value={option_D}
+                  placeholder={"Option D"}
+                  onChange={handleOptionD}
+                  theme="snow"
+                  modules={modules}
+                  formats={formats}
+                  style={{ height: '10rem' }}
+                />
+              </div>
+              {/* <textarea
                 rows={4}
                 cols={20}
                 name="option_C"
@@ -242,7 +339,7 @@ export const UpdateQuestion = () => {
                 value={option_D}
                 placeholder={"Option D"}
                 onChange={(event) => setOption_D(event.target.value)}
-              />
+              /> */}
             </div>
             <div className={styles["form-group"]}>
               <label htmlFor="question-title">

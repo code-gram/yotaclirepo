@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addQuestionInTest, addTest, countQuestion, getAllTest, questionUnderTechnologyId, updateTotalQuestionCount, addTestToTrainings, countAssociateToAddedTraining, addTestToIndividualAssociate } from "./testAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialState = {
   tests: [],
@@ -17,6 +19,10 @@ const initialState = {
   testIndividualMsg:"",
   testIndividual:[]
 };
+
+<div>
+  <ToastContainer/>
+</div>
 
 const testSlice = createSlice({
   name: 'tests',
@@ -109,7 +115,7 @@ const testSlice = createSlice({
 
       // Check the status code and show an alert if needed
       if (action.payload.statusCode === 201) {
-        alert(action.payload.data);
+        toast.success(action.payload.data);
       }
     });
     builder.addCase(addQuestionInTest.rejected, (state, action) => {

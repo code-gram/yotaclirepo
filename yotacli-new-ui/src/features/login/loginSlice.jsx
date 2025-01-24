@@ -15,6 +15,7 @@ const initialState = {
     error: null,
     success: false,
     message: null,
+    invalid: null,
 }
 
 const loginSlice = createSlice({
@@ -45,7 +46,7 @@ const loginSlice = createSlice({
             state.loading = false;
             state.userData = [];
             state.success = false;
-            state.error = action.payload.message;
+            state.invalid = action.payload.message;
         });
         builder.addCase(register.pending, (state) => {
             state.loading = true;

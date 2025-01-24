@@ -15,9 +15,9 @@
 }
 
 .form-container {
-    max-width: 80%;
+    max-width: 100%;
     min-width: 40%;
-    width: 80%;
+    width: 100%;
     align-items: center;
     justify-content: center;
     margin: 1rem auto;
@@ -28,8 +28,8 @@
     justify-content: space-between;
     display: inline-flex;
     align-items: center;
-    max-width: 80%;
-    width: 90%;
+    max-width: 100%;
+    width: 100%;
     min-width: 40%;
     padding-bottom: 1rem;
 }

@@ -21,15 +21,15 @@ export const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.auth.userData);
-    const error = useSelector((state) => state.auth.error);
+    const invalidUser = useSelector((state) => state.auth.invalid);
     
 
     useEffect(() =>{
-        if(error){
-           // toast.error(error,{ className: 'toast-info' });
-           console.log(error);
+        if(invalidUser){
+           toast.error(invalidUser,{ className: 'toast-info' });
+           console.log(invalidUser);
         }
-    }, [error])
+    }, [invalidUser]);
 
     useEffect(() => {
         const token = userData.token;
