@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { EditIcon, DeleteIcon } from "../../components/icons/Icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const TestQuestions = () => {
   const { userData } = useSelector((state) => state.auth);
@@ -67,6 +68,7 @@ console.log("Data: "+ data.id)
     //   navigate("/technology-list");
     // }, 2000);
   }
+
   return (
     <>
       {technologyes.map((tech) => {
@@ -143,7 +145,7 @@ console.log("Data: "+ data.id)
                   return (
                     <tr key={data.id}>
                       <th scope="row">{index + 1}</th>
-                      <td>{data.questionTitle}</td>
+                      <td>{data.questionTitle.length > 100 ? `${data.questionTitle.substring(0, 100)}...` : data.questionTitle}</td>
                       <td>{data.questionLevel}</td>
                       {/* <td>{data.category.name}</td>  */}
                       {data.updated_At != null ? (
