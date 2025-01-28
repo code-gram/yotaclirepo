@@ -5,6 +5,28 @@ import Card from "../../components/Card/Card";
 import { useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+
+const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic', 'underline'],
+      ['code-block'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link', 'image'],
+      ['clean'],
+    ],
+  };
+ 
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline',
+    'code-block',
+    'list', 'bullet',
+    'link', 'image',
+  ];
 
 export const BasicInfo = ({ nextScreen }) => {
 
@@ -63,7 +85,7 @@ export const BasicInfo = ({ nextScreen }) => {
 
     return (
         <div>
-            <Card className={styles["container"]}>
+            <Card className={styles["container-basic"]}>
                 <form onSubmit={handleSubmit}>
                     <h6>Basic Info</h6>
                     <div className="form-group mt-1">
@@ -86,7 +108,6 @@ export const BasicInfo = ({ nextScreen }) => {
                             <option>Programming</option>
                         </select>
                     </div>
-
                     <div className="row g-3">
                         <div className="col-md-6">
                             <label
@@ -95,13 +116,18 @@ export const BasicInfo = ({ nextScreen }) => {
                             >
                                 Description
                             </label>
-                            <textarea
-                                type="description"
-                                name="description"
-                                className="form-control mt-1"
-                                placeholder="Description"
-                                ref={testDescription}
-                            />
+                            <div style={{ marginTop: 25, marginBottom: 60 }}>
+                                <ReactQuill
+                                    type="description"
+                                    name="description"
+                                    placeholder="Description"
+                                    ref={testDescription}
+                                    theme="snow"
+                                    modules={modules}
+                                    formats={formats}
+                                    style={{ height: '8rem'}}
+                                />
+                            </div>
                         </div>
                         <div className="col-md-6">
                             <label
@@ -110,13 +136,18 @@ export const BasicInfo = ({ nextScreen }) => {
                             >
                                 Instruction
                             </label>
-                            <textarea
-                                type="instruction"
-                                name="instruction"
-                                className="form-control mt-1"
-                                placeholder="Instruction"
-                                ref={testInstruction}
-                            />
+                            <div style={{ marginTop: 25, marginBottom: 60 }}>
+                                <ReactQuill
+                                    type="instruction"
+                                    name="instruction"
+                                    placeholder="Instruction"
+                                    ref={testInstruction}
+                                    theme="snow"
+                                    modules={modules}
+                                    formats={formats}
+                                    style={{ height: '8rem' }}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className={styles["test-btn"]}>
