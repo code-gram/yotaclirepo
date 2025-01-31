@@ -49,6 +49,13 @@ export const ReviewTest = () => {
             });
 
     }
+    const handleClick = (event) => {
+        console.log("testDetails", testDetails)
+        event.preventDefault();
+        console.log("reviewQuestionJson", reviewQuestionJson)
+        navigates("/preview")
+        
+    }
 
     return (
         <div>
@@ -70,6 +77,7 @@ export const ReviewTest = () => {
                             variant="primary"
                             size="sm"
                             style={{ float: "right", marginRight: "4px" }}
+                            onClick={handleClick}
                         >
                             Preview
                         </Button>

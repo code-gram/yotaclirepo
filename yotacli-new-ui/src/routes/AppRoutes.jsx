@@ -45,6 +45,7 @@ import StartTest from "../../src/pages/associates/StartTest";
 import { AddQuestionTest } from "../pages/test/AddQuestionTest";
 import { RejectedUsers } from "../pages/rejected-users/RejectedUsers";
 import TestQuestions from "../pages/test/TestQuestions";
+import Preview from "../pages/test/review-test-question/Preview";
 
 export const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -133,6 +134,7 @@ export const AppRoutes = () => {
           <Route path={"/add-test"} element={<AddTest />} />
           <Route path={"/list-test"} element={<ListTest />} />
           <Route path={"/review-test"} element={<ReviewTest />} />
+          <Route path={"/preview"} element={<Preview />} />
           <Route path={"/add-question"} element={<AddQuestion />} />
           <Route path={"/assigned-associate"} element={<AssignedAssociateList />} />
           <Route path={"/training-performance-report"} element={<TPR />} />
