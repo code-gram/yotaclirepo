@@ -11,6 +11,8 @@ import { getQuestionByTestid } from "../../../features/Question/questionAction";
 import { storeResult } from "../../../features/TestResult/testResultAction";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+
 import {
   settime,
   setAssociateMark,
@@ -45,6 +47,10 @@ const TestPaper = () => {
       dispatch(settime(startTime));
     }
   }, []);
+
+  function handleCircleClick(index) {
+    setCurrentQuestion(index);
+  }
 
   function handleOption(event) {
     if (event.target.value) {
@@ -311,7 +317,7 @@ const TestPaper = () => {
                 <StudentCard
                   header="Questions"
                   // text1={<ItereateCircle isAttempted={isAttempt} />}
-                  text1={<ItereateCircle selectedOptions={selectedOptions} />}
+                  text1={<ItereateCircle selectedOptions={selectedOptions} onCircleClick={handleCircleClick} />}
                 />
               </div>
               <div className="p-2 g-col-6 text-start p-2">
