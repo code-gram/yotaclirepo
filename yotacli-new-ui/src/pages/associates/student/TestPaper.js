@@ -60,6 +60,9 @@ const TestPaper = () => {
   // const rightAnswer = questions.map((data, index) => {
   //   return data.correctAnswer;
   // });
+  function handleCircleClick(index) {
+    setCurrentQuestion(index);
+  }
 
   const rightAnswer = () => {
     const a = questions[currentQuestion].correctAnswer;
@@ -311,7 +314,7 @@ const TestPaper = () => {
                 <StudentCard
                   header="Questions"
                   // text1={<ItereateCircle isAttempted={isAttempt} />}
-                  text1={<ItereateCircle selectedOptions={selectedOptions} />}
+                  text1={<ItereateCircle selectedOptions={selectedOptions} onCircleClick={handleCircleClick} />}
                 />
               </div>
               <div className="p-2 g-col-6 text-start p-2">
