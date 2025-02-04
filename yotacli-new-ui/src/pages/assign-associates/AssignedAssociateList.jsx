@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 export const AssignedAssociateList = () => {
 
     const { trainings } = useSelector((state) => state.trainings);
-    const theadData = ["Sr No", "Emp Id", "Name", "Email", "Test", "Approved", "Find %"];
+    const theadData = ["Sr No", "Emp Id", "Name", "Test", "Approved", "Average % "];
 
     const showData = () => {
         return (
@@ -24,10 +24,9 @@ export const AssignedAssociateList = () => {
                                         <th>{index + 1}</th>
                                         <td>{associate.empId}</td>
                                         <td>{associate.fullName}</td>
-                                        <td>{associate.emailAdd}</td>
-                                        <td>{`Remaining`}</td>
-                                        <td>{`Remaining`}</td>
-                                        <td>{`Remaining`}</td>
+                                        <td>{trainings.trainingName}</td>
+                                        <td>{associate.accountStatus}</td>
+                                        <td>{associate.avgPercentageMarks}</td>
                                     </tr>
                                 ))
                             }
