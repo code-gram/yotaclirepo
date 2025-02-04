@@ -3,6 +3,7 @@
 }
 
 .pageContainer {
+  position: relative;
   max-width: 70%;
   min-width: 70%;
   width: 75%;

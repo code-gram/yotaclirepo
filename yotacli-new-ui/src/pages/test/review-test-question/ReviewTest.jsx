@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CancelTest from "../CancelTest"
 
 export const ReviewTest = () => {
 
@@ -49,12 +50,9 @@ export const ReviewTest = () => {
             });
 
     }
-    const handleClick = (event) => {
-        console.log("testDetails", testDetails)
-        event.preventDefault();
-        console.log("reviewQuestionJson", reviewQuestionJson)
-        navigates("/preview")
-        
+
+    const handleBack = () =>{
+        navigates("/add-test/screen3")
     }
 
     return (
@@ -62,12 +60,21 @@ export const ReviewTest = () => {
             <h6>Review Question</h6>
             <div className={styles["pageContainer"]}>
                 <Card>
+                    <CancelTest/>
                     {/* button contain */}
                     <div className="mt-1 p-3">
                         <Button
+                            variant="secondary"
+                            size="sm"
+                            style={{ float: "left"}}
+                            onClick={handleBack}
+                        >
+                            Back
+                        </Button>
+                        <Button
                             variant="primary"
                             size="sm"
-                            style={{ float: "right" }}
+                            style={{ float: "left", marginLeft: "4px"  }}
                             onClick={() => addQuestionsInTest(reviewQuestionJson.map(questionId => questionId.id))}
                         >
                             Add to test
@@ -76,11 +83,11 @@ export const ReviewTest = () => {
                         <Button
                             variant="primary"
                             size="sm"
-                            style={{ float: "right", marginRight: "4px" }}
-                            onClick={handleClick}
+                            style={{ float: "left", marginLeft: "4px" }}
                         >
                             Preview
                         </Button>
+                        
                     </div>
                     {/* End button contain */}
 

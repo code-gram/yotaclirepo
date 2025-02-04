@@ -3,10 +3,13 @@ import Card from "../../components/Card/Card";
 import { TableHeader } from "../../components/table-component/TableHeader";
 import styles from "../training-performance-report/TPR.module.css"
 import { ExportToExcel } from "../../components/excel-utils/ExcelUtils";
+import { useNavigate } from "react-router-dom"
 
 export const TPR = () => {
 
     const theadData = ["Sr No", "Emp No", "Name", "Email", "React Basic", "Component", "Avg %", "Feedback"];
+
+    const navigates = useNavigate();
 
     const trainingPerformanceDetails = [
         {
@@ -38,6 +41,10 @@ export const TPR = () => {
         return feedback.split(" ").slice(0, 6).join(" ");
     };
 
+    const handleClick = () =>{
+        navigates("/associate-performance-report")
+    }
+
     return (
         <div>
             <h6>Training Performance Report</h6>
@@ -64,14 +71,16 @@ export const TPR = () => {
                                 <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>{response.empNo}</td>
-                                    <td>{response.name}</td>
+                                    
+                                    <td onClick={handleClick} className="clicke-name" style={{ cursor: "pointer" }}>{response.name}</td>
+                                    
                                     <td>{response.email}</td>
                                     <td>{response.reactBasic}</td>
                                     <td>{response.component}</td>
                                     <td>{response.avg}</td>
                                     <td>{descriptionLimit(response.feedback)}
                                         &nbsp;<span><a className="text-primary"
-                                            style={{ cursor: "pointer" }}>more</a>
+                                            style={{ cursor: "pointer"}}>more</a>
                                         </span>
                                     </td>
                                 </tr>
@@ -80,6 +89,11 @@ export const TPR = () => {
                     </tbody>
                 </table>
             </Card>
+            <style jsx>{`
+                .clicke-name:hover {
+                    color: blue;
+                }
+            `}</style>
         </div>
     )
 }
