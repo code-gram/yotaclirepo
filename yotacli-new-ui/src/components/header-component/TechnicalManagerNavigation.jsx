@@ -61,7 +61,7 @@
                               </a>
                               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                   <li>
-                                      <Link className="dropdown-item" to="/add-test">
+                                      <Link className="dropdown-item" to="/add-test/screen1">
                                           Add Test
                                       </Link>
                                   </li>

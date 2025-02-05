@@ -10,8 +10,9 @@ import { useNavigate } from "react-router-dom";
 import ReviewQuestionContext from "../../app/ReviewQuestionContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CancelTest from "./CancelTest";
 
-export const AddQuestionTest = () => {
+export const AddQuestionTest = ({ nextScreen }) => {
 
     const dispatch = useDispatch();
     const { token } = useSelector((state) => state.auth.userData);
@@ -70,6 +71,11 @@ export const AddQuestionTest = () => {
             return;
         }
         navigate("/review-test");
+    }
+
+    const handleBack = ()=>{
+        console.log("back button clicked...")
+        nextScreen("screen2")
     }
 
     const LoadScreenContain = () => {
@@ -277,6 +283,16 @@ export const AddQuestionTest = () => {
 
             <div className={styles["pageContainer"]}>
                 <Card>
+                    <Button
+                        variant="secondary"
+                        size="sm"
+                        className="position-absolute"
+                        style={{ top: '20px', left: '20px', fontSize: '16px', cursor: 'pointer' }}
+                        onClick={handleBack}
+                    >
+                        Back
+                    </Button>
+                    <CancelTest />
                     <ButtonContain />
                     <LoadScreenContain />
                 </Card>
