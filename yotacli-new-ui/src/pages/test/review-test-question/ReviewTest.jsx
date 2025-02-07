@@ -55,6 +55,11 @@ export const ReviewTest = () => {
         navigates("/add-test/screen3")
     }
 
+    const handleClick = (e) => {
+            e.preventDefault()
+            navigates("/preview")
+    }
+
     return (
         <div>
             <h6>Review Question</h6>
@@ -84,6 +89,7 @@ export const ReviewTest = () => {
                             variant="primary"
                             size="sm"
                             style={{ float: "left", marginLeft: "4px" }}
+                            onClick={handleClick}
                         >
                             Preview
                         </Button>
