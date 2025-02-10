@@ -1,23 +1,20 @@
 import Button from "react-bootstrap/esm/Button";
 import Card from "../../components/Card/Card";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { TableHeader } from "../../components/table-component/TableHeader";
 import styles from "../training-performance-report/TPR.module.css"
 import { ExportToExcel } from "../../components/excel-utils/ExcelUtils";
-import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-    assignedAssociateList
-  } from "../../features/training/trainingAction";
-  import { ToastContainer, toast } from "react-toastify";
 
 export const TPR = () => {
 
-    const theadData = ["Sr No", "Emp No", "Name", "Email", "React Basic", "Component", "Avg %", "Feedback"];
+    const theadData = ["Sr No", "Emp No", "Name", "Avg %", "Feedback"];
+    const { trainings } = useSelector((state) => state.trainings);
+    const navigate = useNavigate();
 
     const handleExportToExcel = () => {
-        ExportToExcel(trainingPerformanceDetails, 'TrainingPerformanceReport')
+       // ExportToExcel(trainingPerformanceDetails, 'TrainingPerformanceReport')
     }
 
     //Description limit 
@@ -26,7 +23,7 @@ export const TPR = () => {
     };
 
     const handleClick = () =>{
-        navigates("/associate-performance-report")
+        navigate("/associate-performance-report")
     }
 
     return (
@@ -65,9 +62,7 @@ export const TPR = () => {
                                 <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>{response.empId}</td>
-                                    
                                     <td onClick={handleClick} className="clicke-name" style={{ cursor: "pointer" }}>{response.fullName}</td>
-                                    
                                     <td>{response.avgPercentageMarks}</td>
                                     <td>{descriptionLimit(response.feedback)}
                                         &nbsp;<span><a className="text-primary"
