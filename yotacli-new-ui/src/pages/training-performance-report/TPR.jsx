@@ -13,32 +13,8 @@ import {
   import { ToastContainer, toast } from "react-toastify";
 
 export const TPR = () => {
-  const { userData } = useSelector((state) => state.auth);
-    const theadData = ["Sr No", "Emp No", "Name", "Avg %", "Feedback"];
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { trainings } = useSelector((state) => state.trainings);
- 
-    const trainingPerformanceDetails = [
-        {
-            "empNo": 1010,
-            "name": "Mayuri Mundada",
-            "email": "mayuri.mundada@yash.com",
-            "reactBasic": 5,
-            "component": 10,
-            "avg": "30%",
-            "feedback": "its performance is too good"
-        },
-        {
-            "empNo": 1011,
-            "name": "Gauri Mundada",
-            "email": "gauri.mundada@yash.com",
-            "reactBasic": 5,
-            "component": 10,
-            "avg": "30%",
-            "feedback": "its performance is not good as well as did not attended seaction"
-        }
-    ]
+
+    const theadData = ["Sr No", "Emp No", "Name", "Email", "React Basic", "Component", "Avg %", "Feedback"];
 
     const handleExportToExcel = () => {
         ExportToExcel(trainingPerformanceDetails, 'TrainingPerformanceReport')
@@ -48,6 +24,10 @@ export const TPR = () => {
     const descriptionLimit = (feedback) => {
         return feedback.split(" ").slice(0, 6).join(" ");
     };
+
+    const handleClick = () =>{
+        navigates("/associate-performance-report")
+    }
 
     return (
         <div>
@@ -85,11 +65,13 @@ export const TPR = () => {
                                 <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>{response.empId}</td>
-                                    <td>{response.fullName}</td>
+                                    
+                                    <td onClick={handleClick} className="clicke-name" style={{ cursor: "pointer" }}>{response.fullName}</td>
+                                    
                                     <td>{response.avgPercentageMarks}</td>
                                     <td>{descriptionLimit(response.feedback)}
                                         &nbsp;<span><a className="text-primary"
-                                            style={{ cursor: "pointer" }}>more</a>
+                                            style={{ cursor: "pointer"}}>more</a>
                                         </span>
                                     </td>
                                 </tr>
@@ -98,6 +80,11 @@ export const TPR = () => {
                     </tbody>
                 </table>
             </Card>
+            <style jsx>{`
+                .clicke-name:hover {
+                    color: blue;
+                }
+            `}</style>
         </div>
     )
 }

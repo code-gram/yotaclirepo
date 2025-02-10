@@ -1,19 +1,28 @@
 import styles from "../test/Test.module.css";
 import Button from "react-bootstrap/esm/Button";
 import Card from "../../components/Card/Card";
-import { useRef } from "react";
+import { useRef , useEffect} from "react";
 import { addTest } from "../../features/tests/testAction";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CancelTest from "./CancelTest";
 
-export const TestSetting = ({ nextScreen }) => {
+export const TestSetting = ({ nextScreen, formData, updateFormData }) => {
 
     const endDate = useRef("");
     const startDate = useRef("");
     const durationTime = useRef("");
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (formData) {
+          endDate.current.value = formData.endDate || "";
+          startDate.current.value = formData.startTime || "";
+          durationTime.current.value = formData.durationTime || "";
+        }
+      }, [formData]);
 
     const validateForm = (settingFormData) => {
 
@@ -58,6 +67,8 @@ export const TestSetting = ({ nextScreen }) => {
             endDate: eDate
         }
 
+        updateFormData("testSetting", settingFormData);
+
         if (validateForm(settingFormData)) {
             const allData = { ...JSON.parse(basicInfoFormData), ...settingFormData }
             dispatch(addTest(allData))
@@ -69,6 +80,11 @@ export const TestSetting = ({ nextScreen }) => {
                     toast.error(error,{ className: 'toast-info' });
                 });
         }
+    }
+
+    const handleBack = ()=>{
+        console.log("back button clicked...")
+        nextScreen("screen1")
     }
 
     const FormTestSetting = () => {
@@ -124,6 +140,16 @@ export const TestSetting = ({ nextScreen }) => {
     return (
         <div>
             <Card className={styles["container"]}>
+                <Button
+                    variant="secondary"
+                    size="sm"
+                    className="position-absolute"
+                    style={{top: '10px', left: '15px', fontSize: '16px', cursor: 'pointer'  }}
+                    onClick={handleBack}
+                >
+                    Back
+                </Button>
+                <CancelTest/>
                 <FormTestSetting />
             </Card>
         </div >

@@ -23,6 +23,13 @@ const reducer = (state, action) => {
                 mediumQuestionCount: newValues.filter(item => item.questionLevel === 'MEDIUM' && !item.disabled).length,
                 hardQuestionCount: newValues.filter(item => item.questionLevel === 'HARD' && !item.disabled).length
             };
+        case 'UPDATE_REVIEW_QUESTION_JSON':
+            const updateValues = action.payload;
+
+            return {
+                ...state,
+                reviewQuestionJson: state.reviewQuestionJson.map(item => item.id == updateValues.id ? updateValues : item)
+            };
         default:
             return state;
     }
@@ -35,8 +42,12 @@ export const ReviewQuestionProvider = ({ children }) => {
         dispatch({ type: 'SET_REVIEW_QUESTION_JSON', payload: newValue });
     };
 
+    const updateReviewQuestionJsonValue = (newValue) => {
+        dispatch({ type: 'UPDATE_REVIEW_QUESTION_JSON', payload: newValue });
+    };
+
     return (
-        <ReviewQuestionContext.Provider value={{ ...state, setReviewQuestionJsonValue }}>
+        <ReviewQuestionContext.Provider value={{ ...state, setReviewQuestionJsonValue, updateReviewQuestionJsonValue }}>
             {children}
         </ReviewQuestionContext.Provider>
     );

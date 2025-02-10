@@ -18,3 +18,26 @@
 .required-span {
   color: red;
 }
+
+.scrollable-container {
+  width: 350px;
+  height: 110px;
+  overflow: auto;
+  border: 1px solid #ccc; 
+  padding: 10px; 
+}
+
+.scrollable-container1 {
+  width: 1000px;
+  height: 300px;
+  overflow: auto; 
+  border: 1px solid #ccc; 
+  padding: 10px;
+
+}
+
+.minimized-length {
+  width: 1000px;
+  padding: 10px; 
+  margin: 0 auto; 
+}

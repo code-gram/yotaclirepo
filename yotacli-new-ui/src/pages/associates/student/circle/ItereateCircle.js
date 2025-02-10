@@ -1,6 +1,6 @@
 import Circle from "./Circle ";
 import { useSelector } from "react-redux";
-function ItereateCircle({ selectedOptions }) {
+function ItereateCircle({ selectedOptions ,onCircleClick}) {
 
   const { questions } = useSelector((state) => state.questions);
   return (
@@ -9,7 +9,9 @@ function ItereateCircle({ selectedOptions }) {
         <div className="col">
           <div>
             {questions.map((data, index) => {
-              return <Circle key={index} index={index} isAttempted={!!selectedOptions?.[index]} />
+              return <Circle key={index} index={index} isAttempted={!!selectedOptions?.[index]} 
+               onCircleClick={onCircleClick}
+              />
               // return <Circle key={index} index={index} isAttempted={selectedOptions?.[index]} />
             })}
           </div>

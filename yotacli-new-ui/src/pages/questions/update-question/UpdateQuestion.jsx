@@ -2,7 +2,7 @@ import Card from "../../../components/Card/Card";
 import styles from "../Questions.module.css";
 import { SelectComponent } from "../../../components/select-component/SelectComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fetchAllTechnology } from "../../../features/technology/technologyAction";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
@@ -13,11 +13,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import ReviewQuestionContext from "../../../app/ReviewQuestionContext";
 
-export const UpdateQuestion = () => {
+export const UpdateQuestion = ({ reviewQuestionData = '', setModalIsOpen = '', showCancelButton = 'block-inline' }) => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth.userData);
   const { questions } = useSelector((state) => state.questions);
+  const { updateReviewQuestionJsonValue } = useContext(ReviewQuestionContext);
 
   const [selectedTechnology, setSelectedTechnology] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -39,7 +41,7 @@ export const UpdateQuestion = () => {
       ['clean'],
     ],
   };
- 
+
   const formats = [
     'header',
     'bold', 'italic', 'underline',
@@ -48,20 +50,20 @@ export const UpdateQuestion = () => {
     'link', 'image',
   ];
 
-  const handlequestionTitle = (value)=>{
+  const handlequestionTitle = (value) => {
     setQuestionTitle(value)
     console.log(questionTitle);
   }
-  const handleOptionA = (value) =>{
+  const handleOptionA = (value) => {
     setOption_A(value);
   }
-  const handleOptionB = (value) =>{
+  const handleOptionB = (value) => {
     setOption_B(value);
   }
-  const handleOptionC = (value) =>{
+  const handleOptionC = (value) => {
     setOption_C(value);
   }
-  const handleOptionD = (value) =>{
+  const handleOptionD = (value) => {
     setOption_D(value);
   }
 
@@ -108,15 +110,27 @@ export const UpdateQuestion = () => {
 
   useEffect(() => {
     if (token) {
-      questionData.map((data) => {
-        setOption_A(data.option_A);
-        setOption_B(data.option_B);
-        setOption_C(data.option_C);
-        setOption_D(data.option_D);
-        setQuestionTitle(data.questionTitle);
-        setQuestionLevel(data.questionLevel);
-        setCurrentOption(data.correctAnswer);
-      });
+      if (id == undefined) {
+        reviewQuestionData.map((data) => {
+          setOption_A(data.option_A);
+          setOption_B(data.option_B);
+          setOption_C(data.option_C);
+          setOption_D(data.option_D);
+          setQuestionTitle(data.questionTitle);
+          setQuestionLevel(data.questionLevel);
+          setCurrentOption(data.correctAnswer);
+        });
+      } else {
+        questionData.map((data) => {
+          setOption_A(data.option_A);
+          setOption_B(data.option_B);
+          setOption_C(data.option_C);
+          setOption_D(data.option_D);
+          setQuestionTitle(data.questionTitle);
+          setQuestionLevel(data.questionLevel);
+          setCurrentOption(data.correctAnswer);
+        });
+      }
     }
   }, []);
 
@@ -136,37 +150,75 @@ export const UpdateQuestion = () => {
 
   function addNewQuestionHandler(event) {
     event.preventDefault();
-    let data = {
-      correctAnswer: currentOption,
-      option_A: option_A,
-      option_B: option_B,
-      option_C: option_C,
-      option_D: option_D,
-      questionLevel: questionLevel,
-      questionTitle: questionTitle,
-    };
-    console.log(data);
-    dispatch(
-      updateQuestion({
-        data,
-        quesId: id,
-      })
-    );
 
-    setCurrentOption();
-    setSelectedTechnology();
-    setSelectedCategory();
-    setOption_A("");
-    setOption_B("");
-    setOption_C("");
-    setOption_D("");
-    setQuestionLevel();
-    setQuestionTitle("");
+    if (id == undefined) {
+      let data = {
+        correctAnswer: currentOption,
+        option_A: option_A,
+        option_B: option_B,
+        option_C: option_C,
+        option_D: option_D,
+        questionLevel: questionLevel,
+        questionTitle: questionTitle,
+        id: reviewQuestionData[0].id
+      };
 
-    toast("Question Updated Successfully!");
-    setTimeout(() => {
-      navigate("/technology-list");
-    }, 2000);
+      dispatch(
+        updateQuestion({
+          data,
+          quesId: reviewQuestionData[0].id,
+        })
+      );
+
+      updateReviewQuestionJsonValue(data);
+      setCurrentOption();
+      setSelectedTechnology();
+      setSelectedCategory();
+      setOption_A("");
+      setOption_B("");
+      setOption_C("");
+      setOption_D("");
+      setQuestionLevel();
+      setQuestionTitle("");
+
+      setModalIsOpen(false);
+      toast.success("Question Updated Successfully!");
+
+    } else {
+
+
+      let data = {
+        correctAnswer: currentOption,
+        option_A: option_A,
+        option_B: option_B,
+        option_C: option_C,
+        option_D: option_D,
+        questionLevel: questionLevel,
+        questionTitle: questionTitle,
+      };
+      console.log(data);
+      dispatch(
+        updateQuestion({
+          data,
+          quesId: id,
+        })
+      );
+
+      setCurrentOption();
+      setSelectedTechnology();
+      setSelectedCategory();
+      setOption_A("");
+      setOption_B("");
+      setOption_C("");
+      setOption_D("");
+      setQuestionLevel();
+      setQuestionTitle("");
+
+      toast("Question Updated Successfully!");
+      setTimeout(() => {
+        navigate("/technology-list");
+      }, 2000);
+    }
   }
 
   return (
@@ -232,17 +284,17 @@ export const UpdateQuestion = () => {
                 <span className={styles["required-span"]}> *</span>
               </label>
             </div>
-            
-              <div style={{marginBottom: 50}}>
-                          <ReactQuill
-                                      value={questionTitle}
-                                      onChange={handlequestionTitle}
-                                      theme="snow"
-                                      modules={modules}
-                                      formats={formats}
-                                      style={{height : '12rem'}}
-                                    />
-                          
+
+            <div style={{ marginBottom: 50 }}>
+              <ReactQuill
+                value={questionTitle}
+                onChange={handlequestionTitle}
+                theme="snow"
+                modules={modules}
+                formats={formats}
+                style={{ height: '12rem' }}
+              />
+
               {/* <textarea
                 rows={8}
                 cols={80}
@@ -413,7 +465,7 @@ export const UpdateQuestion = () => {
               <Button color={"primary"} type={"submit"}>
                 Update
               </Button>
-              <Button color={"danger"} className={"ms-2"}>
+              <Button color={"danger"} className={"ms-2"} style={{ display: showCancelButton }}>
                 Cancel
               </Button>
             </Container>

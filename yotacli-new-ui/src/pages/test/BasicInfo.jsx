@@ -2,11 +2,12 @@ import styles from "../test/Test.module.css";
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/esm/Button";
 import Card from "../../components/Card/Card";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import CancelTest from "./CancelTest";
 
 
 const modules = {
@@ -28,12 +29,29 @@ const modules = {
     'link', 'image',
   ];
 
-export const BasicInfo = ({ nextScreen }) => {
+export const BasicInfo = ({ nextScreen, formData, updateFormData }) => {
 
     const testTitle = useRef("");
     const testType = useRef("");
     const testDescription = useRef("");
     const testInstruction = useRef("");
+    const [testDes, setTestDes] = useState("");
+    const [testIns, setTestIns] = useState("");
+
+    useEffect(() => {
+        console.log(formData);
+        if (formData) {
+          testTitle.current.value = formData.testTitle || "";
+          testType.current.value = formData.type || "";
+        //   testDescription.current.value = formData.description || "k";
+        //   testInstruction.current.value = formData.instruction || "l";
+        setTestDes(formData.description);
+        setTestIns(formData.instruction);
+        }
+        console.log("testDescription: " + testDes)
+        console.log("testInstruction: " + testIns)
+      }, [formData]);
+    
 
     const validateFormData = (formData) => {
         const errors = [];
@@ -70,6 +88,9 @@ export const BasicInfo = ({ nextScreen }) => {
         const description = testDescription.current.value;
         const instruction = testInstruction.current.value;
 
+        console.log("description", testDescription);
+        
+
         const formData = {
             testTitle: title,
             type: type,
@@ -79,13 +100,18 @@ export const BasicInfo = ({ nextScreen }) => {
 
         if (validateFormData(formData)) {
             localStorage.setItem("basicInfo", JSON.stringify(formData));
+            console.log(formData);
+            updateFormData("basicInfo", formData);
             nextScreen("screen2");
         }
     }
 
     return (
         <div>
+            
+            
             <Card className={styles["container-basic"]}>
+            <CancelTest/>
                 <form onSubmit={handleSubmit}>
                     <h6>Basic Info</h6>
                     <div className="form-group mt-1">
@@ -108,6 +134,7 @@ export const BasicInfo = ({ nextScreen }) => {
                             <option>Programming</option>
                         </select>
                     </div>
+
                     <div className="row g-3">
                         <div className="col-md-6">
                             <label
@@ -121,6 +148,7 @@ export const BasicInfo = ({ nextScreen }) => {
                                     type="description"
                                     name="description"
                                     placeholder="Description"
+                                    value={testDes}
                                     ref={testDescription}
                                     theme="snow"
                                     modules={modules}
@@ -130,26 +158,28 @@ export const BasicInfo = ({ nextScreen }) => {
                             </div>
                         </div>
                         <div className="col-md-6">
-                            <label
-                                htmlFor="inputdescription4"
-                                className={styles["form-test-label"]}
-                            >
-                                Instruction
-                            </label>
-                            <div style={{ marginTop: 25, marginBottom: 60 }}>
-                                <ReactQuill
-                                    type="instruction"
-                                    name="instruction"
-                                    placeholder="Instruction"
-                                    ref={testInstruction}
-                                    theme="snow"
-                                    modules={modules}
-                                    formats={formats}
-                                    style={{ height: '8rem' }}
-                                />
-                            </div>
+                        <label
+                            htmlFor="inputdescription4"
+                            className={styles["form-test-label"]}
+                        >
+                            Instruction
+                        </label>
+                        <div style={{ marginTop: 25, marginBottom: 60 }}>
+                            <ReactQuill
+                                type="instruction"
+                                name="instruction"
+                                placeholder="Instruction"
+                                value={testIns}
+                                ref={testInstruction}
+                                theme="snow"
+                                modules={modules}
+                                formats={formats}
+                                style={{ height: '8rem' }}
+                            />
+                        </div>
                         </div>
                     </div>
+
                     <div className={styles["test-btn"]}>
                         <Button
                             type="submit"
