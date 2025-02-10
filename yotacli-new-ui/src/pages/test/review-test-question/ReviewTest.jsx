@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap"
 import Card from "../../../components/Card/Card"
 import styles from "../review-test-question/ReviewTest.module.css"
-import { useContext } from "react"
+import { useState, useContext } from "react"
 import ReviewQuestionContext from "../../../app/ReviewQuestionContext"
 import { addQuestionInTest, updateTotalQuestionCount } from "../../../features/tests/testAction"
 import { useDispatch, useSelector } from "react-redux"
@@ -9,6 +9,11 @@ import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CancelTest from "../CancelTest"
+import UpdateQuestion from "../../questions/update-question/UpdateQuestion";
+import Modal from 'react-modal';
+import React from "react";
+
+Modal.setAppElement('#root');
 
 export const ReviewTest = () => {
 
@@ -37,10 +42,12 @@ export const ReviewTest = () => {
         if (testId === undefined) {
             testId = localStorage.getItem("testId");
         }
+
         dispatch(updateTotalQuestionCount({
             totalQuestionCount: Object.keys(questionId).length,
             testId: testId
         }))
+
         dispatch(addQuestionInTest({ questionIds: questionId, testId: testId }))
             .then(() => {
                 navigates("/add-test")
@@ -51,14 +58,28 @@ export const ReviewTest = () => {
 
     }
 
+    const [open, setOpen] = React.useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [questionData, setQuestionData] = useState('');
+
     const handleBack = () =>{
         navigates("/add-test/screen3")
     }
 
     const handleClick = (e) => {
-            e.preventDefault()
-            navigates("/preview")
+        e.preventDefault()
+        navigates("/preview")
     }
+
+    const handleOpen = (selectedQuestionID) => {
+        setOpen(true);
+        setModalIsOpen(true);
+
+        let quesData = reviewQuestionJson.filter((quesData) => {
+            return quesData.id == selectedQuestionID ? quesData : null;
+        })
+        setQuestionData(quesData);
+    };
 
     return (
         <div>
@@ -109,13 +130,26 @@ export const ReviewTest = () => {
                                             {response.questionLevel}
                                         </span>
                                         <br />
-                                        <span><a href="#" style={{ float: "right", cursor: "pointer", marginBottom: "auto" }}>edit</a></span>
+                                        <span><a onClick={() => {handleOpen(response.id);}} style={{ float: "right", cursor: "pointer", marginBottom: "auto", textDecoration: "underline", color: "blue" }}>Edit</a></span>
                                     </h6>
                                 </div>
                             </div>
                         ))
                     }
                     {/* end question card contain */}
+                    {/* Edit Button on question start  className={styles["modalReviewQuestion"]}*/}
+                    <Modal style = {{overlay: {inset: "30px"}}} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} onAfterClose={() => { setTimeout(() => { navigates("/review-test"); }, 4000);  }}>
+                        <Button
+                            variant="secondary"
+                            size="sm"
+                            style={{ float: 'right'}}
+                            onClick={() => { setModalIsOpen(false) }} >
+                            Close
+                        </Button>
+                                
+                        <UpdateQuestion reviewQuestionData={questionData} setModalIsOpen={setModalIsOpen} showCancelButton="none"/>
+                    </Modal>
+                    {/* Edit Button on question start */}
                 </Card>
             </div>
           <ToastContainer/>
