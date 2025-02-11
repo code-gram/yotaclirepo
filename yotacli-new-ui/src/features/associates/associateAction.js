@@ -76,13 +76,15 @@ export const declinePendingAssociate = createAsyncThunk(
 
 export const fetchAllAssociatesByStatus = createAsyncThunk(
   "associates/fetchAllAssociatesByStatus",
-  async (_, { rejectWithValue }) => {
+  async ({currentPage,rowPerPage}, { rejectWithValue }) => {
     try {
       const response = await axios.get(
         AXIOS_BASE_URL + "/users/all-associates-status",
         {
           params: {
             status: "APPROVED",
+            pageNumber:currentPage,
+            pageSize:rowPerPage
           },
         }
       );

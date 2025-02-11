@@ -5,17 +5,26 @@ import styles from "../../pages/associates/AllAssociates.module.css";
 import Card from "../../components/Card/Card";
 import { fetchAllAssociatesByStatus } from "../../features/associates/associateAction";
 import { useEffect } from "react";
-
+import Pagination from "../../components/pagination/Pagination";
+import { useState } from "react";
 export const AssociatesList = () => {
     const { associates } = useSelector((state) => state.associates);
+    const {totalPages} = useSelector((state) => state.associates);
     const { token } = useSelector((state) => state.auth.userData);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [rowPerPage, setRowPerPage] = useState(5);
+   
+    const indexOfLastItem = currentPage * rowPerPage;
+    const indexOfFirstItem = indexOfLastItem - rowPerPage;
+   
+    const currentItem = associates?.slice(indexOfFirstItem, indexOfLastItem);
     const dispatch = useDispatch();
     // table
-    const theadData = ["#", "Emp ID", "Name", "Email"];
+    const theadData = ["Emp ID", "Name", "Email"];
 
     useEffect(() => {
-        if (token) dispatch(fetchAllAssociatesByStatus());
-    }, [dispatch, token]);
+        if (token) dispatch(fetchAllAssociatesByStatus({currentPage,rowPerPage}));
+    }, [dispatch, token,currentPage,rowPerPage]);
 
     const showData = () => {
         return (
@@ -27,8 +36,7 @@ export const AssociatesList = () => {
                             <tbody>
                                 {
                                     associates.map((response, key) => (
-                                        <tr>
-                                            <th scope="row">{key + 1}</th>
+                                        <tr key={key}>                                           
                                             <td>{response.empId}</td>
                                             <td>{response.fullName}</td>
                                             <td>{response.emailAdd}</td>
@@ -37,6 +45,10 @@ export const AssociatesList = () => {
                                 }
                             </tbody>
                         </table>
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={setCurrentPage}/>
                     </div>
                 </Card>
             </>

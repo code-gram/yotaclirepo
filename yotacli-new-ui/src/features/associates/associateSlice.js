@@ -21,6 +21,8 @@ const initialState = {
   error: null,
   success: false,
   test:{},
+  currentPage: 1,
+  totalPages:0,
 };
 
 const associateSlice = createSlice({
@@ -119,7 +121,8 @@ const associateSlice = createSlice({
       .addCase(fetchAllAssociatesByStatus.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.associates = action.payload;
+        state.associates = action.payload.content;
+        state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchAllAssociatesByStatus.rejected, (state, action) => {
         state.loading = false;
