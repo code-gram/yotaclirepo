@@ -14,7 +14,7 @@ export const TPR = () => {
     const navigate = useNavigate();
 
     const handleExportToExcel = () => {
-       // ExportToExcel(trainingPerformanceDetails, 'TrainingPerformanceReport')
+        ExportToExcel(trainings.assignTest, 'TrainingPerformanceReport')
     }
 
     //Description limit 
