@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CancelTest from "../CancelTest"
 import UpdateQuestion from "../../questions/update-question/UpdateQuestion";
-import Modal from 'react-modal';
+import  Modal  from "react-modal";
 import React from "react";
 
 Modal.setAppElement('#root');

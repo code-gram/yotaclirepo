@@ -49,7 +49,7 @@ const Training = () => {
         setUserRole(userData.userRole?.substring(5).replace("_", " "));
     }
   }, [dispatch, userData]);
-console.log("useefect--"+JSON.stringify(error));
+
   const theadData = [
     "Sr No",
     "Name",
@@ -99,8 +99,13 @@ console.log("useefect--"+JSON.stringify(error));
       }
   };
 
-  const navigateToTrainingReport = () => {
-    navigate("/training-performance-report");
+  const navigateToTrainingReport = (trainingId) => {
+    dispatch(assignedAssociateList(trainingId))
+    .then(() => {
+      navigate("/training-performance-report")})
+      .catch((error) => {
+        toast.error(error,{ className: 'toast-info' });
+       });
   };
 
   const navigateToAllAssociates = (data) => {
@@ -155,7 +160,7 @@ console.log("useefect--"+JSON.stringify(error));
                       />
                     )}
                     &nbsp;&nbsp;
-                    <ReportIcon report={() => navigateToTrainingReport()} />
+                    <ReportIcon report={() => navigateToTrainingReport(training.id)} />
                   </div>
                 </td>
               </tr>
