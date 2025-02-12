@@ -1,39 +1,20 @@
 import Button from "react-bootstrap/esm/Button";
 import Card from "../../components/Card/Card";
+import React from "react";
 import { TableHeader } from "../../components/table-component/TableHeader";
 import styles from "../training-performance-report/TPR.module.css"
 import { ExportToExcel } from "../../components/excel-utils/ExcelUtils";
-import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const TPR = () => {
 
-    const theadData = ["Sr No", "Emp No", "Name", "Email", "React Basic", "Component", "Avg %", "Feedback"];
-
-    const navigates = useNavigate();
-
-    const trainingPerformanceDetails = [
-        {
-            "empNo": 1010,
-            "name": "Mayuri Mundada",
-            "email": "mayuri.mundada@yash.com",
-            "reactBasic": 5,
-            "component": 10,
-            "avg": "30%",
-            "feedback": "its performance is too good"
-        },
-        {
-            "empNo": 1011,
-            "name": "Gauri Mundada",
-            "email": "gauri.mundada@yash.com",
-            "reactBasic": 5,
-            "component": 10,
-            "avg": "30%",
-            "feedback": "its performance is not good as well as did not attended seaction"
-        }
-    ]
+    const theadData = ["Sr No", "Emp No", "Name", "Avg %", "Feedback"];
+    const { trainings } = useSelector((state) => state.trainings);
+    const navigate = useNavigate();
 
     const handleExportToExcel = () => {
-        ExportToExcel(trainingPerformanceDetails, 'TrainingPerformanceReport')
+        ExportToExcel(trainings.assignTest, 'TrainingPerformanceReport')
     }
 
     //Description limit 
@@ -42,17 +23,27 @@ export const TPR = () => {
     };
 
     const handleClick = () =>{
-        navigates("/associate-performance-report")
+        navigate("/associate-performance-report")
     }
 
     return (
         <div>
             <h6>Training Performance Report</h6>
             <Card className={styles["tpr-list"]}>
+                <div>
+                <Button
+                     variant="secondary"
+                     size="sm"
+                     style={{ marginRight: "100%", marginBottom: "5%"}}
+                     onClick={() => navigate("/add-training")}
+                    >
+                    Back
+                    </Button>      
+                </div>
                 <div className="row">
                     <div className="col-md-10">
                         <div className={styles["header"]}>
-                            <h6>{`Training Name: React.js | Total trainees: 5 | Total Tests: 15 `}</h6>
+                        <h6>{`Training Name: ${trainings.trainingName} | Total trainees: ${trainings.registeredInTraining} | Total Tests: 15 `}</h6>
                         </div>
                     </div>
                     <div className="col-md-2">
@@ -67,17 +58,12 @@ export const TPR = () => {
                     <TableHeader theadData={theadData} />
                     <tbody>
                         {
-                            trainingPerformanceDetails.map((response, index) => (
+                          trainings.assignTest.map((response, index) => (
                                 <tr key={index}>
                                     <th>{index + 1}</th>
-                                    <td>{response.empNo}</td>
-                                    
-                                    <td onClick={handleClick} className="clicke-name" style={{ cursor: "pointer" }}>{response.name}</td>
-                                    
-                                    <td>{response.email}</td>
-                                    <td>{response.reactBasic}</td>
-                                    <td>{response.component}</td>
-                                    <td>{response.avg}</td>
+                                    <td>{response.empId}</td>
+                                    <td onClick={handleClick} className="clicke-name" style={{ cursor: "pointer" }}>{response.fullName}</td>
+                                    <td>{response.avgPercentageMarks}</td>
                                     <td>{descriptionLimit(response.feedback)}
                                         &nbsp;<span><a className="text-primary"
                                             style={{ cursor: "pointer"}}>more</a>
