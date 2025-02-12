@@ -22,8 +22,8 @@ export const TPR = () => {
         return feedback.split(" ").slice(0, 6).join(" ");
     };
 
-    const handleClick = () =>{
-        navigate("/associate-performance-report")
+    const handleClick = (response) =>{
+        navigate("/associate-performance-report", { state: { response } })
     }
 
     return (
@@ -62,7 +62,7 @@ export const TPR = () => {
                                 <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>{response.empId}</td>
-                                    <td onClick={handleClick} className="clicke-name" style={{ cursor: "pointer" }}>{response.fullName}</td>
+                                    <td onClick={()=>handleClick(response)} className="clicke-name" style={{ cursor: "pointer" }}>{response.fullName}</td>
                                     <td>{response.avgPercentageMarks}</td>
                                     <td>{descriptionLimit(response.feedback)}
                                         &nbsp;<span><a className="text-primary"
