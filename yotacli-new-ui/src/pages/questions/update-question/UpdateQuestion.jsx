@@ -182,7 +182,7 @@ export const UpdateQuestion = ({ reviewQuestionData = '', setModalIsOpen = '', s
       setQuestionTitle("");
 
       setModalIsOpen(false);
-      toast.success("Question Updated Successfully!");
+      toast.success("Question Updated Successfully!",{ className: 'toast-info', hideProgressBar: true });
 
     } else {
 
@@ -465,7 +465,7 @@ export const UpdateQuestion = ({ reviewQuestionData = '', setModalIsOpen = '', s
               <Button color={"primary"} type={"submit"}>
                 Update
               </Button>
-              <Button color={"danger"} className={"ms-2"} style={{ display: showCancelButton }}>
+              <Button color={"danger"} className={"ms-2"} style={{ display: showCancelButton }} onClick={() => navigate(-1)}>
                 Cancel
               </Button>
             </Container>
