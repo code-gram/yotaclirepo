@@ -26,7 +26,10 @@ const loginSlice = createSlice({
             state.userData = [];
             state.message = null;
             state.error = null;
-        }
+        },
+        updateInvalidUser(state) {
+            state.invalid = null;
+          }
     },
     extraReducers: (builder) => {
         builder.addCase(login.pending, (state) => {
@@ -108,5 +111,5 @@ const loginSlice = createSlice({
     }
 });
 
-export const {clearMessage} = loginSlice.actions;
+export const {clearMessage, updateInvalidUser} = loginSlice.actions;
 export default loginSlice.reducer;
