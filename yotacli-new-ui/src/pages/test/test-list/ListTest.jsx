@@ -44,8 +44,8 @@ console.log(testList);
         const selectedUserId = e.target.value;
         if (selectedUserId !== null) {
             setUserId(selectedUserId);
-            // Filtered array of assigned training based on userId  
-            const userNames = assignedTraining.find(user => user.userId.toString().trim() === selectedUserId);
+            const userNames = assignedTraining.find(user => user.userId === Number(selectedUserId));
+            console.log(userNames)
             setUserName(userNames.userName);
         } else {
             setUserId("");
@@ -67,8 +67,11 @@ console.log(testList);
     }
 
     const addTestIndividualAssociate = () => {
+        const testIds = localStorage.getItem("testIdIndividual")
+        console.log("testId", testIds)
         if (testIds !== null) {
-            dispatch(addTestToIndividualAssociate({ testId: testIds, trainingId: 10, userId: userId }))
+            console.log("testing 1")
+            dispatch(addTestToIndividualAssociate({ testId: testIds, userId: userId }))
                 .then(() => dispatch(getAllTest()))
                 .catch((error) => error);
             setShowMessage(true);
@@ -143,7 +146,9 @@ console.log(testList);
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link className="dropdown-item" onClick={() => { setOpenAssignIndividual(true) }}>
+                                                <Link className="dropdown-item" onClick={() => { setOpenAssignIndividual(true) 
+                                                    localStorage.setItem("testIdIndividual", response.id)
+                                                }}>
                                                     Assign to individual
                                                 </Link>
                                             </li>
