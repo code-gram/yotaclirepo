@@ -1,70 +1,38 @@
 import { useRef } from "react";
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Timer = (props) => {
-  const [days, setDays] = useState(0);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+const Timer = ({ totaltime }) => {
+  const totalMinutes = typeof totaltime === 'number' ? totaltime : parseInt(totaltime, 10);
+  const totalSeconds = totalMinutes * 60;
+  const [timeLeft, setTimeLeft] = useState(totalSeconds);
+  const [isRunning, setIsRunning] = useState(true);
   const [open, setOpen] = useState(false);
-  const [isRunning, setIsRunning] = useState(false);
-  const timerIdref = useRef();
-  const navigate = useNavigate();
-
+  const [alertOpen, setAlertOpen] = useState(false);
 
   useEffect(() => {
-    setMinutes(props.totaltime);
-  }, [props.totaltime]);
+    let interval;
+    if (isRunning && timeLeft > 0) {
+      interval = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+    } else if (timeLeft <= 0) {
+      setIsRunning(false);
+      setOpen(true);
+    }
 
-  useEffect(() => {
-    timerIdref.current = setInterval(() => {
-      setMinutes((state) => state - 1);
-    }, 60000);
-    setIsRunning(true);
-  }, []);
+    if (timeLeft === 300) {
+      setAlertOpen(true);
+    }
 
-  if (minutes < 0) {
-    setIsRunning(false);
-    setMinutes(0);
-    setOpen(true);
-  }
+    return () => clearInterval(interval);
+  }, [isRunning, timeLeft]);
 
-  //const deadline = "December, 31, 2022";
-
-  // const deadline = new Date(Date.now() + parseInt(props.paperTime) * 60 * 1000); // Add 30 minutes to current time
-  // let sign;
-  // const getTime = () => {
-  //     const time = Date.parse(deadline) - Date.now();
-  //     sign = Math.sign(time);
-  //     if (sign === -1) {
-  //         setIsRunning(false);
-  //         clearInterval(null);
-  //     } else {
-  //         setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
-  //         setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
-  //         setMinutes(Math.floor((time / 1000 / 60) % 60));
-  //         setSeconds(Math.floor((time / 1000) % 60));
-  //     }
-  // };
-  // let interval;
-  // useEffect(() => {
-  //     interval = setInterval(() => getTime(deadline), 1000);
-  //     console.log('empty use effect.....', interval)
-  //     setIsRunning(true);
-  //     return () => clearInterval(interval);
-  // }, []);
-
-  // useEffect(() => {
-  //     let interval;
-  //     if (isRunning) {
-  //         interval = setInterval(() => getTime(deadline), 1000);
-  //     }
-  //     return () => clearInterval(interval);
-  // }, [isRunning]);
+  const hours = Math.floor(timeLeft / 3600);
+  const minutes = Math.floor((timeLeft % 3600) / 60);
+  const seconds = timeLeft % 60;
 
   return (
     <>
@@ -76,15 +44,12 @@ const Timer = (props) => {
               <Card.Body>
                 <div className="timer" role="timer">
                   <div className="timer">
-                    <span id="hour">{}</span>
                     <span className="text"> Time Left: </span>
                     <span id="hour">{hours < 10 ? "0" + hours : hours}</span>
                     <span className="text"> Hrs </span>
-                    <span id="minute">{isRunning ? "0" + minutes : "00"}</span>
+                    <span id="minute">{minutes < 10 ? "0" + minutes : minutes}</span>
                     <span className="text"> Min </span>
-                    <span id="second">
-                      {seconds < 10 ? "0" + seconds : seconds}
-                    </span>
+                    <span id="second">{seconds < 10 ? "0" + seconds : seconds}</span>
                     <span className="text"> Sec</span>
                   </div>
                 </div>
@@ -97,27 +62,42 @@ const Timer = (props) => {
         show={open}
         onHide={() => setOpen(false)}
         dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
+        aria-labelledby="example-custom-modal-styling-title">
         <Modal.Header>
           <Modal.Title id="example-custom-modal-styling-title">
-            Exam is over !
+            Exam is over!
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="mr-4">
           <div>
-           <h5>Thank you Times up!</h5>
+            <h5>Thank you! Time's up!</h5>
           </div>
           <button
             className="submitt-button btn btn-success"
             type="submit"
-            style={{ borderRadius: "revert-layer", marginLeft: "390px" }}
-          >
-            <Link className="nav-link" to="/myTest">
+            style={{ borderRadius: "revert-layer", marginLeft: "390px" }}>
+            <Link className="nav-link" to="/test-result">
               Submit
             </Link>
           </button>
         </Modal.Body>
+      </Modal>
+      <Modal
+        show={alertOpen}
+        onHide={() => setAlertOpen(false)}
+        dialogClassName="modal-90w"
+        aria-labelledby="example-custom-modal-styling-title">
+        <Modal.Header>
+          <Modal.Title id="example-custom-modal-styling-title">
+            Only 5 minutes left.....!
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="mr-4">
+          <div>
+            <h5>Please speed up your exam......!</h5>
+          </div>
+        </Modal.Body>
+        <button onClick={()=>setAlertOpen(false)}>Ok</button>
       </Modal>
     </>
   );

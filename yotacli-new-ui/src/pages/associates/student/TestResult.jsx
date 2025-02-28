@@ -35,6 +35,7 @@ const TestResult = () => {
       startTime: time,
       endTime: endTime,
       timeTaken: takentime,
+      testStatus:"COMPLETED",
     };
     dispatch(updateResult({ data }));
     toast("Result Save Successfully!");

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./StartTest.css";
 import { updateTestStatus } from "../../features/TestResult/testResultAction";
+import parse, { domToReact } from 'html-react-parser';
 
 const StartTest = () => {
   const { associates } = useSelector((state) => state.associates);
@@ -41,7 +42,12 @@ const StartTest = () => {
           <h5 className="instruction">DESCRIPTION</h5>
           <hr />
           {description.map((des) => {
-            return <p>{des.testDescription}</p>;
+            // return <p>{parse(des.testDescription)}</p>;
+            return (
+              <ul className="inst">
+                <li>{parse(des.testDescription)}</li>
+              </ul>
+            );
           })}
 
           <h5 className="instruction">INSTRUCTION</h5>
@@ -49,7 +55,7 @@ const StartTest = () => {
           {instruction.map((ins) => {
             return (
               <ul className="inst">
-                <li>{ins.testInstruction}</li>
+                <li>{parse(ins.testInstruction)}</li>
               </ul>
             );
           })}

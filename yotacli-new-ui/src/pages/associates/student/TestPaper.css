@@ -1,3 +1,29 @@
 .btnStart{
   margin-left: 20%;
 }
+
+.code-block {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto; /* For horizontal scrolling if code is too wide */
+}
+
+.paragraph {
+    margin-bottom: 1em;
+}
+
+.content-container {
+    white-space: pre-line; /* Preserves whitespace and line breaks */
+}
+
+.custom-radio {
+    border: 2px solid black; /* Bold border */
+    padding: 5px; /* Optional: Add some padding */
+    border-radius: 50%; /* Optional: Make it circular */
+  }
+  
+  .custom-radio:checked {
+    border-color: blue; /* Optional: Change border color when checked */
+  }

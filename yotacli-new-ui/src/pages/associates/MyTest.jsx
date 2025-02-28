@@ -45,10 +45,10 @@ const MyTest = () => {
             <table className="table table-bordered table-striped table-hover mt-2">
               <TableHeader theadData={theadData} />
               <tbody>
-                {associates.map((data) => {
+                {associates.map((data, index) => {
                   return (
                     <tr key={data.id}>
-                      <th scope="row">{data.id}</th>
+                      <th scope="row">{++index}</th>
                       <td>{data.testTitle}</td>
                       <td>{data.created_at}</td>
                       <td>{data.endDate}</td>
@@ -57,7 +57,7 @@ const MyTest = () => {
                           <button type="button" className="btn btn-info">
                             Result
                           </button>
-                        ) :  data.status!=="ASSIGNED" ? (
+                        ) :  data.testStatus!=="COMPLETED" ? (
                           <button type="button" className="btn btn-success">
                             <Link
                               className="nav-link"

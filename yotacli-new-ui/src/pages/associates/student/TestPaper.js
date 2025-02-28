@@ -11,6 +11,9 @@ import { getQuestionByTestid } from "../../../features/Question/questionAction";
 import { storeResult } from "../../../features/TestResult/testResultAction";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import parse, { domToReact } from 'html-react-parser';
+import './TestPaper.css';
+
 import {
   settime,
   setAssociateMark,
@@ -19,7 +22,6 @@ import {
 const TestPaper = () => {
   const { token, email } = useSelector((state) => state.auth.userData);
   const { test } = useSelector((state) => state.associates);
-
   const { questions } = useSelector((state) => state.questions);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentOption, setCurrentOption] = useState("");
@@ -32,19 +34,18 @@ const TestPaper = () => {
   );
   const dispatch = useDispatch();
   const { id } = useParams("id");
-  // const [selectedOptions, setSelectedOptions] = useState(() => Array(questions?.length || 0).fill(false));
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   useEffect(() => {
     if (token) dispatch(fetchTestByTestId(id));
-  }, []);
+  }, [token, id, dispatch]);
 
   useEffect(() => {
     if (token) {
       dispatch(getQuestionByTestid({ id: id, email: email }));
       dispatch(settime(startTime));
     }
-  }, []);
+  }, [token, id, email, startTime, dispatch]);
 
   function handleOption(event) {
     if (event.target.value) {
@@ -57,9 +58,6 @@ const TestPaper = () => {
     });
   }
 
-  // const rightAnswer = questions.map((data, index) => {
-  //   return data.correctAnswer;
-  // });
   function handleCircleClick(index) {
     setCurrentQuestion(index);
   }
@@ -67,10 +65,9 @@ const TestPaper = () => {
   const rightAnswer = () => {
     const a = questions[currentQuestion].correctAnswer;
     const b = "option_" + a;
-    console.log(questions[currentQuestion]?.[b]);
     return questions[currentQuestion]?.[b];
   }
- 
+
   const saveAndNext = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
@@ -122,6 +119,22 @@ const TestPaper = () => {
     }
   }
 
+  const options = {
+    replace: (domNode) => {
+      if (domNode.name === 'pre') {
+        return (
+          <pre className="code-block">
+            {domToReact(domNode.children)}
+          </pre>
+        );
+      }
+    }
+  };
+
+  if (!test || !questions.length) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <div className="container ">
@@ -135,7 +148,7 @@ const TestPaper = () => {
                     Qtype={test?.type}
                     totalQ={test?.totalQuestions}
                     totalMarks={test?.totalQuestions}
-                    totalTime={test?.totalTime + " min"}
+                    totalTime={test?.durationTime}
                   />
                 }
               />
@@ -144,7 +157,7 @@ const TestPaper = () => {
           <div className="col-12 col-md-4">
             <div className="p-2 g-col-6 text-start">
               <div className="p-2 g-col-6 text-start">
-                <Timer totaltime={test?.totalTime} />
+                <Timer totaltime={test?.durationTime} />
               </div>
             </div>
           </div>
@@ -152,11 +165,6 @@ const TestPaper = () => {
         <div className="row">
           <div className="col-12 col-md-8">
             <div className="grid gap-0 row-gap-1">
-              {/* <div className="p-2 g-col-6 text-start">
-                            <StudentCard header={test?.testName} text1=
-                                {<TextPaperType Qtype={test?.testType} totalQ={test?.totalQuestions} totalMarks={test?.totalMarks}
-                                    totalTime={test?.totalTime + " min"} />} />
-                        </div> */}
               <div className="col">
                 <div className="p-2 g-col-6 text-start">
                   {/* <Question testid={test?.id} /> */}
@@ -164,22 +172,19 @@ const TestPaper = () => {
                     <div className="row">
                       <div className="col">
                         <Card>
-                          <Card.Header>
+                        <Card.Header>
                             <p> Q {currentQuestion + 1}</p>
+                            <p>{questions[currentQuestion]?.questionTitle ? parse(questions[currentQuestion].questionTitle, options) : ""}{" "}</p>
                           </Card.Header>
                           <Card.Body>
                             <Card.Text>
-                              {questions[currentQuestion]?.questionTitle}{" "}
+                              {/* {questions[currentQuestion]?.questionTitle}{" "} */}
                             </Card.Text>
                             <div>
                               <div class="container text-end">
                                 <div className="row">
                                   <div className="col">
                                     <div className="col">
-                                      {/* {showMarks && (
-                                      <div className="col">[Marks : 1]</div>
-                                    )}{" "} */}
-                                      {/* Cleaner conditional rendering */}
                                     </div>
                                   </div>
                                 </div>
@@ -195,7 +200,7 @@ const TestPaper = () => {
                                     checked={selectedOptions[currentQuestion] === questions[currentQuestion]?.option_A}
                                   />
                                   <span>
-                                    {questions[currentQuestion]?.option_A}
+                                    {questions[currentQuestion]?.option_A ? parse(questions[currentQuestion].option_A, options) : ''}
                                   </span>
                                 </div>
                                 <div class="form-check">
@@ -208,7 +213,7 @@ const TestPaper = () => {
                                     checked={selectedOptions[currentQuestion] === questions[currentQuestion]?.option_B}
                                   />
                                   <span>
-                                    {questions[currentQuestion]?.option_B}
+                                    {questions[currentQuestion]?.option_B ? parse(questions[currentQuestion].option_B, options) : ''}
                                   </span>
                                 </div>
                                 <div class="form-check">
@@ -221,20 +226,20 @@ const TestPaper = () => {
                                     checked={selectedOptions[currentQuestion] === questions[currentQuestion]?.option_C}
                                   />
                                   <span>
-                                    {questions[currentQuestion]?.option_C}
+                                    {questions[currentQuestion]?.option_C ? parse(questions[currentQuestion].option_C, options) : ''}
                                   </span>
                                 </div>
                                 <div class="form-check">
                                   <input
                                     type="radio"
-                                    className="form-check-input"
+                                    className="form-check-input custom-radio"
                                     name="answer-entry"
                                     onChange={handleOption}
                                     value={questions[currentQuestion]?.option_D}
                                     checked={selectedOptions[currentQuestion] === questions[currentQuestion]?.option_D}
                                   />
                                   <span>
-                                    {questions[currentQuestion]?.option_D}
+                                    {questions[currentQuestion]?.option_D ? parse(questions[currentQuestion].option_D, options) : ''}
                                   </span>
                                 </div>
                               </div>
@@ -244,16 +249,16 @@ const TestPaper = () => {
                             <div className="p-2 g-col-6 text-start">
                               <div className="card">
                                 <div className="card-body">
-                                  <button
+                                  {/* <button
                                     type="button"
                                     className="btn btn-success float-start"
                                     onClick={saveAndNext}
                                   >
                                     Save & Next
-                                  </button>
+                                  </button> */}
                                   <button
                                     type="button"
-                                    className="btn btn-light float-end "
+                                    className="btn btn-warning float-start"
                                     onClick={prevQuestion}
                                   >
                                     Prev
@@ -276,35 +281,6 @@ const TestPaper = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="col">
-            <div className="p-2 g-col-6 text-start">
-              <div className="card">
-                <div className="card-body">
-                  <button
-                    type="button"
-                    className="btn btn-success float-start"
-                    onClick={saveAndNext}
-                  >
-                    Save & Next
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-light float-end "
-                    onClick={prevQuestion}
-                  >
-                    Prev
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-light float-end me-1"
-                    onClick={nextQuestion}
-                  >
-                    Next
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div> */}
           </div>
 
           <div className="col-12 col-md-4">

@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CancelTest from "../CancelTest"
 import UpdateQuestion from "../../questions/update-question/UpdateQuestion";
-import  Modal  from "react-modal";
+import Modal from "react-modal";
 import React from "react";
 
 Modal.setAppElement('#root');
@@ -50,10 +50,10 @@ export const ReviewTest = () => {
 
         dispatch(addQuestionInTest({ questionIds: questionId, testId: testId }))
             .then(() => {
-                navigates("/add-test")
+                setTimeout(() => { navigates("/add-test"); }, 4000);
             })
             .catch((error) => {
-               toast.error("Technology Added Successfully",{ className: 'toast-info' });
+                toast.error("Technology Added Successfully", { className: 'toast-info' });
             });
 
     }
@@ -62,7 +62,7 @@ export const ReviewTest = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [questionData, setQuestionData] = useState('');
 
-    const handleBack = () =>{
+    const handleBack = () => {
         navigates("/add-test/screen3")
     }
 
@@ -86,13 +86,13 @@ export const ReviewTest = () => {
             <h6>Review Question</h6>
             <div className={styles["pageContainer"]}>
                 <Card>
-                    <CancelTest/>
+                    <CancelTest />
                     {/* button contain */}
                     <div className="mt-1 p-3">
                         <Button
                             variant="secondary"
                             size="sm"
-                            style={{ float: "left"}}
+                            style={{ float: "left" }}
                             onClick={handleBack}
                         >
                             Back
@@ -100,7 +100,7 @@ export const ReviewTest = () => {
                         <Button
                             variant="primary"
                             size="sm"
-                            style={{ float: "left", marginLeft: "4px"  }}
+                            style={{ float: "left", marginLeft: "4px" }}
                             onClick={() => addQuestionsInTest(reviewQuestionJson.map(questionId => questionId.id))}
                         >
                             Add to test
@@ -114,7 +114,7 @@ export const ReviewTest = () => {
                         >
                             Preview
                         </Button>
-                        
+
                     </div>
                     {/* End button contain */}
 
@@ -130,7 +130,7 @@ export const ReviewTest = () => {
                                             {response.questionLevel}
                                         </span>
                                         <br />
-                                        <span><a onClick={() => {handleOpen(response.id);}} style={{ float: "right", cursor: "pointer", marginBottom: "auto", textDecoration: "underline", color: "blue" }}>Edit</a></span>
+                                        <span><a onClick={() => { handleOpen(response.id); }} style={{ float: "right", cursor: "pointer", marginBottom: "auto", textDecoration: "underline", color: "blue" }}>Edit</a></span>
                                     </h6>
                                 </div>
                             </div>
@@ -138,21 +138,21 @@ export const ReviewTest = () => {
                     }
                     {/* end question card contain */}
                     {/* Edit Button on question start  className={styles["modalReviewQuestion"]}*/}
-                    <Modal style = {{overlay: {inset: "30px"}}} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} onAfterClose={() => { setTimeout(() => { navigates("/review-test"); }, 4000);  }}>
+                    <Modal style={{ overlay: { inset: "30px" } }} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} onAfterClose={() => { setTimeout(() => { navigates("/review-test"); }, 3000); }}>
                         <Button
                             variant="secondary"
                             size="sm"
-                            style={{ float: 'right'}}
+                            style={{ float: 'right' }}
                             onClick={() => { setModalIsOpen(false) }} >
                             Close
                         </Button>
-                                
-                        <UpdateQuestion reviewQuestionData={questionData} setModalIsOpen={setModalIsOpen} showCancelButton="none"/>
+
+                        <UpdateQuestion reviewQuestionData={questionData} setModalIsOpen={setModalIsOpen} showCancelButton="none" />
                     </Modal>
                     {/* Edit Button on question start */}
                 </Card>
             </div>
-          <ToastContainer/>
+            <ToastContainer />
         </div >
     )
 }

@@ -25,7 +25,7 @@ export const SignUp = () => {
             if(message === "Account creation request submitted successfully to Technical Manager"){
                 toast.success(message,{ className: 'toast-info' });
                 window.location.assign("/yotacli");
-            }else{
+            } else {
                 toast.error(message,{ className: 'toast-info' });
             }
             
@@ -43,12 +43,17 @@ export const SignUp = () => {
     function formSubmitHandler(event) {
         event.preventDefault();
 
+        debugger;
         const formData = {
             empId: empIdInputRef.current.value,
             fullName: fullNameInputRef.current.value,
             emailAdd: emailInputRef.current.value,
             password: passwordInputRef.current.value,
             confirmPassword: confirmPasswordInputRef.current.value,
+        }
+
+        if(isNaN(Number(formData.empId))) {
+            return toast.error("Employee ID must be a 6-digit integer.",{ className: 'toast-info' });
         }
         
         console.log(formData);

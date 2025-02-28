@@ -1,10 +1,10 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Login.module.css";
-import {Link, useNavigate} from "react-router-dom";
-import {isTokenExpired} from "../../security/jwt/JwtService";
-import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../features/login/loginAction";
-import {clearMessage} from "../../features/login/loginSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { isTokenExpired } from "../../security/jwt/JwtService";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../features/login/loginAction";
+import { clearMessage, updateInvalidUser  } from "../../features/login/loginSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,14 +22,15 @@ export const Login = () => {
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.auth.userData);
     const invalidUser = useSelector((state) => state.auth.invalid);
-    
 
-    useEffect(() =>{
-        if(invalidUser){
-           toast.error(invalidUser,{ className: 'toast-info' });
-           console.log(invalidUser);
+
+    useEffect(() => {
+        if (invalidUser) {
+            toast.error(invalidUser, { className: 'toast-info' });
+            console.log(invalidUser);
+            dispatch(updateInvalidUser(!invalidUser));
         }
-    }, [invalidUser]);
+    }, [invalidUser, dispatch]);
 
     useEffect(() => {
         const token = userData.token;
@@ -47,25 +48,6 @@ export const Login = () => {
         }
     }, [navigate, userData]);
 
-    function submitForm(event) {
-        event.preventDefault();
-        console.log("LogIn event triggered.")
-        const email = emailInputRef.current.value;
-        const password = passwordInputRef.current.value;
-        if (!email || email.trim() === '') {
-            toast.error("Email field cannot be null or empty.",{ className: 'toast-info' });
-            return;
-            }
-        
-            if (!password || password.trim() === '') {
-            toast.error("Password field cannot be null or empty.",{ className: 'toast-info' });
-            return;
-            }
-        setLoginData({
-            email: email,
-            password: password,
-        });
-    }
 
     useEffect(() => {
         if (loginData.email && loginData.password) {
@@ -74,9 +56,29 @@ export const Login = () => {
         }
     }, [loginData, navigate, dispatch]);
 
+    function submitForm(event) {
+        event.preventDefault();
+        console.log("LogIn event triggered.")
+        const email = emailInputRef.current.value;
+        const password = passwordInputRef.current.value;
+        if (!email || email.trim() === '') {
+            toast.error("Email field cannot be null or empty.", { className: 'toast-info' });
+            return;
+        }
+
+        if (!password || password.trim() === '') {
+            toast.error("Password field cannot be null or empty.", { className: 'toast-info' });
+            return;
+        }
+        setLoginData({
+            email: email,
+            password: password,
+        });
+    }
+
     return (
         <div className={styles.container}>
-            <form className={styles.form} onSubmit={submitForm}>
+            <form className={styles.form} >
                 <div className={styles["form-content"]}>
                     <h3 className={styles["form-title"]}>Sign In</h3>
                     <div className="form-group mt-3">
@@ -98,18 +100,18 @@ export const Login = () => {
                         />
                     </div>
                     <div className="d-grid gap-2 mt-3">
-                        <button type="submit" className="btn btn-dark">
+                        <button type="submit" className="btn btn-dark" onClick={submitForm}>
                             Submit
                         </button>
                     </div>
                     <div className="text-center mt-3">
                         Not registered yet?{" "}
                         <Link to={"/register"}
-                              style={{textDecoration: "none"}}>Sign Up</Link>
+                            style={{ textDecoration: "none" }}>Sign Up</Link>
                     </div>
                 </div>
             </form>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

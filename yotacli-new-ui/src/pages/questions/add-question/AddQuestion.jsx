@@ -461,7 +461,7 @@ export const AddQuestion = () => {
                 Add
                 {/* </Link> */}
               </Button>
-              <Button color={"danger"} className={"ms-2"}>
+              <Button color={"danger"} className={"ms-2"} onClick={() => navigate("/home")}>
                 Cancel
               </Button>
             </Container>

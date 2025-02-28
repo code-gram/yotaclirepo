@@ -1,22 +1,16 @@
-import { React, useEffect, useState, createContext, useContext } from "react";
-// import StudentCard from "../../associates/student/StudentCard";
+import { React, useEffect, useState, useContext } from "react";
 import Card from "react-bootstrap/Card";
-// import TextPaperType from "../../associates/student/TestPaperType"
-// import ItereateCircle from "../../associates/student/circle/ItereateCircle";
-// import { fetchTestByTestId } from "../../../features/associates/associateAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "../../../pages/technology/ShowQuestion.module.css";
 import { getQuestionByTestid } from "../../../features/Question/questionAction";
-import { storeResult } from "../../../features/TestResult/testResultAction";
-import { Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { BasicInfo } from "../../test/BasicInfo";
 import {
     settime,
     setAssociateMark,
 } from "../../../features/TestResult/TestResultSlice";
 import ReviewQuestionContext from "../../../app/ReviewQuestionContext";
+import parse, { domToReact } from 'html-react-parser';
 
 function Preview() {
     const { token, email } = useSelector((state) => state.auth.userData);
@@ -28,8 +22,6 @@ function Preview() {
     const [currentOption, setCurrentOption] = useState("");
     const [totalMark, setTotalMark] = useState(0);
     const [isAttempt, setIsAttempt] = useState(null);
-    const [testTitle, setTestTitle] = useState();
-    const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const [currentAnswer, setCurrentAnswer] = useState();
     const [startTime, setStartTime] = useState(
@@ -37,12 +29,7 @@ function Preview() {
     );
     const dispatch = useDispatch();
     const { id } = useParams("id");
-    // const [selectedOptions, setSelectedOptions] = useState(() => Array(questions?.length || 0).fill(false));
     const [selectedOptions, setSelectedOptions] = useState([]);
-
-    // useEffect(() => {
-    //   if (token) dispatch(fetchTestByTestId(id));
-    // }, []);
 
     useEffect(() => {
         if (token) {
@@ -61,10 +48,6 @@ function Preview() {
             [currentQuestion]: event.target.value,
         });
     }
-
-    // const rightAnswer = questions.map((data, index) => {
-    //   return data.correctAnswer;
-    // });
 
     const rightAnswer = () => {
         const a = reviewQuestionJson[currentQuestion].correctAnswer;
@@ -86,14 +69,11 @@ function Preview() {
         e.preventDefault()
         console.log("testDetails", testDetails)
         console.log("BasicInfo", BasicInfo)
-        // console.log("testDetails", testDetails)
-        // console.log("testTitle", testTitle)
         navigate("/review-test")
     }
 
     const nextQuestion = () => {
         console.log("reviewQuestionJson1111", reviewQuestionJson)
-        // console.log("questions", questions)
         if (currentQuestion < reviewQuestionJson.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
         }
@@ -108,6 +88,18 @@ function Preview() {
         }
         setCurrentAnswer("");
     };
+
+    const options = {
+        replace: (domNode) => {
+          if (domNode.name === 'pre') {
+            return (
+              <pre className={styles['code-block']}>
+                {domToReact(domNode.children)}
+              </pre>
+            );
+          }
+        }
+      };
 
     return (
         <>
@@ -144,7 +136,7 @@ function Preview() {
                                                     // reviewQuestionJson.map((data, index)=>(
                                                     <Card style={{ width: '65rem' }}>
                                                         <Card.Header>
-                                                            <p> Q {currentQuestion + 1} : {reviewQuestionJson[currentQuestion]?.questionTitle}{" "}</p>
+                                                            <p> Q {currentQuestion + 1} : {reviewQuestionJson[currentQuestion]?.questionTitle? parse(reviewQuestionJson[currentQuestion].questionTitle, options) : ""}{" "}</p>
                                                         </Card.Header>
                                                         <Card.Body>
                                                             <div className={styles["scrollable-container1"]}>
@@ -173,7 +165,7 @@ function Preview() {
                                                                                             value={reviewQuestionJson[currentQuestion]?.option_A}
                                                                                             checked={selectedOptions[currentQuestion] === reviewQuestionJson[currentQuestion]?.option_A}
                                                                                         />
-                                                                                        <span>{reviewQuestionJson[currentQuestion]?.option_A}</span>
+                                                                                        <span>{reviewQuestionJson[currentQuestion]?.option_A ? parse(reviewQuestionJson[currentQuestion].option_A,options) : "" }</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -190,7 +182,7 @@ function Preview() {
                                                                                             value={reviewQuestionJson[currentQuestion]?.option_B}
                                                                                             checked={selectedOptions[currentQuestion] === reviewQuestionJson[currentQuestion]?.option_B}
                                                                                         />
-                                                                                        <span>{reviewQuestionJson[currentQuestion]?.option_B}</span>
+                                                                                        <span>{reviewQuestionJson[currentQuestion]?.option_B ? parse(reviewQuestionJson[currentQuestion].option_B,options) : "" }</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -210,7 +202,7 @@ function Preview() {
                                                                                         value={reviewQuestionJson[currentQuestion]?.option_C}
                                                                                         checked={selectedOptions[currentQuestion] === reviewQuestionJson[currentQuestion]?.option_C}
                                                                                     />
-                                                                                    <span>{reviewQuestionJson[currentQuestion]?.option_C}</span>
+                                                                                    <span>{reviewQuestionJson[currentQuestion]?.option_C ? parse(reviewQuestionJson[currentQuestion].option_C,options) : "" }</span>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -226,7 +218,7 @@ function Preview() {
                                                                                         value={reviewQuestionJson[currentQuestion]?.option_D}
                                                                                         checked={selectedOptions[currentQuestion] === reviewQuestionJson[currentQuestion]?.option_D}
                                                                                     />
-                                                                                    <span>{reviewQuestionJson[currentQuestion]?.option_D}</span>
+                                                                                    <span>{reviewQuestionJson[currentQuestion]?.option_D ? parse(reviewQuestionJson[currentQuestion].option_D,options) : "" }</span>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -240,7 +232,7 @@ function Preview() {
                                                                     <div className="card-body">
                                                                         <button
                                                                             type="button"
-                                                                            className="btn btn-light float-end "
+                                                                            className="btn btn-warning float-start "
                                                                             onClick={prevQuestion}
                                                                         >
                                                                             Prev
@@ -282,32 +274,6 @@ function Preview() {
                 </div>
 
             </div>
-            {/* <Modal
-                show={open}
-                onHide={() => setOpen(false)}
-                dialogClassName="modal-90w"
-                aria-labelledby="example-custom-modal-styling-title"
-            >
-                <Modal.Header>
-                    <Modal.Title id="example-custom-modal-styling-title">
-                        Exam Submit !
-          </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="mr-4">
-                    <div>
-                        <h5>Do you want to Submit Exam!</h5>
-                    </div>
-                    <button
-                        className="submitt-button btn btn-success"
-                        type="submit"
-                        style={{ borderRadius: "revert-layer", marginLeft: "390px" }}
-                    >
-                        <Link className="nav-link" to="/test-result">
-                            Submit
-            </Link>
-                    </button>
-                </Modal.Body>
-            </Modal> */}
         </>
     )
 }

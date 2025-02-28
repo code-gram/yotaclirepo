@@ -30,7 +30,7 @@ export const ListTest = () => {
     const options = { day: "2-digit", month: "long", year: "numeric" };
     let testIds = localStorage.getItem("testId");
 
-console.log(testList);
+    console.log(testList);
 
     useEffect(() => {
         if (userData.token) {
@@ -44,8 +44,8 @@ console.log(testList);
         const selectedUserId = e.target.value;
         if (selectedUserId !== null) {
             setUserId(selectedUserId);
-            // Filtered array of assigned training based on userId  
-            const userNames = assignedTraining.find(user => user.userId.toString().trim() === selectedUserId);
+            const userNames = assignedTraining.find(user => user.userId === Number(selectedUserId));
+            console.log(userNames)
             setUserName(userNames.userName);
         } else {
             setUserId("");
@@ -62,18 +62,21 @@ console.log(testList);
                 .catch((error) => error);
             setShowMessage(true)
         } else {
-            toast.error("Something went wrong please try again!!",{ className: 'toast-info' });
+            toast.error("Something went wrong please try again!!", { className: 'toast-info' });
         }
     }
 
     const addTestIndividualAssociate = () => {
+        const testIds = localStorage.getItem("testIdIndividual")
+        console.log("testId", testIds)
         if (testIds !== null) {
-            dispatch(addTestToIndividualAssociate({ testId: testIds, trainingId: 10, userId: userId }))
+            console.log("testing 1")
+            dispatch(addTestToIndividualAssociate({ testId: testIds, userId: userId }))
                 .then(() => dispatch(getAllTest()))
                 .catch((error) => error);
             setShowMessage(true);
         } else {
-            toast.error("Something went wrong please try again!!",{ className: 'toast-info' });
+            toast.error("Something went wrong please try again!!", { className: 'toast-info' });
         }
     }
 
@@ -143,14 +146,17 @@ console.log(testList);
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link className="dropdown-item" onClick={() => { setOpenAssignIndividual(true) }}>
+                                                <Link className="dropdown-item" onClick={() => {
+                                                    setOpenAssignIndividual(true)
+                                                    localStorage.setItem("testIdIndividual", response.id)
+                                                }}>
                                                     Assign to individual
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link className="dropdown-item" 
-                                                      to="/add-question-test"
-                                                      onClick={() => localStorage.setItem("testId", response.id)}>
+                                                <Link className="dropdown-item"
+                                                    to="/add-question-test"
+                                                    onClick={() => localStorage.setItem("testId", response.id)}>
                                                     Add question
                                                 </Link>
                                             </li>
@@ -292,7 +298,7 @@ console.log(testList);
                     </Modal.Footer>
                 </Modal>
             </Card>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     )
 }

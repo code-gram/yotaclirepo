@@ -6,7 +6,7 @@ export const addTraining = createAsyncThunk(
     "training/addTraining",
     async (trainingObject, { rejectWithValue }) => {
         try {
-            console.log("trainingObject " + trainingObject);
+            console.log("trainingObject: " , trainingObject);
             const response = await axios.post(
                 AXIOS_BASE_URL + "/training/addTraining", trainingObject
             );

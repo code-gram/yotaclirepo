@@ -25,10 +25,13 @@ export const AllAssociates = () => {
   const [searchValue, setSearchValue] = useState("");
   const email = useRef("");
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowPerPage, setRowPerPage] = useState(15);
 
   useEffect(() => {
-    if (token) dispatch(fetchAllAssociatesByStatus());
-  }, [dispatch, token]);
+    console.log("Token: ", token)
+    if (token) dispatch(fetchAllAssociatesByStatus({ currentPage, rowPerPage }));
+  }, [dispatch, token, currentPage, rowPerPage]);
 
   function getCheckBox(email) {
     return (

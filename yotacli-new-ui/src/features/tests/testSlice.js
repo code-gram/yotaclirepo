@@ -115,7 +115,7 @@ const testSlice = createSlice({
 
       // Check the status code and show an alert if needed
       if (action.payload.statusCode === 201) {
-        toast.success(action.payload.data);
+        toast.success(action.payload.data, { className: 'toast-info' });
       }
     });
     builder.addCase(addQuestionInTest.rejected, (state, action) => {

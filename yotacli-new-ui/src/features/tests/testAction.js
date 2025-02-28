@@ -83,7 +83,6 @@ export const addQuestionInTest = createAsyncThunk(
           params: { testId: testId }
         }
       );
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -138,8 +137,8 @@ export const addTestToTrainings = createAsyncThunk(
 //add test to assign to individual
 export const addTestToIndividualAssociate = createAsyncThunk(
   "test/addTestToIndividualAssociate",
-  async ({ testId, trainingId, userId }, { rejectWithValue }) => {
-    console.log(testId + "  "  + trainingId, " " + userId)
+  async ({ testId, userId }, { rejectWithValue }) => {
+    console.log(testId + " " + userId)
     try {
       const response = await axios.post(
         AXIOS_BASE_URL + "/tests/assign-test-individual-associate",
@@ -147,7 +146,6 @@ export const addTestToIndividualAssociate = createAsyncThunk(
         {
           params: {
             testIds: testId,
-            trainingIds: trainingId,
             userIds: userId
           }
         }
