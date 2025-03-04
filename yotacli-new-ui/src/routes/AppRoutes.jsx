@@ -157,6 +157,10 @@ export const AppRoutes = () => {
           <Route path={"/add-test"} element={<AddTest />} />
           <Route path={"/review-test"} element={<ReviewTest />} />
           <Route path={"/list-test"} element={<ListTest />} />
+          <Route path={"/preview"} element={<Preview />} />
+          <Route path={"/test-question/:id"} element={<TestQuestions />} />
+          <Route path={"/UpdateQuestion/:id"} element={<UpdateQuestion />} />
+          <Route path={"/add-question-test"} element={<AddQuestionTest />} />
 
           <Route
             path={"/assigned-associate"}
@@ -168,6 +172,7 @@ export const AppRoutes = () => {
           <Route path={"/show-question"} element={<ShowQuestion />} />
           <Route path={"/technology-list"} element={<TechnologyList />} />
           <Route path={"/category-list"} element={<CategoryList />} />
+          <Route path={"/associate-performance-report"} element={<AssosciatePerformanceReport />} />
          
         </>
       )}
