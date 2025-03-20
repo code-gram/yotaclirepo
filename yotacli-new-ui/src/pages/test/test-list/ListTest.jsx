@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const ListTest = () => {
     const { userData } = useSelector(state => state.auth);
     const { testList } = useSelector(state => state.tests);
+    console.log("tesList: ", testList)
     const trainings = useSelector((state) => state.trainings);
     const message = useSelector((state) => state.tests.message);
     const testIndividualMsg = useSelector((state) => state.tests.testIndividualMsg);
@@ -100,8 +101,7 @@ export const ListTest = () => {
                     </thead>
                     <tbody>
                         {
-                            Array.isArray(testList) &&
-                            testList.map((response, index) => (
+                            Array.isArray(testList) && testList.filter(test => test.testStatus === 'APPROVED').map((response, index) => (
                                 <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>{response.testTitle}</td>

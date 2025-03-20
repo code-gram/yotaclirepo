@@ -47,6 +47,7 @@ import { RejectedUsers } from "../pages/rejected-users/RejectedUsers";
 import TestQuestions from "../pages/test/TestQuestions";
 import AssosciatePerformanceReport from "../pages/training-performance-report/AssociatePerformanceReport";
 import Preview from '../pages/test/review-test-question/Preview'
+import NewTest from "../pages/test/test-list/NewTest";
 
 export const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -134,6 +135,7 @@ export const AppRoutes = () => {
           <Route path={"/all-trainers"} element={<AllTrainers />} />
           <Route path={"/add-test/:screen"} element={<AddTest />} />
           <Route path={"/list-test"} element={<ListTest />} />
+          <Route path={"/new-test"} element={<NewTest />} />
           <Route path={"/preview"} element={<Preview />} />
           <Route path={"/review-test"} element={<ReviewTest />} />
           <Route path={"/add-question"} element={<AddQuestion />} />

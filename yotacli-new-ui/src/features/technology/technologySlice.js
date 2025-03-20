@@ -3,6 +3,7 @@ import { createTechnology, fetchAllTechnology, updateTechnology } from "./techno
 
 const initialState = {
     technologies: [],
+    selectedTechnology:'',
     loading: false,
     error: null,
     success: false,
@@ -11,7 +12,11 @@ const initialState = {
 const technologySlice = createSlice({
     name: 'technologies',
     initialState,
-    reducers: {},
+    reducers: {
+        setSelectedTechnology: (state, action) => {
+            state.selectedTechnology = action.payload;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(createTechnology.pending, (state) => {
             state.loading = true;
@@ -63,5 +68,7 @@ const technologySlice = createSlice({
         });
     }
 })
+
+export const { setSelectedTechnology } = technologySlice.actions;
 
 export default technologySlice.reducer;

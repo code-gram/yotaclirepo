@@ -70,6 +70,11 @@
                                           Test List
                                       </Link>
                                   </li>
+                                  <li>
+                                      <Link className="dropdown-item" to="/new-test">
+                                          New Tests
+                                      </Link>
+                                  </li>
                               </ul>
                           </li>
                           <li className="nav-item">

@@ -2,6 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { AXIOS_BASE_URL } from "../../constants/helperConstants";
 
+export const setSelectedTechnology = (technology) => ({
+  type: 'SET_TECHNOLOGY',
+  payload: technology,
+});
+
 export const createTechnology = createAsyncThunk(
   "technology/createTechnology",
   async (technologyPayload, { rejectWithValue }) => {

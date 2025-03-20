@@ -64,7 +64,8 @@ export const TestSetting = ({ nextScreen, formData, updateFormData }) => {
         const settingFormData = {
             durationTime: dTime,
             startTime: sTime,
-            endDate: eDate
+            endDate: eDate,
+            testStatus: 'PENDING'
         }
 
         updateFormData("testSetting", settingFormData);

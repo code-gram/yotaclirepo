@@ -84,7 +84,7 @@ console.log("Data: "+ data.id)
           variant="secondary"
           size="sm"
           style={{ marginRight: "100%" }}
-          onClick={() => navigate("/list-test")}
+          onClick={() => navigate(-1)}
         >
          Back
         </Button>
